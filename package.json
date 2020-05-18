@@ -17,6 +17,7 @@
     "socket.io-client": "^2.3.0",
     "typescript": "3.6.4"
   },
+  "license": "GPL-3.0",
   "scripts": {
     "zip": "npm-build-zip",
     "start": "react-scripts start",
