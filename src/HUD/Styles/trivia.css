@@ -1,0 +1,27 @@
+.trivia_container {
+    position: absolute;
+    left:20px;
+    background-color:black;
+    color: white;
+    width: 450px;
+    top:830px;
+    opacity:1;
+    transition: opacity 1s;
+    
+    font-size: 16pt;
+}
+.trivia_container .title {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding-left:30px;
+    font-weight:bold;
+    padding-top:10px;
+}
+.trivia_container .content {
+    padding-left:30px;
+    padding-bottom:15px;
+}
+.trivia_container.hide {
+    opacity:0;
+}

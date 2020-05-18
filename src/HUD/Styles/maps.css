@@ -1,0 +1,42 @@
+
+#radar_maps_container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    border: none;
+    background-color:rgba(0,0,0,0.5);
+}
+#iframe_radar{
+    border:none;
+}
+#radar_maps_container.hide {
+    opacity:0;
+}
+#maps_container {
+    width:100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color:rgba(0,0,0,0.5);
+}
+.veto_entry {
+    display: flex;
+    justify-content: center;
+}
+.veto_entry > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 10pt;
+}
+.veto_entry .team_logo img {
+    max-height: 75%;
+    padding-right: 3px;
+}
+.veto_entry .map_name.active {
+    text-shadow: 0 0 15px white;
+    font-weight: 600;
+}

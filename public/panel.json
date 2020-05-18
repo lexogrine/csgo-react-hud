@@ -1,0 +1,82 @@
+[
+    {
+        "label": "Trivia",
+        "name":"trivia",
+        "inputs": [
+            {
+                "type": "text",
+                "name": "title",
+                "label": "Trivia title"
+            },
+            {
+                "type": "text",
+                "name": "content",
+                "label": "Trivia content"
+            },
+            {
+                "type": "action",
+                "name": "triviaState",
+                "values": [
+                    {
+                        "name": "show",
+                        "label": "Show trivia"
+                    },
+                    {
+                        "name": "hide",
+                        "label": "Hide trivia"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "Display settings",
+        "name":"display_settings",
+        "inputs": [
+            {
+                "type": "text",
+                "name": "left_title",
+                "label": "Left box's title"
+            },
+            {
+                "type": "text",
+                "name": "right_title",
+                "label": "Right box's title"
+            },
+            {
+                "type": "text",
+                "name": "left_subtitle",
+                "label": "Left box's subtitle"
+            },
+            {
+                "type": "text",
+                "name": "right_subtitle",
+                "label": "Right box's subtitle"
+            },
+            {
+                "type":"image",
+                "name":"left_image",
+                "label":"Left box's image logo"
+            },
+            {
+                "type":"image",
+                "name":"right_image",
+                "label":"Right box's image logo"
+            },
+            {
+                "type": "action",
+                "name": "boxesState",
+                "values": [
+                    {
+                        "name": "show",
+                        "label": "Show boxes"
+                    },
+                    {
+                        "name": "hide",
+                        "label": "Hide boxes"
+                    }
+                ]
+            }
+        ]
+    }
+]

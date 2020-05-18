@@ -1,0 +1,18 @@
+[
+    {
+        "bind":"Ctrl+B",
+        "action":"toggleRadar"
+    },
+    {
+        "bind":"Alt+B",
+        "action":"radarBigger"
+    },
+    {
+        "bind":"Alt+S",
+        "action":"radarSmaller"
+    },
+    {
+        "bind":"Alt+T",
+        "action":"toggleTrivia"
+    }
+]

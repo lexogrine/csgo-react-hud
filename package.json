@@ -1,0 +1,48 @@
+{
+  "name": "lexogrine_hud",
+  "version": "1.0.0",
+  "homepage": "./",
+  "private": true,
+  "dependencies": {
+    "@types/jest": "24.0.19",
+    "@types/node": "12.11.1",
+    "@types/react": "16.9.9",
+    "@types/react-dom": "16.9.2",
+    "csgogsi": "^1.2.0",
+    "csgogsi-socket": "^1.2.0",
+    "query-string": "^6.12.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "socket.io-client": "^2.3.0",
+    "typescript": "3.6.4"
+  },
+  "scripts": {
+    "zip": "npm-build-zip",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "pack": "npm run build && npm run zip"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/history": "^4.7.5",
+    "@types/socket.io-client": "^1.4.32",
+    "npm-build-zip": "^1.0.2"
+  }
+}

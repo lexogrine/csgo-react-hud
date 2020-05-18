@@ -1,0 +1,12 @@
+{
+    "name":"Lexogrine HUD",
+    "version":"1.0.0",
+    "author":"osztenkurden",
+    "legacy": false,
+    "radar": true,
+    "killfeed": true,
+    "boltobserv":{
+        "css":true,
+        "maps":true
+    }
+}
