@@ -22,7 +22,7 @@ export default class SeriesBox extends React.Component<Props> {
           <div className={`series_wins left `}>
             <div className={`wins_box_container`}>
               {new Array(amountOfMaps).fill(0).map((_, i) => (
-                <div key={i} className={`wins_box ${match && match.left.wins > i ? "win" : ""} ${left.side}`} />
+                <div key={i} className={`wins_box ${left.matches_won_this_series > i ? "win" : ""} ${left.side}`} />
               ))}
             </div>
           </div>
@@ -34,7 +34,7 @@ export default class SeriesBox extends React.Component<Props> {
           <div className={`series_wins right `}>
             <div className={`wins_box_container`}>
               {new Array(amountOfMaps).fill(0).map((_, i) => (
-                <div key={i} className={`wins_box ${match && match.right.wins > i ? "win" : ""} ${right.side}`} />
+                <div key={i} className={`wins_box ${right.matches_won_this_series > i ? "win" : ""} ${right.side}`} />
               ))}
             </div>
           </div>
