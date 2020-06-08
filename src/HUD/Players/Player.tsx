@@ -50,7 +50,10 @@ export default class PlayerBox extends React.Component<{ player: Player, isObser
               <div className="money">${player.state.money}</div>
               <div className="grenades">
                 {grenades.map(grenade => (
-                  <Weapon key={`${grenade.name}-${grenade.state}`} weapon={grenade.name} active={grenade.state === "active"} isGrenade />
+                  [
+                    <Weapon key={`${grenade.name}-${grenade.state}`} weapon={grenade.name} active={grenade.state === "active"} isGrenade />,
+                    grenade.ammo_reserve === 2 ? <Weapon key={`${grenade.name}-${grenade.state}`} weapon={grenade.name} active={grenade.state === "active"} isGrenade /> : null,
+                  ]
                 ))}
               </div>
               <div className="secondary_weapon">{primary && secondary ? <Weapon weapon={secondary.name} active={secondary.state === "active"} /> : ""}</div>
