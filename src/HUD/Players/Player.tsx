@@ -52,7 +52,7 @@ export default class PlayerBox extends React.Component<{ player: Player, isObser
                 {grenades.map(grenade => (
                   [
                     <Weapon key={`${grenade.name}-${grenade.state}`} weapon={grenade.name} active={grenade.state === "active"} isGrenade />,
-                    grenade.ammo_reserve === 2 ? <Weapon key={`${grenade.name}-${grenade.state}`} weapon={grenade.name} active={grenade.state === "active"} isGrenade /> : null,
+                    grenade.ammo_reserve === 2 ? <Weapon key={`${grenade.name}-${grenade.state}-double`} weapon={grenade.name} active={grenade.state === "active"} isGrenade /> : null,
                   ]
                 ))}
               </div>
