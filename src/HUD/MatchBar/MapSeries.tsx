@@ -52,7 +52,7 @@ export default class MapSeries extends React.Component<IProps> {
                     <div className="winner">Winner</div>
                     <div className="score">Score</div>
                 </div>
-                {match.vetos.map(veto => {
+                {match.vetos.filter(veto => veto.type !== "ban").map(veto => {
                     if(!veto.mapName) return null;
                     return <VetoEntry veto={veto} teams={teams} active={map.name.includes(veto.mapName)}/>
                 })}
