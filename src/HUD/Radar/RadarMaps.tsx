@@ -38,7 +38,7 @@ class MapsBar extends React.PureComponent<Props> {
         const { match, map } = this.props;
         if(!match || !match.vetos.length) return '';
         return <div id="maps_container">
-            {match.vetos.filter(veto => veto.teamId || veto.type === "decider").map(veto => <MapEntry key={veto.mapName} veto={veto} map={this.props.map} logo={veto.type === "decider" ? null : map.team_ct.id === veto.teamId ? map.team_ct.logo : map.team_t.logo}/>)}
+            {match.vetos.filter(veto => veto.type !== "ban").filter(veto => veto.teamId || veto.type === "decider").map(veto => <MapEntry key={veto.mapName} veto={veto} map={this.props.map} logo={veto.type === "decider" ? null : map.team_ct.id === veto.teamId ? map.team_ct.logo : map.team_t.logo}/>)}
         </div>
     }
 }
