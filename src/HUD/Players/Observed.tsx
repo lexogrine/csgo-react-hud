@@ -41,6 +41,7 @@ export default class Observed extends React.Component<{ player: Player | null }>
 		const grenades = weapons.filter(weapon => weapon.type === "Grenade");
 		const { stats } = player;
 		const ratio = stats.deaths === 0 ? stats.kills : stats.kills/stats.deaths;
+		const countryName = country ? getCountry(country) : null;
 		return (
 			<div className={`observed ${player.team.side}`}>
 				<div className="main_row">
@@ -50,7 +51,7 @@ export default class Observed extends React.Component<{ player: Player | null }>
 						<div className="username">{player.name}</div>
 						<div className="real_name">{player.realName}</div>
 					</div>
-					<div className="flag">{country ? <img src={`${apiUrl}files/img/flags/${getCountry(country).replace(/ /g, "-")}.png`} alt={country}/> : ''}</div>
+					<div className="flag">{countryName ? <img src={`${apiUrl}files/img/flags/${countryName.replace(/ /g, "-")}.png`} alt={countryName}/> : ''}</div>
 					<div className="grenade_container">
 						{grenades.map(grenade => [
 							<Weapon weapon={grenade.name} active={grenade.state === "active"} isGrenade />,
