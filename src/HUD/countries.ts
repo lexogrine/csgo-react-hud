@@ -151,6 +151,7 @@ export const countries: any = {
     'MM' : 'Myanmar',
     'NA' : 'Namibia',
     'NR' : 'Nauru',
+    'EU' : 'European Union',
     'NP' : 'Nepal',
     'NL' : 'Netherlands',
     'AN' : 'Netherlands Antilles',
