@@ -55,6 +55,7 @@ export const countries: any = {
     'CI' : 'Cote D\'Ivoire',
     'HR' : 'Croatia',
     'CU' : 'Cuba',
+    'EU' : 'European Union',
     'CY' : 'Cyprus',
     'CZ' : 'Czech Republic',
     'DK' : 'Denmark',
