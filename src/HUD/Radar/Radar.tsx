@@ -1,11 +1,7 @@
 import React from "react";
 import "./../Styles/maps.css";
-import queryString from 'query-string';
-import {port} from './../../api/api';
+import {port, isDev } from './../../api/api';
 
-const query = queryString.parseUrl(window.location.href).query;
-
-const isDev = !query.isProd;
 const href = window.location.href;
 let name = '';
 if (href.indexOf('/huds/') !== -1) {
@@ -49,8 +45,9 @@ export default class Radar extends React.Component<Props, State> {
     render() {
         const { boltobserv, loaded } = this.state;
         if(!loaded) return null;
-        let url = `http://localhost:${port}/radar`;
+        let url = `/radar`;
         if(isDev){
+            url = `http://localhost:${port}/radar`;
             url += `?devCSS=${boltobserv.css.toString()}`;
             url += `&devMaps=${boltobserv.maps.toString()}`;
 

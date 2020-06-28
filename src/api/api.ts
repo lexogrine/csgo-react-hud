@@ -5,7 +5,7 @@ import queryString from 'query-string';
 const query = queryString.parseUrl(window.location.href).query;
 export const port = (query && Number(query.port)) || 1349;
 
-const isDev = !query.isProd;
+export const isDev = !query.isProd;
 
 export const config = {apiAddress:isDev ? `http://localhost:${port}/` : '/'}
 export const apiUrl = config.apiAddress;
