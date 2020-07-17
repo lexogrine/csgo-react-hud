@@ -219,6 +219,11 @@
     white-space: nowrap;
 }
 
+.teambox .player .row .username div span {
+    opacity: 0.6;
+    font-size:15px;
+}
+
 .teambox .player.dead .row .username {
     color: #b2b2b2;
 }
@@ -273,6 +278,9 @@
 .teambox .player.dead .row .money {
     color: #466722;
 }
+.teambox .player.dead {
+    opacity: 0.7;
+}
 
 .teambox .player .hp_bar {
     height: 2px;
@@ -306,6 +314,9 @@
     background-color: var(--color-new-t);
 }
 
+.teambox .player .hp_bar.low {
+    background-color: red;
+}
 
 
 
@@ -340,7 +351,25 @@
 }
 
 img.weapon {
-    filter: invert(30%);
+    filter: invert(45%);
+}
+img.weapon.active {
+    filter: invert(0);
+}
+.roundkills-container {
+    position: absolute;
+    background-image: url('./../../assets/images/icon_skull_default.png');
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position: left 2px;
+    padding-left: 16px;
+    font-size: 13px;
+}
+.teambox.right .roundkills-container {
+    left: 135px;
+}
+.teambox.left .roundkills-container {
+    right: 135px;
 }
 /*
 img.weapon.active {

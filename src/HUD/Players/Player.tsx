@@ -36,11 +36,12 @@ export default class PlayerBox extends React.Component<{ player: Player, isObser
                 {player.state.health}
               </div>
               <div className="username">
-                {isLeft ? player.observer_slot : ''} {player.name} {!isLeft ? player.observer_slot : ''}
+                <div>{isLeft ? <span>{player.observer_slot}</span> : null} {player.name} {!isLeft ? <span>{player.observer_slot}</span> : null}</div>
                 {primary || secondary ? <Weapon weapon={primary ? primary.name : secondary.name} active={primary ? primary.state === "active" : secondary.state === "active"} /> : ""}
+                {player.state.round_kills ? <div className="roundkills-container">{player.state.round_kills}</div> : null}
               </div>
             </div>
-            <div className="hp_bar" style={{ width: `${player.state.health}%` }}></div>
+            <div className={`hp_bar ${player.state.health <= 20 ? 'low':''}`} style={{ width: `${player.state.health}%` }}></div>
             <div className="row">
               <div className="armor_and_utility">
                 <Bomb player={player} />

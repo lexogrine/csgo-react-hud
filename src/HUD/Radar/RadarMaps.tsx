@@ -1,11 +1,11 @@
 import React from "react";
 import "./../Styles/maps.css";
 import { Match, Veto } from "../../api/interfaces";
-import { Map } from 'csgogsi';
+import { Map, CSGO } from 'csgogsi';
 import { actions } from './../../App';
 import Radar from './Radar'
 
-interface Props { match: Match | null, map: Map }
+interface Props { match: Match | null, map: Map, game: CSGO }
 interface State { showRadar: boolean, radarSize: number }
 
 export default class RadarMaps extends React.Component<Props, State> {
@@ -26,8 +26,8 @@ export default class RadarMaps extends React.Component<Props, State> {
         const { match } = this.props;
         return (
             <div id={`radar_maps_container`} className={`${!this.state.showRadar ? 'hide':''}`}>
-                <Radar radarSize={this.state.radarSize}/>
-                {match ? <MapsBar match={this.props.match} map={this.props.map} />:null}
+                <Radar radarSize={this.state.radarSize} game={this.props.game}/>
+                {match ? <MapsBar match={this.props.match} map={this.props.map}  game={this.props.game}/>:null}
             </div>
         );
     }
@@ -37,7 +37,7 @@ class MapsBar extends React.PureComponent<Props> {
     render(){
         const { match, map } = this.props;
         if(!match || !match.vetos.length) return '';
-        const picks = match.vetos.filter(veto => veto.type !== "ban");
+        const picks = match.vetos.filter(veto => veto.type !== "ban" && veto.mapName);
         if(picks.length > 3) {
             const current = picks.find(veto => map.name.includes(veto.mapName));
             if(!current) return null;

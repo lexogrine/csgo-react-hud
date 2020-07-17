@@ -112,13 +112,14 @@
 
 .wins_box {
     width: 77px;
-    height: 3px;
+    height: 7px;
     margin-left: 2px;
     margin-right: 2px;
     box-sizing: border-box;
 }
 
 .wins_box.CT {
+    background-color: rgba(0,0,0,0.6);
 }
 
 .wins_box.CT.win {
@@ -126,6 +127,7 @@
 }
 
 .wins_box.T {
+    background-color: rgba(0,0,0,0.6);
 }
 
 .wins_box.T.win {

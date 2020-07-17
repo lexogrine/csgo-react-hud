@@ -1,6 +1,6 @@
 {
   "name": "lexogrine_hud",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "homepage": "./",
   "private": true,
   "dependencies": {
@@ -8,8 +8,8 @@
     "@types/node": "12.11.1",
     "@types/react": "16.9.9",
     "@types/react-dom": "16.9.2",
-    "csgogsi": "^1.2.0",
-    "csgogsi-socket": "^1.2.0",
+    "csgogsi": "^1.2.5",
+    "csgogsi-socket": "^1.2.7",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

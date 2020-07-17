@@ -1,0 +1,46 @@
+import { Side } from "csgogsi";
+
+export interface RadarPlayerObject {
+    label: string | number,
+    side: Side,
+    position: number[],
+    forward: number,
+    isActive: boolean,
+    isAlive: boolean,
+    steamid: string,
+    hasBomb: boolean,
+}
+
+export interface RadarGrenadeObject {
+    state: 'inair' | 'landed' | 'exploded'
+    type: 'decoy' | 'smoke' | 'frag' | 'firebomb' | 'flashbang' | 'inferno',
+    position: number[],
+    id: string,
+} 
+export interface GrenadeBase {
+    owner: string,
+    type: 'decoy' | 'smoke' | 'frag' | 'firebomb' | 'flashbang' | 'inferno'
+    lifetime: string
+}
+
+export interface DecoySmokeGrenade extends GrenadeBase {
+    position: string,
+    velocity: string,
+    type: 'decoy' | 'smoke',
+    effecttime: string,
+}
+
+export interface DefaultGrenade extends GrenadeBase {
+    position: string,
+    type: 'frag' | 'firebomb' | 'flashbang',
+    velocity: string,
+}
+
+export interface InfernoGrenade extends GrenadeBase {
+    type: 'inferno',
+    flames: { [key: string]: string }
+}
+
+export type Grenade = DecoySmokeGrenade | DefaultGrenade | InfernoGrenade;
+
+export type ExtendedGrenade = Grenade & { id: string };

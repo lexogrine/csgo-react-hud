@@ -1,15 +1,12 @@
 import React from "react";
 import "./../Styles/maps.css";
-import {port, isDev } from './../../api/api';
+import { isDev } from './../../api/api';
+import { CSGO } from "csgogsi";
+import LexoRadarContainer from './LexoRadar/LexoRadarContainer';
 
-const href = window.location.href;
-let name = '';
-if (href.indexOf('/huds/') !== -1) {
-    const segment = href.substr(href.indexOf('/huds/') + 6);
-    name = segment.substr(0, segment.lastIndexOf('/'));
-}
 
-interface Props { radarSize: number }
+
+interface Props { radarSize: number, game: CSGO }
 interface State {
     showRadar: boolean,
     radarSize: number,
@@ -31,7 +28,7 @@ export default class Radar extends React.Component<Props, State> {
         }
     }
     async componentDidMount(){
-        if(isDev){
+        /*if(isDev){
             const response = await fetch('hud.json');
             const hud = await response.json();
             const boltobserv = {
@@ -39,11 +36,20 @@ export default class Radar extends React.Component<Props, State> {
                 maps: Boolean(hud && hud.boltobserv && hud.boltobserv.maps)
             }
             this.setState({boltobserv, loaded: true});
-        }
+        }*/
     }
 
     render() {
-        const { boltobserv, loaded } = this.state;
+        const { players, player, bomb, grenades, map } = this.props.game; 
+        return <LexoRadarContainer
+            players={players}
+            player={player}
+            bomb={bomb}
+            grenades={grenades}
+            size={400}
+            mapName={map.name.substring(map.name.lastIndexOf('/')+1)}
+        />
+        /*const { boltobserv, loaded } = this.state;
         if(!loaded) return null;
         let url = `/radar`;
         if(isDev){
@@ -57,6 +63,6 @@ export default class Radar extends React.Component<Props, State> {
         return <div id="radar_container" style={{width: `${this.props.radarSize}px`, height: `${this.props.radarSize}px`}}>
             <iframe src={url} height={`${this.props.radarSize}px`} width={`${this.props.radarSize}px`} id="iframe_radar" title="Boltobserv Radar">
             </iframe>
-        </div>;
+        </div>;*/
     }
 }
