@@ -9,7 +9,6 @@ import LexoRadarContainer from './LexoRadar/LexoRadarContainer';
 interface Props { radarSize: number, game: CSGO }
 interface State {
     showRadar: boolean,
-    radarSize: number,
     loaded: boolean,
     boltobserv:{
         css: boolean,
@@ -20,7 +19,6 @@ interface State {
 export default class Radar extends React.Component<Props, State> {
     state = {
         showRadar: true,
-        radarSize: 300,
         loaded: !isDev,
         boltobserv: {
             css: true,
@@ -46,23 +44,8 @@ export default class Radar extends React.Component<Props, State> {
             player={player}
             bomb={bomb}
             grenades={grenades}
-            size={400}
+            size={this.props.radarSize}
             mapName={map.name.substring(map.name.lastIndexOf('/')+1)}
         />
-        /*const { boltobserv, loaded } = this.state;
-        if(!loaded) return null;
-        let url = `/radar`;
-        if(isDev){
-            url = `http://localhost:${port}/radar`;
-            url += `?devCSS=${boltobserv.css.toString()}`;
-            url += `&devMaps=${boltobserv.maps.toString()}`;
-
-        } else if(name) {
-            url += "?hud="+name;
-        }
-        return <div id="radar_container" style={{width: `${this.props.radarSize}px`, height: `${this.props.radarSize}px`}}>
-            <iframe src={url} height={`${this.props.radarSize}px`} width={`${this.props.radarSize}px`} id="iframe_radar" title="Boltobserv Radar">
-            </iframe>
-        </div>;*/
     }
 }
