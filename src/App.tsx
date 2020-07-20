@@ -91,6 +91,10 @@ class App extends React.Component<any, { match: Match | null, players: Player[],
 			actions.execute(action);
 		});
 
+		socket.on("refreshHUD", () => {
+			window.top.location.reload();
+		});
+
 		/*if (href.indexOf('/huds/')) {
 
 			const segment = href.substr(href.indexOf('/huds/') + 6);
