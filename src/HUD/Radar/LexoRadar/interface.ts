@@ -1,7 +1,9 @@
 import { Side } from "csgogsi";
 
 export interface RadarPlayerObject {
+    id: string,
     label: string | number,
+    visible: boolean,
     side: Side,
     position: number[],
     forward: number,
@@ -15,6 +17,7 @@ export interface RadarGrenadeObject {
     state: 'inair' | 'landed' | 'exploded'
     type: 'decoy' | 'smoke' | 'frag' | 'firebomb' | 'flashbang' | 'inferno',
     position: number[],
+    visible: boolean,
     id: string,
 } 
 export interface GrenadeBase {

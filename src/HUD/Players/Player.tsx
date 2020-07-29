@@ -1,12 +1,17 @@
 import React from "react";
-import { Player, WeaponRaw } from "csgogsi-socket";
+import { Player, WeaponRaw, Map } from "csgogsi-socket";
 import Weapon from "./../Weapon/Weapon";
 import Avatar from "./Avatar";
 import Armor from "./../Indicators/Armor";
 import Bomb from "./../Indicators/Bomb";
 import Defuse from "./../Indicators/Defuse";
 
-export default class PlayerBox extends React.Component<{ player: Player, isObserved: boolean, isFreezetime: boolean }> {
+interface IProps {
+  player: Player,
+  isObserved: boolean,
+  isFreezetime: boolean,
+}
+export default class PlayerBox extends React.Component<IProps> {
   render() {
     const { player } = this.props;
     const weapons: WeaponRaw[] = Object.values(player.weapons).map(weapon => ({ ...weapon, name: weapon.name.replace("weapon_", "") }));

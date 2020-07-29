@@ -7,17 +7,30 @@ import de_overpass from './de_overpass';
 import de_nuke from './de_nuke';
 import de_vertigo from './de_vertigo';
 
-interface MapConfig {
-    config: {
-        origin: {
-            x:number,
-            y:number
-        },
-        pxPerUX: number,
-        pxPerUY: number
+export interface ScaleConfig {
+    origin: {
+        x:number,
+        y:number
     },
+    pxPerUX: number,
+    pxPerUY: number
+}
+
+interface SingleLayer {
+    config: ScaleConfig,
     file: string
 }
+
+interface DoubleLayer {
+    configs: {
+        id: string,
+        config: ScaleConfig,
+        isVisible: (height: number) => boolean
+    }[],
+    file: string
+}
+
+export type MapConfig = SingleLayer | DoubleLayer;
 
 const maps: { [key: string] : MapConfig} = {
     de_mirage,

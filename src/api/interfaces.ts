@@ -30,12 +30,28 @@ export interface Config {
     token: string,
 }*/
 
+export interface RoundData {
+  round: number,
+  players: {
+      [steamid: string]: PlayerRoundData
+  },
+  winner: 'CT' | 'T' | null,
+  win_type: 'bomb' | 'elimination' | 'defuse' | 'time',
+}
+
+export interface PlayerRoundData {
+  kills: number,
+  killshs: number,
+  damage: number,
+}
+
 export interface Veto {
   teamId: string;
   mapName: string;
   side: "CT" | "T" | "NO";
   type: "ban" | "pick" | "decider";
   reverseSide?: boolean;
+  rounds?: RoundData[],
   score?: {
     [key: string]: number;
   };

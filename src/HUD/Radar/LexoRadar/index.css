@@ -54,6 +54,7 @@ html, body, .map-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: opacity 0.5s ease;
     /*transition: all 0.1s ease;/**/
 }
 .map .player .background {
@@ -178,4 +179,8 @@ html, body, .map-container {
 }
 .map .player.T.hasBomb .label {
     background: red;
+}
+
+.map .hidden {
+    opacity: 0 !important;
 }
