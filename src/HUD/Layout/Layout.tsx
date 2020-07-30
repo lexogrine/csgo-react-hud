@@ -13,6 +13,7 @@ import MoneyBox from '../SideBoxes/Money';
 import UtilityLevel from '../SideBoxes/UtilityLevel';
 import Killfeed from "../Killfeed/Killfeed";
 import MapSeries from "./../MatchBar/MapSeries";
+import Overview from "../Overview/Overview";
 
 interface Props {
   game: CSGO,
@@ -53,18 +54,19 @@ export default class Layout extends React.Component<Props, State> {
   }
 
   render() {
-    const left = this.props.game.map.team_ct.orientation === "left" ? this.props.game.map.team_ct : this.props.game.map.team_t;
-    const right = this.props.game.map.team_ct.orientation === "left" ? this.props.game.map.team_t : this.props.game.map.team_ct;
-
-    const leftPlayers = this.props.game.players.filter(player => player.team.side === left.side);
-    const rightPlayers = this.props.game.players.filter(player => player.team.side === right.side);
     const { game, match } = this.props;
+    const left = game.map.team_ct.orientation === "left" ? game.map.team_ct : game.map.team_t;
+    const right = game.map.team_ct.orientation === "left" ? game.map.team_t : game.map.team_ct;
+
+    const leftPlayers = game.players.filter(player => player.team.side === left.side);
+    const rightPlayers = game.players.filter(player => player.team.side === right.side);
     const isFreezetime = (game.round && game.round.phase === "freezetime") || game.phase_countdowns.phase === "freezetime";
     const { forceHide } = this.state;
 
     return (
       <div className="layout">
         <Killfeed />
+        <Overview match={match} map={game.map} players={game.players || []} />
         <RadarMaps match={match} map={game.map} game={game}/>
         <MatchBar map={game.map} phase={game.phase_countdowns} bomb={game.bomb}/>
 

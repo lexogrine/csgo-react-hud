@@ -78,5 +78,47 @@
                 ]
             }
         ]
+    },
+    {
+        "label": "Player & Match overview",
+        "name":"preview_settings",
+        "inputs": [
+            {
+                "type": "match",
+                "name": "match_preview",
+                "label": "Pick an upcoming match"
+            },
+            {
+                "type": "select",
+                "name": "select_preview",
+                "label": "Mood indicator",
+                "values": [
+                    {
+                        "name": "show",
+                        "label": ":)"
+                    },
+                    {
+                        "name": "hide",
+                        "label": ":("
+                    }
+                ]
+            },
+            {
+                "type": "player",
+                "name": "player_preview",
+                "label": "Pick a player to preview"
+            },
+            {
+                "type": "checkbox",
+                "name": "player_preview_toggle",
+                "label": "Show player preview"
+            },
+            {
+                "type": "checkbox",
+                "name": "match_preview_toggle",
+                "label": "Show upcoming match"
+            }
+
+        ]
     }
 ]
