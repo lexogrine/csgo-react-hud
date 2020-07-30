@@ -75,7 +75,7 @@ export default class Overview extends React.Component<IProps, IState> {
                 match: {
                     data: (data.preview_settings.match_preview && data.preview_settings.match_preview.match) || null,
                     show: Boolean(data.preview_settings.match_preview_toggle),
-                    teams: []
+                    teams: this.state.match.teams
                 }
             }, this.loadTeams);
         });
