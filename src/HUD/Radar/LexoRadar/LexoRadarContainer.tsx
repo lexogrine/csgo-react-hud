@@ -152,7 +152,7 @@ class App extends React.Component<IProps> {
                 if ("config" in map) {
                     return ({
                         position: this.parsePosition(extGrenade.flames[id].split(", ").map(pos => Number(pos)), 12, map.config),
-                        id,
+                        id: `${id}_${extGrenade.id}`,
                         visible: true
                     });
                 }
