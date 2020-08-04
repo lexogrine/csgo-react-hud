@@ -59,7 +59,7 @@ class App extends React.Component<IProps> {
       if(!position) return null;
       
       return (
-        <div className={`bomb ${bomb.state}`}
+        <div className={`bomb ${bomb.state} visible`}
           style={{
             transform: `translateX(${position[0]}px) translateY(${position[1]}px)`
           }}>
@@ -72,7 +72,7 @@ class App extends React.Component<IProps> {
       const position = this.props.parsePosition(bomb.position.split(", ").map(pos => Number(pos)), 30, config.config);
       if(!position) return null;
       return (
-        <div className={`bomb ${bomb.state}`}
+        <div className={`bomb ${bomb.state} ${config.isVisible(bomb.position.split(", ").map(Number)[2]) ? 'visible':'hidden'}`}
           style={{
             transform: `translateX(${position[0]}px) translateY(${position[1]}px)`
           }}>
