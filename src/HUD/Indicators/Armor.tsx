@@ -1,15 +1,17 @@
-import React from 'react';
-import { Player } from 'csgogsi-socket';
-import {ArmorHelmet, ArmorFull} from './../../assets/Icons';
-export default class Armor extends React.Component<{ player: Player }> {
-    render() {
-        const { player } = this.props;
-        if(!player.state.health || !player.state.armor) return '';
-        return (
-            <div className={`armor_indicator`}>
-                <img src={player.state.helmet ? ArmorHelmet : ArmorFull} alt={'Armor'} />
-            </div>
-        );
-    }
-
+import React from "react";
+import { ArmorHelmet, ArmorFull } from "./../../assets/Icons";
+export default class Armor extends React.Component<{
+  health: number;
+  armor: number;
+  helmet: boolean;
+}> {
+  render() {
+    const { health, armor, helmet } = this.props;
+    if (!health || !armor) return "";
+    return (
+      <div className={`armor_indicator`}>
+        <img src={helmet ? ArmorHelmet : ArmorFull} alt={"Armor"} />
+      </div>
+    );
+  }
 }

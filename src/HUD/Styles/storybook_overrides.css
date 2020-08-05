@@ -1,0 +1,4 @@
+.killfeed .single_kill,
+.win_text.show {
+  animation-iteration-count: infinite;
+}
