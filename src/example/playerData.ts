@@ -3,8 +3,8 @@ import { getExampleTeamData } from "./teamData";
 
 export const getExamplePlayerData = (name?: string): Player => {
   return {
-    steamid: "76561198121076149",
-    name: name || "Noel Bank",
+    steamid: name ? "76561198121076148" : "76561198121076149",
+    name: name || "nbank",
     avatar: "https://placekitten.com/512/512",
     observer_slot: 0,
     team: getExampleTeamData(),

@@ -8,10 +8,10 @@ export const getExampleTeamData = (name?: string): Team => {
     consecutive_round_losses: 0,
     timeouts_remaining: 1,
     matches_won_this_series: 1,
-    side: "CT",
+    side: name ? "T" : "CT",
     name: name || "Old Spyce",
     country: "eu",
-    id: "old-spyce",
-    orientation: "right",
+    id: name ? "lexogrine" : "old-spyce",
+    orientation: name ? "left" : "right",
   };
 };
