@@ -22,11 +22,9 @@ export default class Tournament extends React.Component<{}, State> {
     }
     componentDidMount() {
         Promise.all([api.match.get(), api.teams.get()]).then(([matches, teams]) =>{
-            console.log(matches, teams);
             this.setState({matches, teams});
         });
         actions.on("showTournament", async (show: string) => {
-            console.log(show);
             if(show !== "show"){
                 return this.setState({show: false});
             }

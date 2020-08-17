@@ -61,7 +61,6 @@ export default class Overview extends React.Component<IProps, IState> {
     }
     componentDidMount() {
         configs.onChange((data: any) => {
-            console.log(data);
             if(!data || !data.preview_settings) return;
             this.setState({
                 player: {
