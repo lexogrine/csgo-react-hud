@@ -117,6 +117,20 @@
                 "type": "checkbox",
                 "name": "match_preview_toggle",
                 "label": "Show upcoming match"
+            },
+            {
+                "type": "action",
+                "name": "showTournament",
+                "values": [
+                    {
+                        "name": "show",
+                        "label": "Show tournament"
+                    },
+                    {
+                        "name": "hide",
+                        "label": "Hide tournament"
+                    }
+                ]
             }
 
         ]

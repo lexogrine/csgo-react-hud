@@ -29,7 +29,27 @@ export interface Config {
     steamApiKey: string,
     token: string,
 }*/
+export interface TournamentMatchup {
+	_id: string;
+	loser_to: string | null; // IDs of Matchups, not Matches
+	winner_to: string | null;
+	label: string;
+	matchId: string | null;
+	parents: TournamentMatchup[];
+}
 
+export interface DepthTournamentMatchup extends TournamentMatchup {
+	depth: number;
+	parents: DepthTournamentMatchup[];
+}
+
+export interface Tournament {
+	_id: string;
+	name: string;
+	logo: string;
+	matchups: TournamentMatchup[];
+	autoCreate: boolean;
+}
 export interface RoundData {
   round: number,
   players: {

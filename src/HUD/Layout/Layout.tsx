@@ -14,6 +14,7 @@ import UtilityLevel from '../SideBoxes/UtilityLevel';
 import Killfeed from "../Killfeed/Killfeed";
 import MapSeries from "./../MatchBar/MapSeries";
 import Overview from "../Overview/Overview";
+import Tournament from "../Tournament/Tournament";
 
 interface Props {
   game: CSGO,
@@ -71,6 +72,8 @@ export default class Layout extends React.Component<Props, State> {
         <MatchBar map={game.map} phase={game.phase_countdowns} bomb={game.bomb}/>
 
         <SeriesBox map={game.map} phase={game.phase_countdowns} match={match} />
+
+        <Tournament />
 
         <Observed player={game.player} />
 

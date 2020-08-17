@@ -28,13 +28,17 @@ export async function apiV2(url: string, method = 'GET', body?: any) {
 
 export default {
     match: {
-        get: async (): Promise<I.Match[]> => apiV2(`match`)
+        get: async (): Promise<I.Match[]> => apiV2(`match`),
     },
     teams: {
-        getOne: async (id: string): Promise<I.Team> => apiV2(`teams/${id}`)
+        getOne: async (id: string): Promise<I.Team> => apiV2(`teams/${id}`),
+        get: (): Promise<I.Team[]> => apiV2(`teams`),
     },
     players: {
         get: async (): Promise<I.Player[]> => apiV2(`players`),
         getAvatarURLs: async (steamid: string): Promise<{custom: string, steam: string}> => apiV2(`players/avatar/steamid/${steamid}`)
+    },
+    tournaments: {
+        get: () => apiV2('tournament')
     }
 }
