@@ -157,7 +157,7 @@ class App extends React.Component<IProps> {
                     });
                 }
                 return map.configs.map(config => ({
-                    id: `${id}_${config.id}`,
+                    id: `${id}_${extGrenade.id}_${config.id}`,
                     visible: config.isVisible(extGrenade.flames[id].split(", ").map(Number)[2]),
                     position: this.parsePosition(extGrenade.flames[id].split(", ").map(pos => Number(pos)), 12, config.config)
                 }));
