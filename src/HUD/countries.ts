@@ -35,6 +35,7 @@ export const countries: any = {
     'BG' : 'Bulgaria',
     'BF' : 'Burkina Faso',
     'BI' : 'Burundi',
+    'CIS': 'CIS',
     'KH' : 'Cambodia',
     'CM' : 'Cameroon',
     'CA' : 'Canada',
