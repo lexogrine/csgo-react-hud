@@ -90,7 +90,7 @@ export default class Overview extends React.Component<IProps, IState> {
     renderPlayer = () => {
         const { player } = this.state;
         if(!player.data) return null;
-        return <PlayerOverview player={player.data} players={this.props.players} show={player.show} veto={this.getVeto()} />
+        return <PlayerOverview round={this.props.map.round + 1} player={player.data} players={this.props.players} show={player.show} veto={this.getVeto()} />
     }
     renderMatch = () => {
         const { match } = this.state;

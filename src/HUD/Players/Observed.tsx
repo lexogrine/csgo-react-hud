@@ -7,6 +7,7 @@ import "./../Styles/observed.css";
 import {apiUrl} from './../../api/api';
 import { getCountry } from "./../countries";
 import { ArmorHelmetCT, ArmorHelmetT, ArmorFullCT, ArmorFullT, HealthFullCT, HealthFullT, BulletsCT, BulletsT } from './../../assets/Icons';
+import { Veto } from "../../api/interfaces";
 
 
 const armor = {
@@ -20,7 +21,7 @@ const armor = {
   }
 };
 
-class Statistic extends React.PureComponent<{ label: string; value: string | number }> {
+class Statistic extends React.PureComponent<{ label: string; value: string | number, }> {
   render() {
     return (
       <div className="stat">
@@ -31,7 +32,14 @@ class Statistic extends React.PureComponent<{ label: string; value: string | num
   }
 }
 
-export default class Observed extends React.Component<{ player: Player | null }> {
+export default class Observed extends React.Component<{ player: Player | null, veto: Veto | null, round: number }> {
+	getAdr = () => {
+        const { veto, player } = this.props;
+        if(!player || !veto || !veto.rounds) return null;
+		const damageInRounds = veto.rounds.map(round => round.players[player.steamid]).filter(data => !!data).map(roundData => roundData.damage);
+		//console.log(damageInRounds)
+        return damageInRounds.reduce((a, b) => a + b, 0)/(this.props.round-1);
+	}
 	render() {
 		if (!this.props.player) return '';
 		const { player } = this.props;
@@ -42,6 +50,10 @@ export default class Observed extends React.Component<{ player: Player | null }>
 		const { stats } = player;
 		const ratio = stats.deaths === 0 ? stats.kills : stats.kills/stats.deaths;
 		const countryName = country ? getCountry(country) : null;
+
+
+		const adr = this.getAdr() !== null ? this.getAdr() : "-";
+
 		return (
 			<div className={`observed ${player.team.side}`}>
 				<div className="main_row">

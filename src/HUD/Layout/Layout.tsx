@@ -28,7 +28,7 @@ interface State {
 }
 
 export default class Layout extends React.Component<Props, State> {
-  constructor(props: Props){
+  constructor(props: Props) {
     super(props);
     this.state = {
       winner: null,
@@ -37,21 +37,31 @@ export default class Layout extends React.Component<Props, State> {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     GSI.on('roundEnd', score => {
       this.setState({ winner: score.winner, showWin: true }, () => {
         setTimeout(() => {
-          this.setState({showWin: false})
+          this.setState({ showWin: false })
         }, 4000)
       });
     });
     actions.on("boxesState", (state: string) => {
-      if(state === "show"){
-        this.setState({forceHide: false});
-      } else if(state === "hide"){
-        this.setState({forceHide:true});
+      if (state === "show") {
+        this.setState({ forceHide: false });
+      } else if (state === "hide") {
+        this.setState({ forceHide: true });
       }
     });
+  }
+
+  getVeto = () => {
+    const { game, match } = this.props;
+    const { map } = game;
+    if (!match) return null;
+    const mapName = map.name.substring(map.name.lastIndexOf('/') + 1);
+    const veto = match.vetos.find(veto => veto.mapName === mapName);
+    if (!veto) return null;
+    return veto;
   }
 
   render() {
@@ -66,26 +76,34 @@ export default class Layout extends React.Component<Props, State> {
 
     return (
       <div className="layout">
+        <div className={`players_alive`}>
+          <div className="title_container">Players alive</div>
+          <div className="counter_container">
+            <div className={`team_counter ${left.side}`}>{leftPlayers.filter(player => player.state.health > 0).length}</div>
+            <div className={`vs_counter`}>VS</div>
+            <div className={`team_counter ${right.side}`}>{rightPlayers.filter(player => player.state.health > 0).length}</div>
+          </div>
+        </div>
         <Killfeed />
         <Overview match={match} map={game.map} players={game.players || []} />
-        <RadarMaps match={match} map={game.map} game={game}/>
-        <MatchBar map={game.map} phase={game.phase_countdowns} bomb={game.bomb}/>
+        <RadarMaps match={match} map={game.map} game={game} />
+        <MatchBar map={game.map} phase={game.phase_countdowns} bomb={game.bomb} />
 
         <SeriesBox map={game.map} phase={game.phase_countdowns} match={match} />
 
         <Tournament />
 
-        <Observed player={game.player} />
+        <Observed player={game.player} veto={this.getVeto()} round={game.map.round+1}/>
 
-        <TeamBox team={left} players={leftPlayers} side="left" current={game.player} isFreezetime={isFreezetime}/>
+        <TeamBox team={left} players={leftPlayers} side="left" current={game.player} isFreezetime={isFreezetime} />
         <TeamBox team={right} players={rightPlayers} side="right" current={game.player} isFreezetime={isFreezetime} />
 
         <Trivia />
-        
-        <MapSeries teams={[left, right]} match={match} isFreezetime={isFreezetime} map={game.map}/>
+
+        <MapSeries teams={[left, right]} match={match} isFreezetime={isFreezetime} map={game.map} />
         <div className={"boxes left"}>
           <UtilityLevel side={left.side} players={game.players} show={isFreezetime && !forceHide} />
-          <SideBox side="left" hide={forceHide}/>
+          <SideBox side="left" hide={forceHide} />
           <MoneyBox
             team={left.side}
             side="left"

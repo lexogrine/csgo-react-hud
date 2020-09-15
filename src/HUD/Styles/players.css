@@ -477,3 +477,51 @@ img.weapon.active {
 .teambox.T .player_side_stats .side_stat_row:first-child {
     color: var(--mainT);
 }
+
+.players_alive {
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    opacity: 1;
+    transition: opacity 1s;
+}
+.players_alive.hide {
+    opacity: 0;
+}
+.players_alive .counter_container {
+    display: flex;
+    height: 45px;
+}
+.players_alive .counter_container > div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:30px;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+}
+.players_alive .counter_container .team_counter {
+    background-color: rgba(0,0,0,0.75);
+}
+.players_alive .title_container {
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    height:20px;
+    font-size:14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.75);
+}
+.players_alive .counter_container .CT {
+    color: var(--color-new-ct);
+}
+.players_alive .counter_container .T {
+    color: var(--color-new-t);
+}

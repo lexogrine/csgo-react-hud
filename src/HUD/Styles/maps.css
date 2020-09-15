@@ -33,8 +33,9 @@
     font-size: 10pt;
 }
 .veto_entry .team_logo img {
-    max-height: 75%;
+    max-height: 23px;
     padding-right: 3px;
+    max-width: 23px;
 }
 .veto_entry .map_name.active {
     text-shadow: 0 0 15px white;
