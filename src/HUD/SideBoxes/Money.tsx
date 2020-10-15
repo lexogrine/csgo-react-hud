@@ -29,7 +29,7 @@ export default class Money extends React.PureComponent<Props> {
                 </div>
                 <div className="money_container">
                     <div className="title">Loss Bonus</div>
-                    <div className="value">${this.props.loss}</div>
+                    <div className="value">${this.props.loss <= 3400 ? this.props.loss : 3400}</div>
                 </div>
                 <div className="money_container">
                     <div className="title">Team Money</div>
