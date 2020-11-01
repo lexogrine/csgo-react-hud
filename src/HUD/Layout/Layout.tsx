@@ -87,7 +87,7 @@ export default class Layout extends React.Component<Props, State> {
         <Killfeed />
         <Overview match={match} map={game.map} players={game.players || []} />
         <RadarMaps match={match} map={game.map} game={game} />
-        <MatchBar map={game.map} phase={game.phase_countdowns} bomb={game.bomb} />
+        <MatchBar map={game.map} phase={game.phase_countdowns} bomb={game.bomb} match={match} />
 
         <SeriesBox map={game.map} phase={game.phase_countdowns} match={match} />
 
