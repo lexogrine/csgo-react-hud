@@ -56,6 +56,7 @@ html, body, .map-container {
     justify-content: center;
     transition: opacity 0.5s ease;
     /*transition: all 0.1s ease;/**/
+    z-index: 10;
 }
 .map .player .background {
     /*background-color:white;*/
@@ -68,6 +69,10 @@ html, body, .map-container {
 }
 .map .player.dead {
     opacity: 0.2;
+    z-index: 1;
+}
+.map .player.active {
+    z-index: 20;
 }
 .map .player.active .background {
     width:120%;
