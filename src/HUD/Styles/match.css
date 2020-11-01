@@ -97,3 +97,32 @@
     justify-content: center;
 }
 
+#timeout, #pause {
+    text-transform: uppercase;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 150px;
+    background-color: var(--sub-panel-color);
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    font-size: 35px;
+    transition: opacity 1.5s;
+    opacity: 0;
+}
+#pause {
+
+    color: white;
+}
+#timeout.show, #pause.show {
+    opacity: 1;
+}
+#timeout.t {
+    color: var(--color-new-t);
+}
+#timeout.ct {
+    color: var(--color-new-ct);
+}
