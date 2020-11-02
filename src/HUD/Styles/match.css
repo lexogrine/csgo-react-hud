@@ -33,6 +33,7 @@
 }
 .map_series_container .veto_container div img {
     max-height:30px;
+    max-width: 30px;
 }
 .map_series_container .veto_container .veto_picker, .map_series_container .veto_container .veto_winner {
     width: 77px;
