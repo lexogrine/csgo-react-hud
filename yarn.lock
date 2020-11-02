@@ -4007,18 +4007,18 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
-csgogsi-socket@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/csgogsi-socket/-/csgogsi-socket-1.2.1.tgz#0d99d88e214a3c47487ec89981e9c5a19ea22796"
-  integrity sha512-+QnMDNuy9OFWj0Z9qjFRy2WqIekTkzN1kFA0C+mrcyJQTK9PliUsxqBnGo1KghwyMyIluMet5lVhbtrWMJI8EA==
+csgogsi-socket@^1.2.8:
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/csgogsi-socket/-/csgogsi-socket-1.2.8.tgz#260a311f68ac379f57c21e4c2ae67bbe2e9369a9"
+  integrity sha512-j301QvFFacEPnv1h941IboDMrHAe9w7ZoudPxdDWCUH36SPkryzCig0OPAu8v6ta6EPZngd8NoHT8T3WZSB8vA==
   dependencies:
-    csgogsi "^1.2.1"
+    csgogsi "^1.2.6"
     socket.io-client "^2.3.0"
 
-csgogsi@^1.2.0, csgogsi@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/csgogsi/-/csgogsi-1.2.1.tgz#eefa85d152b2cb7093df3ca593388b47a75080ec"
-  integrity sha512-xLOOqjII9I+JnU6Zer2HG7Q13KfiHwP3p4q23KO3HvLYOXcF+exiQZtIKmRpi6sa8dZu2qd0zshQUxmLT6tIBA==
+csgogsi@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/csgogsi/-/csgogsi-1.2.6.tgz#f0c67d92cc553f4cd827afab8d1ff2aa63ed61af"
+  integrity sha512-UVEqr8t+vXi48NrLA5OrRomfcS8O0dspdj6e2m4AkywCHpF8mW08Q4NqrHI7LakO5VfWXrBjiiULl91WmcDsPg==
 
 css-blank-pseudo@^0.1.4:
   version "0.1.4"
@@ -4574,9 +4574,9 @@ dot-case@^3.0.3:
     tslib "^1.10.0"
 
 dot-prop@^4.1.1:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
-  integrity sha512-tUMXrxlExSW6U2EXiiKGSBVdYgtV8qlHL+C10TsW4PURY/ic+eaysnSkwB4kA/mBlCyy/IKDJ+Lc3wbWeaXtuQ==
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.1.tgz#45884194a71fc2cda71cbb4bceb3a4dd2f433ba4"
+  integrity sha512-l0p4+mIuJIua0mhxGoh4a+iNL9bmeK5DvnSVQa6T0OhrVmaEa1XScX5Etc673FePCJOArq/4Pa2cLGODUWTPOQ==
   dependencies:
     is-obj "^1.0.0"
 
