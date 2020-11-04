@@ -1,18 +1,6 @@
 import React from "react";
 import { Map, PhaseRaw } from "csgogsi-socket";
 
-function stringToClock(time: string | number, pad = true) {
-    if (typeof time === "string") {
-        time = parseFloat(time);
-    }
-    const countdown = Math.abs(Math.ceil(time));
-    const minutes = Math.floor(countdown / 60);
-    const seconds = countdown - minutes * 60;
-    if (pad && seconds < 10) {
-        return `${minutes}:0${seconds}`;
-    }
-    return `${minutes}:${seconds}`;
-}
 
 interface IProps {
     phase: PhaseRaw | null,
