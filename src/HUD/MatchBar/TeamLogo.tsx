@@ -2,6 +2,7 @@ import React from 'react';
 import { Team } from 'csgogsi-socket';
 import * as I from '../../api/interfaces';
 import { apiUrl } from './../../api/api';
+import { LogoCT, LogoT } from './../../assets/Icons';
 
 export default class TeamLogo extends React.Component<{ team?: Team | I.Team | null, height?: number, width?: number}> {
   render(){
@@ -16,7 +17,7 @@ export default class TeamLogo extends React.Component<{ team?: Team | I.Team | n
     }
     return (
       <div className={`logo`}>
-          { logo && id ? <img src={`${apiUrl}api/teams/logo/${id}`} width={this.props.width} height={this.props.height} alt={'Team logo'} /> : ''}
+        <img src={logo && id ? `${apiUrl}api/teams/logo/${id}` : ("side" in team && team.side === "CT" ? LogoCT : LogoT)} width={this.props.width} height={this.props.height} alt={'Team logo'} />
       </div>
     );
   }
