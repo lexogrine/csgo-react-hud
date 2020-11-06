@@ -1,8 +1,8 @@
 
 #radar_maps_container {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
     border: none;
     background-color:rgba(0,0,0,0.5);
 }

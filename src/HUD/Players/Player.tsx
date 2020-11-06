@@ -15,14 +15,14 @@ export default class PlayerBox extends React.Component<IProps> {
   render() {
     const { player } = this.props;
     const weapons: WeaponRaw[] = Object.values(player.weapons).map(weapon => ({ ...weapon, name: weapon.name.replace("weapon_", "") }));
-    const primary = weapons.filter(weapon => !['C4', 'Pistol', 'Knife', 'Grenade'].includes(weapon.type))[0] || null;
+    const primary = weapons.filter(weapon => !['C4', 'Pistol', 'Knife', 'Grenade', undefined].includes(weapon.type))[0] || null;
     const secondary = weapons.filter(weapon => weapon.type === "Pistol")[0] || null;
     const grenades = weapons.filter(weapon => weapon.type === "Grenade");
     const isLeft = player.team.orientation === "left";
     return (
       <div className={`player ${player.state.health === 0 ? "dead" : ""} ${this.props.isObserved ? 'active' : ''}`}>
         <div className="player_data">
-          <Avatar steamid={player.steamid} height={57} showSkull={false}/>
+          <Avatar steamid={player.steamid} height={57} width={57} showSkull={false}/>
           <div className="dead-stats">
             <div className="labels">
               <div className="stat-label">K</div>

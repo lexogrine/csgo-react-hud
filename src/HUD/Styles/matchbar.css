@@ -29,6 +29,9 @@
     background-color: var(--sub-panel-color);
     top: -10px;
 }
+#matchbar #timer.no-bo {
+    height: 87px;
+}
 
 #matchbar #bomb_container {
     display: flex;

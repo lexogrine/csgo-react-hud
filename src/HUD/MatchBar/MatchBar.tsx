@@ -5,6 +5,7 @@ import TeamScore from "./TeamScore";
 import Bomb from "./../Timers/BombTimer";
 import Countdown from "./../Timers/Countdown";
 import { GSI } from "../../App";
+import { Match } from "../../api/interfaces";
 
 function stringToClock(time: string | number, pad = true) {
   if (typeof time === "string") {
@@ -20,6 +21,7 @@ function stringToClock(time: string | number, pad = true) {
 }
 
 interface IProps {
+  match: Match | null;
   map: I.Map;
   phase: I.PhaseRaw,
   bomb: I.Bomb | null,
@@ -156,12 +158,12 @@ export default class TeamBox extends React.Component<IProps, IState> {
   }
   render() {
     const { defusing, planting, winState } = this.state;
-    const time = stringToClock(this.props.phase.phase_ends_in);
-    const left = this.props.map.team_ct.orientation === "left" ? this.props.map.team_ct : this.props.map.team_t;
-    const right = this.props.map.team_ct.orientation === "left" ? this.props.map.team_t : this.props.map.team_ct;
-    const bomb = this.props.bomb;
+    const { bomb, match, map, phase } = this.props;
+    const time = stringToClock(phase.phase_ends_in);
+    const left = map.team_ct.orientation === "left" ? map.team_ct : map.team_t;
+    const right = map.team_ct.orientation === "left" ? map.team_t : map.team_ct;
     const isPlanted = bomb && (bomb.state === "defusing" || bomb.state === "planted");
-
+    const bo = (match && Number(match.matchType.substr(-1))) || 0;
     let leftTimer: Timer | null = null, rightTimer: Timer | null = null;
     if(defusing.active || planting.active){
       if(defusing.active){
@@ -178,9 +180,9 @@ export default class TeamBox extends React.Component<IProps, IState> {
         <div id={`matchbar`}>
           <TeamScore team={left} orientation={"left"} timer={leftTimer} showWin={winState.show && winState.side === "left"} />
           <div className={`score left ${left.side}`}>{left.score}</div>
-          <div id="timer">
+          <div id="timer" className={bo === 0 ? 'no-bo' : ''}>
             <div id={`round_timer_text`} className={isPlanted ? "hide":""}>{time}</div>
-            <div id="round_now" className={isPlanted ? "hide":""}>Round {this.props.map.round + 1}/30</div>
+            <div id="round_now" className={isPlanted ? "hide":""}>Round {map.round + 1}/30</div>
             <Bomb />
           </div>
           <div className={`score right ${right.side}`}>{right.score}</div>
