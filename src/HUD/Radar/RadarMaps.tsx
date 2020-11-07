@@ -1,9 +1,10 @@
 import React from "react";
 import "./../Styles/maps.css";
 import { Match, Veto } from "../../api/interfaces";
-import { Map, CSGO } from 'csgogsi';
+import { Map, CSGO, Team } from 'csgogsi';
 import { actions } from './../../App';
 import Radar from './Radar'
+import TeamLogo from "../MatchBar/TeamLogo";
 
 interface Props { match: Match | null, map: Map, game: CSGO }
 interface State { showRadar: boolean, radarSize: number }
@@ -42,20 +43,20 @@ class MapsBar extends React.PureComponent<Props> {
             const current = picks.find(veto => map.name.includes(veto.mapName));
             if(!current) return null;
             return <div id="maps_container">
-                {<MapEntry veto={current} map={map} logo={current.type === "decider" ? null : map.team_ct.id === current.teamId ? map.team_ct.logo : map.team_t.logo}/>}
+                {<MapEntry veto={current} map={map} team={current.type === "decider" ? null : map.team_ct.id === current.teamId ? map.team_ct : map.team_t}/>}
             </div>
         }
         return <div id="maps_container">
-            {match.vetos.filter(veto => veto.type !== "ban").filter(veto => veto.teamId || veto.type === "decider").map(veto => <MapEntry key={veto.mapName} veto={veto} map={this.props.map} logo={veto.type === "decider" ? null : map.team_ct.id === veto.teamId ? map.team_ct.logo : map.team_t.logo}/>)}
+            {match.vetos.filter(veto => veto.type !== "ban").filter(veto => veto.teamId || veto.type === "decider").map(veto => <MapEntry key={veto.mapName} veto={veto} map={this.props.map} team={veto.type === "decider" ? null : map.team_ct.id === veto.teamId ? map.team_ct : map.team_t}/>)}
         </div>
     }
 }
 
-class MapEntry extends React.PureComponent<{veto: Veto, map: Map, logo: string | null}> {
+class MapEntry extends React.PureComponent<{veto: Veto, map: Map, team: Team | null}> {
     render() {
-        const { veto, map } = this.props;
+        const { veto, map, team } = this.props;
         return <div className="veto_entry">
-            <div className="team_logo">{this.props.logo ? <img src={`data:image/jpeg;base64,${this.props.logo}`} alt={map.name} /> : null}</div>
+            <div className="team_logo">{team ? <TeamLogo team={team} />: null}</div>
             <div className={`map_name ${map.name.includes(veto.mapName) ? 'active':''}`}>{veto.mapName}</div>
         </div>
     }
