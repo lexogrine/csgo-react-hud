@@ -18,7 +18,7 @@ const low = {
     "pxPerUY": -0.14533406508526941
 };
 
-export default {
+const config = {
     configs: [
         {
             id: 'high',
@@ -33,3 +33,5 @@ export default {
     ],
     file: radar
 }
+
+export default config;

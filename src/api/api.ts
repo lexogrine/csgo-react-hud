@@ -26,7 +26,7 @@ export async function apiV2(url: string, method = 'GET', body?: any) {
         });
 }
 
-export default {
+const api = {
     match: {
         get: async (): Promise<I.Match[]> => apiV2(`match`),
     },
@@ -42,3 +42,5 @@ export default {
         get: () => apiV2('tournament')
     }
 }
+
+export default api;

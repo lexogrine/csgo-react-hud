@@ -1,5 +1,4 @@
 import React from 'react';
-import './../Styles/sideboxes.css';
 
 class LossBox extends React.PureComponent<{ active: boolean, side: 'CT' | 'T' }>{
     render(){

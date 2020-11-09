@@ -1,5 +1,4 @@
 import React from 'react';
-import './../Styles/overviews.css';
 import { configs } from '../../App';
 import * as I from '../../api/interfaces';
 import PlayerOverview from '../PlayerOverview/PlayerOverview';

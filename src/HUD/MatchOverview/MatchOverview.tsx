@@ -1,5 +1,4 @@
 import React from 'react';
-import './../Styles/sideboxes.css';
 import * as I from '../../api/interfaces';
 import TeamLogo from '../MatchBar/TeamLogo';
 

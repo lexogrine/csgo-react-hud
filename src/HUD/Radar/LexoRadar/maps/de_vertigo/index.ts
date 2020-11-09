@@ -18,7 +18,7 @@ const low = {
     "pxPerUY": -0.19820052722907044
 };
 
-export default {
+const config = {
     configs: [
         {
             id: 'high',
@@ -33,6 +33,8 @@ export default {
     ],
     file: radar
 }
+
+export default config;
 /*
 import radar from './radar.png'
 

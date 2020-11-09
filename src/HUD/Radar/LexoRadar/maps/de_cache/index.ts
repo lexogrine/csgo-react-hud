@@ -1,6 +1,6 @@
 import radar from './radar.png'
 
-export default {
+const config = {
     "config": {
         "origin": {
             "x": 361.7243823603619,
@@ -11,3 +11,5 @@ export default {
     },
     "file":radar
 }
+
+export default config;

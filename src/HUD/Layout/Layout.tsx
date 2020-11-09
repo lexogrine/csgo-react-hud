@@ -12,7 +12,7 @@ import { GSI, actions } from "./../../App";
 import MoneyBox from '../SideBoxes/Money';
 import UtilityLevel from '../SideBoxes/UtilityLevel';
 import Killfeed from "../Killfeed/Killfeed";
-import MapSeries from "./../MatchBar/MapSeries";
+import MapSeries from "../MapSeries/MapSeries";
 import Overview from "../Overview/Overview";
 import Tournament from "../Tournament/Tournament";
 import Pause from "../PauseTimeout/Pause";

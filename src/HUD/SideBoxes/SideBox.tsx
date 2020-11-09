@@ -1,6 +1,5 @@
 import React from 'react';
-import './../Styles/sideboxes.css'
-
+import './sideboxes.scss'
 import {configs} from './../../App';
 import isSvg from '../isSvg';
 

@@ -1,0 +1,101 @@
+@keyframes KillLifeCycle {
+	0% {
+		opacity: 0;
+		height: 0;
+	}
+	5% {
+		opacity: 1;
+		height: 38px;
+	}
+	95% {
+		opacity: 1;
+		height: 38px;
+	}
+	100% {
+		opacity: 0;
+		height: 0;
+	}
+}
+
+.killfeed {
+    position: fixed;
+    right: 20px;
+    top: 93px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .single_kill {
+        display: flex;
+        flex-direction: row;
+        background-color: rgba(0,0,0,0.64);
+        margin-bottom:5px;
+        color:white;
+        animation: KillLifeCycle 5s linear 1;
+        animation-fill-mode: forwards;/**/
+        height: 31px;
+        font-size: 14px;
+        overflow: hidden;
+        align-items: center;
+        font-family: Montserrat;
+        font-weight:500;
+        padding-left:15px;
+        padding-right:15px;
+
+        div {
+            margin:10px;
+            display:flex;
+            align-items:center;
+        }
+
+        img.weapon {
+            max-height: 28px;
+            filter: invert(0%);
+        }
+
+        .CT {
+            color: var(--color-new-ct);
+        }
+
+        .T {
+            color: var(--color-new-t);
+        }
+
+        .way .headshot, .way .wallbang, .flash_assist, .flash_kill, .smoke_kill, .noscope_kill {
+            max-height:20px;
+            margin-left:5px;
+        }
+
+        .flash_assist {
+            margin-left: 0;
+            margin-right:5px;
+        }
+
+        .plus {
+            margin-left: 0;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .assister_name {
+            margin-left:0px;
+        }
+
+        .way {
+            text-align: center;
+
+            .wallbang {
+                max-height: 24px;
+            }
+        }
+        &.hide {
+            transition:height 1s, padding 1s,  opacity 1s, margin 1s;
+            opacity:0;
+            height:0;
+            margin:0;
+        }
+        &.show {
+            opacity:1;
+        }
+    }
+}

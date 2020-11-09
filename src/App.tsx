@@ -1,5 +1,4 @@
 import React from 'react';
-import './HUD/Styles/players.css';
 import Layout from './HUD/Layout/Layout';
 import api, { port, isDev } from './api/api';
 import { getAvatarURL } from './api/avatars';

@@ -1,5 +1,4 @@
 import React from 'react';
-import './../Styles/info.css';
 import { Team } from 'csgogsi';
 
 export default class WinAnnouncement extends React.Component<{ team: Team | null, show: boolean }> {

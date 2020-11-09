@@ -1,6 +1,5 @@
 import React from "react";
 import * as I from "csgogsi-socket";
-import "./../Styles/series.css";
 import { Match } from "../../api/interfaces";
 
 interface Props {
