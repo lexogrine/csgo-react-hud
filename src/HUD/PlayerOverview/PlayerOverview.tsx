@@ -4,6 +4,7 @@ import { avatars } from './../../api/avatars';
 import { apiUrl } from '../../api/api';
 import { getCountry } from '../countries';
 import { Player } from 'csgogsi';
+import "./playeroverview.scss";
 
 interface IProps {
     player: I.Player,

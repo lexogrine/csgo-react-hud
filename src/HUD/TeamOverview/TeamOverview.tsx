@@ -1,6 +1,6 @@
 import React from 'react';
-import './../Styles/sideboxes.css';
 import * as I from '../../api/interfaces';
+import "./teamoverview.scss";
 
 interface IProps {
     team: I.Team,

@@ -2,7 +2,7 @@ import React from 'react';
 import { GSI } from './../../App';
 import { KillEvent, Player } from 'csgogsi-socket';
 import Kill from './Kill';
-import './../Styles/killfeed.css';
+import './killfeed.scss';
 
 
 export interface ExtendedKillEvent extends KillEvent {

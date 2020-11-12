@@ -1,5 +1,5 @@
 import React from "react";
-import "./../Styles/maps.css";
+import "./radar.scss";
 import { Match, Veto } from "../../api/interfaces";
 import { Map, CSGO, Team } from 'csgogsi';
 import { actions } from './../../App';

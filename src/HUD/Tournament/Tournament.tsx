@@ -1,5 +1,5 @@
 import React from 'react';
-import './../Styles/tournament.css';
+import './tournament.scss';
 import { actions } from '../../App';
 import * as I from './../../api/interfaces';
 import api from '../../api/api';

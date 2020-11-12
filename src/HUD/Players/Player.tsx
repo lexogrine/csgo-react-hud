@@ -1,5 +1,5 @@
 import React from "react";
-import { Player, WeaponRaw, Map } from "csgogsi-socket";
+import { Player, WeaponRaw } from "csgogsi-socket";
 import Weapon from "./../Weapon/Weapon";
 import Avatar from "./Avatar";
 import Armor from "./../Indicators/Armor";

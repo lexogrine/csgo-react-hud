@@ -1,6 +1,7 @@
 import React from 'react';
 import Player from './Player'
 import * as I from 'csgogsi-socket';
+import './players.scss';
 
 interface Props {
   players: I.Player[],

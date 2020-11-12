@@ -1,5 +1,5 @@
 import React from 'react';
-import './../Styles/trivia.css';
+import './trivia.scss';
 
 import {configs, actions} from './../../App';
 

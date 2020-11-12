@@ -1,8 +1,8 @@
 import React from "react";
 import * as I from "csgogsi-socket";
-import { Match, Veto } from './../../api/interfaces';
-import TeamLogo from "./TeamLogo";
-import "./../Styles/match.css";
+import { Match, Veto } from '../../api/interfaces';
+import TeamLogo from "../MatchBar/TeamLogo";
+import "./mapseries.scss";
 
 interface IProps {
     match: Match | null;

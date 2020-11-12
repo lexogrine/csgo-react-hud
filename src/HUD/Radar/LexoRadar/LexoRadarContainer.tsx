@@ -1,7 +1,6 @@
 import React from 'react';
 import { Player, Bomb } from 'csgogsi-socket';
 import maps, { ScaleConfig } from './maps';
-import './index.css';
 import LexoRadar from './LexoRadar';
 import { ExtendedGrenade, Grenade, RadarPlayerObject, RadarGrenadeObject } from './interface';
 import config from './config';

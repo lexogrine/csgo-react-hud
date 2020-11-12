@@ -1,6 +1,6 @@
 import React from "react";
 import * as I from "csgogsi-socket";
-import "./../Styles/matchbar.css";
+import "./matchbar.scss";
 import TeamScore from "./TeamScore";
 import Bomb from "./../Timers/BombTimer";
 import Countdown from "./../Timers/Countdown";

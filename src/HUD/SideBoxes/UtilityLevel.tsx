@@ -1,5 +1,4 @@
 import React from "react";
-import "./../Styles/sideboxes.css";
 import Weapon from "./../Weapon/Weapon";
 import { Player, WeaponRaw, Side } from "csgogsi-socket";
 

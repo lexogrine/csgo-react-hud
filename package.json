@@ -11,6 +11,7 @@
     "@types/react-dom": "16.9.2",
     "csgogsi": "^1.2.6",
     "csgogsi-socket": "^1.2.8",
+    "node-sass": "^4.14.1",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
