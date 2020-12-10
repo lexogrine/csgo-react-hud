@@ -110,7 +110,7 @@ export default class Layout extends React.Component<Props, State> {
           <MoneyBox
             team={left.side}
             side="left"
-            loss={left.consecutive_round_losses * 500 + 1400}
+            loss={Math.max(left.consecutive_round_losses * 500 + 1400, 3400)}
             equipment={leftPlayers.map(player => player.state.equip_value).reduce((pre, now) => pre + now, 0)}
             money={leftPlayers.map(player => player.state.money).reduce((pre, now) => pre + now, 0)}
             show={isFreezetime && !forceHide}
@@ -122,7 +122,7 @@ export default class Layout extends React.Component<Props, State> {
           <MoneyBox
             team={right.side}
             side="right"
-            loss={right.consecutive_round_losses * 500 + 1400}
+            loss={Math.max(right.consecutive_round_losses * 500 + 1400)}
             equipment={rightPlayers.map(player => player.state.equip_value).reduce((pre, now) => pre + now, 0)}
             money={rightPlayers.map(player => player.state.money).reduce((pre, now) => pre + now, 0)}
             show={isFreezetime && !forceHide}
