@@ -4,7 +4,7 @@ import api, { port, isDev } from './api/api';
 import { getAvatarURL } from './api/avatars';
 import ActionManager, { ConfigManager } from './api/actionManager';
 
-import CSGOGSI, { Player, CSGO, PlayerExtension } from "csgogsi-socket";
+import CSGOGSI, { CSGO, PlayerExtension } from "csgogsi-socket";
 import { Match } from './api/interfaces';
 
 export const { GSI, socket } = CSGOGSI(isDev ? `localhost:${port}` : '/', "update");
@@ -12,11 +12,10 @@ export const { GSI, socket } = CSGOGSI(isDev ? `localhost:${port}` : '/', "updat
 export const actions = new ActionManager();
 export const configs = new ConfigManager();
 
-class App extends React.Component<any, { match: Match | null, players: Player[], game: CSGO | null, steamids: string[], checked: boolean }> {
+class App extends React.Component<any, { match: Match | null, game: CSGO | null, steamids: string[], checked: boolean }> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			players: [],
 			game: null,
 			steamids: [],
 			match: null,
