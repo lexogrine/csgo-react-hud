@@ -14,6 +14,7 @@ Fullfledged example of the React HUD made for HUD Manager. It has:
 - Custom actions
 - Keybinds
 - Killfeed
+- Player cam feed
 - Radar
 
 ## Keybinds:
