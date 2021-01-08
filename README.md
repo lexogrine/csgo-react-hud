@@ -23,6 +23,8 @@ Fullfledged example of the React HUD made for HUD Manager. It has:
 >Makes radar bigger by 20px;
 ### **Left Alt + T**
 >Shows trivia box
+### **Left Alt + C**
+>Toggles camera feed
 ### **Left Ctrl + B**
 >Make radar invisible
 
