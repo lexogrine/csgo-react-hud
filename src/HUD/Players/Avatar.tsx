@@ -1,4 +1,5 @@
 import React from 'react';
+import { isDev, port } from '../../api/api';
 
 import { avatars } from './../../api/avatars';
 
@@ -16,7 +17,7 @@ export default class Avatar extends React.Component<{steamid: string, slot?: num
     return (
       <div className={`avatar`}>
           {
-            this.props.showCam ? <div  id="cameraFeed"><iframe style={{top: `${topPosition}px`, left: `${leftPosition}px`}} src="./test.html" title="Camera feed" /></div> : null
+            this.props.showCam ? <div  id="cameraFeed"><iframe style={{top: `${topPosition}px`, left: `${leftPosition}px`}} src={isDev ? `http://localhost:${port}/rmtp.html` : '/rmtp.html'} title="Camera feed" /></div> : null
           }
           <img src={this.props.showSkull ? Skull : (url.custom || url.steam)} height={this.props.height} width={this.props.width} alt={'Avatar'} />
       </div>
