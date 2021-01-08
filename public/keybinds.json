@@ -14,5 +14,9 @@
     {
         "bind":"Alt+T",
         "action":"toggleTrivia"
+    },
+    {
+        "bind":"Alt+C",
+        "action":"toggleCams"
     }
 ]

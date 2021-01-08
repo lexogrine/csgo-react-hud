@@ -181,6 +181,9 @@
     .avatar {
         align-self: flex-end;
         display: flex;
+        position: relative;
+        width: 140px;
+        height: 140px;
         img {
             border-radius:50%;
         }
@@ -212,5 +215,22 @@
             margin-right: 2px;
         }
         
+    }
+}
+
+#cameraFeed {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+    transform: scale(0.94);
+    left: 0px;
+    bottom: 0;
+    transform-origin: bottom left;
+    iframe {
+        position: relative;
+        border: none;
+        width: 750px;
+        height: 300px;
     }
 }
