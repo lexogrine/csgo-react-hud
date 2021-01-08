@@ -40,7 +40,10 @@ export default class Avatar extends React.Component<IProps, IState> {
           {
             this.props.showCam ? <div  id="cameraFeed" style={{ display: enableCams ? 'block' : 'none'}}><iframe style={{top: `${topPosition}px`, left: `${leftPosition}px`}} src={isDev ? `http://localhost:${port}/rmtp.html` : '/rmtp.html'} title="Camera feed" /></div> : null
           }
-          <img src={this.props.showSkull ? Skull : (url.custom || url.steam)} height={this.props.height} width={this.props.width} alt={'Avatar'} />
+          {
+            this.props.showSkull ? <Skull height={this.props.height} width={this.props.width} /> : <img src={(url.custom || url.steam)} height={this.props.height} width={this.props.width} alt={'Avatar'} />
+          }
+          
       </div>
     );
   }

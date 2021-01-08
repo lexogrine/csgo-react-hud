@@ -8,7 +8,7 @@ import smoke_kill from './../../assets/smoke_kill.png';
 import noscope_kill from './../../assets/noscope_kill.png';
 
 
-import { C4T as C4, DefuseCT } from "./../../assets/Icons"
+import { C4, Defuse } from "./../../assets/Icons"
 import { ExtendedKillEvent, BombEvent } from "./Killfeed"
 export default class Kill extends React.Component<{ event: ExtendedKillEvent | BombEvent }> {
 
@@ -19,7 +19,7 @@ export default class Kill extends React.Component<{ event: ExtendedKillEvent | B
 				<div className={`single_kill`}>
 					<div className={`killer_name ${event.player.team.side}`}>{event.player.name}</div>
 					<div className="way">
-						<img src={event.type === "plant" ? C4 : DefuseCT} style={{maxHeight:'18px'}} alt={`[${event.type.toUpperCase()}]`} />
+						{event.type === "plant" ? <C4 height="18px" />: <Defuse height="18px"/>}
 					</div>
 					<div className={`victim_name`}>{ event.type === "plant" ? "planted the bomb" : "defused the bomb"}</div>
 
