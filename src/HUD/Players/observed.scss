@@ -72,8 +72,9 @@
                 width: 48px;
                 align-items: center;
                 justify-content: center;
-                img {
+                svg {
                     max-width: 30px;
+                    fill: white;
                 }
             }
         }
@@ -98,7 +99,7 @@
                 width: 30px;
                 align-items: center;
                 justify-content: center;
-                img {
+                svg {
                     max-height:30px;
                     max-width:22px;
                 }
@@ -201,6 +202,11 @@
             color: var(--color-new-t);
             margin-right: 2px;
         }
+        .stats_row .health_armor_container .icon, .stats_row .ammo .ammo_icon_container {
+            svg {
+                fill: var(--color-new-t);
+            }
+        }
     }
     &.CT {
         border-bottom: 6px solid var(--color-new-ct);
@@ -213,6 +219,11 @@
         .stats_row .statistics .stat .label {
             color: var(--color-new-ct);
             margin-right: 2px;
+        }
+        .stats_row .health_armor_container .icon, .stats_row .ammo .ammo_icon_container {
+            svg {
+                fill: var(--color-new-ct);
+            }
         }
         
     }

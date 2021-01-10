@@ -14,12 +14,12 @@ export default class Bomb extends React.Component<IProps> {
     if(!player) return null;
     if(type === "defusing"){
       return <>
-        <img src={I.Defuse} height={22} alt={'Defuse'}/>
+        <I.Defuse height={22} width={22} fill="var(--color-new-ct)" />
         <div className={'CT'}>{player.name} is defusing the bomb</div>
       </>;
     }
     return <>
-      <img src={I.SmallBomb} alt={'C4'} />
+      <I.SmallBomb height={22} fill="var(--color-new-t)"/>
       <div className={'T'}>{player.name} is planting the bomb</div>
     </>;
   }

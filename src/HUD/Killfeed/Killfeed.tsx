@@ -54,12 +54,15 @@ export default class Killfeed extends React.Component<any, { events: (BombEvent 
             }
         });
 
+        /*
         GSI.on("bombPlant", player => {
             this.addBombEvent(player, 'plant');
         })
         GSI.on("bombDefuse", player => {
             this.addBombEvent(player, 'defuse');
         })
+
+        */
 
 	}
 	render() {

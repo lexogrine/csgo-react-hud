@@ -6,20 +6,8 @@ import TeamLogo from "./../MatchBar/TeamLogo";
 import "./observed.scss";
 import { apiUrl } from './../../api/api';
 import { getCountry } from "./../countries";
-import { ArmorHelmetCT, ArmorHelmetT, ArmorFullCT, ArmorFullT, HealthFullCT, HealthFullT, BulletsCT, BulletsT } from './../../assets/Icons';
+import { ArmorHelmet, ArmorFull, HealthFull, Bullets } from './../../assets/Icons';
 import { Veto } from "../../api/interfaces";
-
-
-const armor = {
-	full: {
-		CT: ArmorFullCT,
-		T: ArmorFullT
-	},
-	helmet: {
-		CT: ArmorHelmetCT,
-		T: ArmorHelmetT
-	}
-};
 
 class Statistic extends React.PureComponent<{ label: string; value: string | number, }> {
 	render() {
@@ -69,9 +57,13 @@ export default class Observed extends React.Component<{ player: Player | null, v
 				</div>
 				<div className="stats_row">
 					<div className="health_armor_container">
-						<div className="health-icon icon"><img src={player.team.side === "CT" ? HealthFullCT : HealthFullT} alt={'Health'} /></div>
+						<div className="health-icon icon">
+							<HealthFull />
+						</div>
 						<div className="health text">{player.state.health}</div>
-						<div className="armor-icon icon"><img src={armor[player.state.helmet ? 'helmet' : 'full'][player.team.side]} alt={'Armor'} /></div>
+						<div className="armor-icon icon">
+							{player.state.helmet ? <ArmorHelmet /> : <ArmorFull />}
+						</div>
 						<div className="health text">{player.state.armor}</div>
 					</div>
 					<div className="statistics">
@@ -82,7 +74,7 @@ export default class Observed extends React.Component<{ player: Player | null, v
 					</div>
 					<div className="ammo">
 						<div className="ammo_icon_container">
-							<img src={player.team.side === "CT" ? BulletsCT : BulletsT} alt={'Ammo'} />
+							<Bullets />
 						</div>
 						<div className="ammo_counter">
 							<div className="ammo_clip">{(currentWeapon && currentWeapon.ammo_clip) || "-"}</div>

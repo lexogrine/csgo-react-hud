@@ -7,7 +7,7 @@ export default class Bomb extends React.Component<{ player: Player }> {
         if(Object.values(player.weapons).every(weapon => weapon.type !== "C4")) return '';
         return (
             <div className={`armor_indicator`}>
-                <img src={BombIcon} alt={'Bomb'} />
+                <BombIcon />
             </div>
         );
     }

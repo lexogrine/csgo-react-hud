@@ -80,7 +80,7 @@
 			position: absolute;
 			width: 100%;
 			height: 100%;
-			img {
+			svg {
 				position: absolute;
 				left: 50%;
 				transform: translateX(-50%);
@@ -258,7 +258,7 @@
 		display: flex;
 		text-transform: uppercase;
 		align-items: flex-end;
-		img {
+		svg {
 			margin-right: 13px;
 		}
     }

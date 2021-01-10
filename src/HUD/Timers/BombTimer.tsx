@@ -41,7 +41,7 @@ export default class Bomb extends React.Component<any, { height: number; show: b
       <div id={`bomb_container`}>
         <div className={`bomb_timer ${this.state.show ? "show" : "hide"}`} style={{ height: `${this.state.height}%` }}></div>
         <div className={`bomb_icon ${this.state.show ? "show" : "hide"}`}>
-          <img src={C4} alt={'C4'} />
+          <C4 fill="white" />
         </div>
       </div>
     );

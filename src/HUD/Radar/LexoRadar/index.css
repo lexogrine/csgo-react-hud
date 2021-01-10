@@ -109,7 +109,7 @@ html, body, .map-container {
     position: absolute;
     width: 2px;
     height: 2px;
-    border-radius: 100px;
+    border-radius: 0.08px;
 }
 .map .grenade.flashbang.exploded .explode-point, .map .grenade.frag.exploded .explode-point {
     animation: FlashOrFragDeployed 0.25s 1 forwards;
