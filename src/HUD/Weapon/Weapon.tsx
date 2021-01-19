@@ -13,7 +13,7 @@ export default class WeaponImage extends React.Component<IProps> {
 		const { className, ...svgProps } = rest;
 		if(!Weapon) return null;
 		return (
-			<Weapon className={`${active ? 'active':''} weapon ${isGrenade ? 'grenade' : ''} ${className || ''}`} {...svgProps} />
+			<Weapon fill="white" className={`${active ? 'active':''} weapon ${isGrenade ? 'grenade' : ''} ${className || ''}`} {...svgProps} />
 		);
 	}	
 }
