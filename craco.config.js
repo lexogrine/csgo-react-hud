@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
-const pathToConfig = path.join(process.env.APPDATA, 'hud-manager', 'databases', 'config');
+const homedir = require('os').homedir();
+const pathToConfig = path.join(process.env.APPDATA || path.join(homedir, '.config'), 'hud-manager', 'databases', 'config');
 let query = '';
 if (fs.existsSync(pathToConfig)) {
     try {
