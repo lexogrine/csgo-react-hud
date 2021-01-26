@@ -11,23 +11,24 @@ interface IProps {
     show: boolean,
     veto: I.Veto | null
     players: Player[],
-    round: number
+    round: number,
+    roundToShow: number | null
 }
 
 export default class PlayerOverview extends React.Component<IProps> {
     sum = (data: number[]) => data.reduce((a, b) => a + b, 0);
 
     getData = () => {
-        const { veto, player, round } = this.props;
+        const { veto, player, round, roundToShow } = this.props;
         if(!player || !veto || !veto.rounds) return null;
-        const stats = veto.rounds.map(round => round.players[player.steamid]).filter(data => !!data);
+        const stats = veto.rounds.filter(round => !roundToShow || round.round === roundToShow).map(round => round.players[player.steamid]).filter(data => !!data);
         const overall = {
             damage: this.sum(stats.map(round => round.damage)),
             kills: this.sum(stats.map(round => round.kills)),
             killshs: this.sum(stats.map(round => round.killshs)),
         };
         const data = {
-            adr: stats.length !== 0 ? (overall.damage/(round-1)).toFixed(0) : '0',
+            adr: stats.length !== 0 ? (overall.damage/stats.length).toFixed(0) : '0',
             kills: overall.kills,
             killshs: overall.kills,
             kpr: stats.length !== 0 ? (overall.kills/stats.length).toFixed(2) : 0,
@@ -48,7 +49,7 @@ export default class PlayerOverview extends React.Component<IProps> {
         return 100*value/maximum;
     }
 	render() {
-        const { player, veto, players } = this.props;
+        const { player, veto, players, roundToShow } = this.props;
         const data = this.getData();
         if(!player || !veto || !veto.rounds || !data) return null;
         let url = null;
@@ -67,6 +68,7 @@ export default class PlayerOverview extends React.Component<IProps> {
                 </div>
                 <div className="player-overview-username">{url && countryName ? <img src={`${apiUrl}files/img/flags/${countryName.replace(/ /g, "-")}.png`} className="flag" alt={countryName}/> : null }{player.username.toUpperCase()}</div>
 
+                { roundToShow ? <div>Stats from Round #{roundToShow}</div> : null }
                 <div className="player-overview-stats">
                     <div className="player-overview-stat">
                         <div className="label">KILLS: {data.kills}</div>

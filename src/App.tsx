@@ -48,7 +48,8 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 					realName: `${player.firstName} ${player.lastName}`,
 					steamid: player.steamid,
 					country: player.country,
-					avatar: player.avatar
+					avatar: player.avatar,
+					extra: player.extra,
 				})
 			);
 
@@ -93,24 +94,6 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 			window.top.location.reload();
 		});
 
-		/*if (href.indexOf('/huds/')) {
-
-			const segment = href.substr(href.indexOf('/huds/') + 6);
-			const name = segment.substr(0, segment.lastIndexOf('/'));
-
-			socket.on("readyToRegister", () => {
-				socket.emit("register", name);
-			});
-			socket.on(`hud_config`, (data: any) => {
-				configs.save(data);
-			});
-			socket.on(`hud_action`, (data: any) => {
-				actions.execute(data.action, data.data);
-			});
-			socket.on('keybindAction', (action: string) => {
-				actions.execute(action);
-			});
-		}*/
 		socket.on("update_mirv", (data: any) => {
 			GSI.digestMIRV(data);
 		})
@@ -146,14 +129,14 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 		if (match.left.id) {
 			const left = await api.teams.getOne(match.left.id);
 			
-			if(!isReversed) GSI.setTeamOne({ id: left._id, name: left.name, country: left.country, logo: left.logo, map_score: match.left.wins });
-			else GSI.setTeamTwo({ id: left._id, name: left.name, country: left.country, logo: left.logo, map_score: match.left.wins });
+			if(!isReversed) GSI.setTeamOne({ id: left._id, name: left.name, country: left.country, logo: left.logo, map_score: match.left.wins, extra: left.extra });
+			else GSI.setTeamTwo({ id: left._id, name: left.name, country: left.country, logo: left.logo, map_score: match.left.wins, extra: left.extra });
 		}
 		if (match.right.id) {
 			const right = await api.teams.getOne(match.right.id);
 
-			if(!isReversed) GSI.setTeamTwo({ id: right._id, name: right.name, country: right.country, logo: right.logo, map_score: match.right.wins });
-			else GSI.setTeamOne({ id: right._id, name: right.name, country: right.country, logo: right.logo, map_score: match.right.wins });
+			if(!isReversed) GSI.setTeamTwo({ id: right._id, name: right.name, country: right.country, logo: right.logo, map_score: match.right.wins, extra: right.extra });
+			else GSI.setTeamOne({ id: right._id, name: right.name, country: right.country, logo: right.logo, map_score: match.right.wins, extra: right.extra });
 		}
 	}
 	render() {

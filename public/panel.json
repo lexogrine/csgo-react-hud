@@ -109,6 +109,11 @@
                 "label": "Pick a player to preview"
             },
             {
+                "type": "text",
+                "name": "round_to_show",
+                "label": "Round to show"
+            },
+            {
                 "type": "checkbox",
                 "name": "player_preview_toggle",
                 "label": "Show player preview"

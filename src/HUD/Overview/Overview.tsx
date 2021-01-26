@@ -10,7 +10,8 @@ import api from '../../api/api';
 interface IState {
     player: {
         data: I.Player | null,
-        show: boolean
+        show: boolean,
+        round: number | null
     },
     match: {
         data: I.Match | null,
@@ -36,6 +37,7 @@ export default class Overview extends React.Component<IProps, IState> {
             player: {
                 data: null,
                 show: false,
+                round: null
             },
             match: {
                 data: null,
@@ -64,7 +66,8 @@ export default class Overview extends React.Component<IProps, IState> {
             this.setState({
                 player: {
                     data: (data.preview_settings.player_preview && data.preview_settings.player_preview.player) || null,
-                    show: Boolean(data.preview_settings.player_preview_toggle)
+                    show: Boolean(data.preview_settings.player_preview_toggle),
+                    round: Number(data.preview_settings.round_to_show)
                 },
                 team: {
                     data: (data.preview_settings.team_preview && data.preview_settings.team_preview.team) || null,
@@ -89,7 +92,7 @@ export default class Overview extends React.Component<IProps, IState> {
     renderPlayer = () => {
         const { player } = this.state;
         if(!player.data) return null;
-        return <PlayerOverview round={this.props.map.round + 1} player={player.data} players={this.props.players} show={player.show} veto={this.getVeto()} />
+        return <PlayerOverview roundToShow={player.round} round={this.props.map.round + 1} player={player.data} players={this.props.players} show={player.show} veto={this.getVeto()} />
     }
     renderMatch = () => {
         const { match } = this.state;
