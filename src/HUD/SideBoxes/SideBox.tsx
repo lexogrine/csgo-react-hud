@@ -17,13 +17,13 @@ export default class SideBox extends React.Component<{ side: 'left' | 'right', h
             if(!data) return;
             const display = data.display_settings;
             if(!display) return;
-            if(display[`${this.props.side}_title`]){
+            if(`${this.props.side}_title` in display){
                 this.setState({title:display[`${this.props.side}_title`]})
             }
-            if(display[`${this.props.side}_subtitle`]){
+            if(`${this.props.side}_subtitle` in display){
                 this.setState({subtitle:display[`${this.props.side}_subtitle`]})
             }
-            if(display[`${this.props.side}_image`]){
+            if(`${this.props.side}_image` in display){
                 this.setState({image:display[`${this.props.side}_image`]})
             }
         });
