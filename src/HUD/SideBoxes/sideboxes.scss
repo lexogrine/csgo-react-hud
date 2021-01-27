@@ -100,7 +100,8 @@
 		justify-content: center;
 	}
 	.grenades_container {
-		display: flex;
+		display: flex ;
+		
 		flex: 1;
 		height: 46px;
 		.grenade_container {
@@ -111,8 +112,10 @@
 			font-weight: 600;
 			font-size: 18px;
 			justify-content: center;
+			
 			svg {
 				height: 30px;
+				width:auto;				
 			}
 		}
 	}
