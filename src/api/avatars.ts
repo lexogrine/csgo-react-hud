@@ -13,7 +13,7 @@ export const loadAvatarURL = (steamid: string) => {
         url: '',
         loader: new Promise((resolve) => {
             api.players.getAvatarURLs(steamid).then(result => {
-                avatars[steamid].url = result.custom || result.custom;
+                avatars[steamid].url = result.custom || result.steam;
                 resolve(result.custom || result.custom);
             }).catch(() => {
                 delete avatars[steamid];
