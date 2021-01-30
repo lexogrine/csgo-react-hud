@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from './HUD/Layout/Layout';
 import api, { port, isDev } from './api/api';
-import { getAvatarURL } from './api/avatars';
+import { loadAvatarURL } from './api/avatars';
 import ActionManager, { ConfigManager } from './api/actionManager';
 
 import CSGOGSI, { CSGO, PlayerExtension } from "csgogsi-socket";
@@ -26,7 +26,7 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 	verifyPlayers = async (game: CSGO) => {
 		const steamids = game.players.map(player => player.steamid);
 		steamids.forEach(steamid => {
-			getAvatarURL(steamid);
+			loadAvatarURL(steamid);
 		})
 
 		if (steamids.every(steamid => this.state.steamids.includes(steamid))) {
