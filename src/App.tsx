@@ -12,6 +12,14 @@ export const { GSI, socket } = CSGOGSI(isDev ? `localhost:${port}` : '/', "updat
 export const actions = new ActionManager();
 export const configs = new ConfigManager();
 
+interface DataLoader {
+	match: Promise<void> | null
+}
+
+const dataLoader: DataLoader = {
+	match: null
+}
+
 class App extends React.Component<any, { match: Match | null, game: CSGO | null, steamids: string[], checked: boolean }> {
 	constructor(props: any) {
 		super(props);
@@ -70,12 +78,12 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 		let name = '';
 		if (href.indexOf('/huds/') === -1) {
 			isDev = true;
-			name = (Math.random()*1000+1).toString(36).replace(/[^a-z]+/g, '').substr(0, 15)
+			name = (Math.random() * 1000 + 1).toString(36).replace(/[^a-z]+/g, '').substr(0, 15)
 		} else {
 			const segment = href.substr(href.indexOf('/huds/') + 6);
 			name = segment.substr(0, segment.lastIndexOf('/'));
 		}
-		
+
 		socket.on("readyToRegister", () => {
 			socket.emit("register", name, isDev);
 		});
@@ -117,43 +125,58 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 		GSI.on('data', game => {
 			if (!this.state.game || this.state.steamids.length) this.verifyPlayers(game);
 			this.setState({ game }, () => {
-				if(!this.state.checked) this.loadMatch();
+				if (!this.state.checked) this.loadMatch();
 			});
 		});
 		socket.on('match', () => {
 
-			this.loadMatch();
+			this.loadMatch(true);
 		});
 	}
 
-	loadMatch = async () => {
+	loadMatch = async (force = false) => {
+		if (!dataLoader.match || force) {
+			dataLoader.match = new Promise((resolve) => {
+				api.match.get().then(matches => {
+					const match = matches.find(match => match.current);
+					if (!match) {
+						dataLoader.match = null;
+						return;
+					}
+					this.setState({ match });
 
-		const matches = await api.match.get();
-		const match = matches.filter(match => match.current)[0];
-		if (!match) {
-			return;
-		}
-		this.setState({ match });
-		let isReversed = false;
-		if(GSI.last){
-			const mapName = GSI.last.map.name.substring(GSI.last.map.name.lastIndexOf('/')+1);
-			const current = match.vetos.filter(veto => veto.mapName === mapName)[0];
-			if(current && current.reverseSide){
-				isReversed = true;
-			}
-			this.setState({checked:true});
-		}
-		if (match.left.id) {
-			const left = await api.teams.getOne(match.left.id);
-			
-			if(!isReversed) GSI.setTeamOne({ id: left._id, name: left.name, country: left.country, logo: left.logo, map_score: match.left.wins });
-			else GSI.setTeamTwo({ id: left._id, name: left.name, country: left.country, logo: left.logo, map_score: match.left.wins });
-		}
-		if (match.right.id) {
-			const right = await api.teams.getOne(match.right.id);
+					let isReversed = false;
+					if (GSI.last) {
+						const mapName = GSI.last.map.name.substring(GSI.last.map.name.lastIndexOf('/') + 1);
+						const current = match.vetos.filter(veto => veto.mapName === mapName)[0];
+						if (current && current.reverseSide) {
+							isReversed = true;
+						}
+						this.setState({ checked: true });
+					}
+					if (match.left.id) {
+						api.teams.getOne(match.left.id).then(left => {
+							const gsiTeamData = { id: left._id, name: left.name, country: left.country, logo: left.logo, map_score: match.left.wins };
 
-			if(!isReversed) GSI.setTeamTwo({ id: right._id, name: right.name, country: right.country, logo: right.logo, map_score: match.right.wins });
-			else GSI.setTeamOne({ id: right._id, name: right.name, country: right.country, logo: right.logo, map_score: match.right.wins });
+							if (!isReversed) GSI.setTeamOne(gsiTeamData);
+							else GSI.setTeamTwo(gsiTeamData);
+						});
+					}
+					if (match.right.id) {
+						api.teams.getOne(match.right.id).then(right => {
+							const gsiTeamData = { id: right._id, name: right.name, country: right.country, logo: right.logo, map_score: match.right.wins };
+
+							if (!isReversed) GSI.setTeamTwo(gsiTeamData);
+							else GSI.setTeamOne(gsiTeamData);
+						});
+					}
+
+
+
+				}).catch(() => {
+					dataLoader.match = null;
+				});
+			});
 		}
 	}
 	render() {
