@@ -11,7 +11,6 @@
     "@types/react-dom": "16.9.2",
     "csgogsi": "^1.2.6",
     "csgogsi-socket": "^1.2.8",
-    "node-sass": "^4.14.1",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -46,6 +45,9 @@
   "devDependencies": {
     "@types/history": "^4.7.5",
     "@types/socket.io-client": "^1.4.32",
-    "npm-build-zip": "^1.0.2"
+    "internal-ip": "^6.2.0",
+    "npm-build-zip": "^1.0.2",
+    "open-browser-plugin": "^1.1.1",
+    "sass": "^1.32.5"
   }
 }
