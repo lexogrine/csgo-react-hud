@@ -184,7 +184,6 @@ export default class TeamBox extends React.Component<IProps, IState> {
         else rightTimer = planting;
       }
     }
-
     return (
       <>
         <div id={`matchbar`}>
