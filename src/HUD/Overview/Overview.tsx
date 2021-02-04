@@ -35,7 +35,7 @@ export default class Overview extends React.Component<IProps, IState> {
         this.state = {
             player: {
                 data: null,
-                show: false,
+                show: false
             },
             match: {
                 data: null,
