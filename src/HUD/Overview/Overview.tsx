@@ -83,6 +83,12 @@ export default class Overview extends React.Component<IProps, IState> {
                 return state;
             })
         })
+        actions.on("togglePlayerPreview", () => {
+            this.setState(state => {
+                state.player.show = !state.player.show;
+                return state;
+            })
+        })
     }
     getVeto = () => {
         const { map, match } = this.props;

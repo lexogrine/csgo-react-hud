@@ -26,6 +26,8 @@ Fullfledged example of the React HUD made for HUD Manager. It has:
 >Shows trivia box
 ### **Left Alt + M**
 >Toggles upcoming match box
+### **Left Alt + P**
+>Toggles player preview
 ### **Left Alt + C**
 >Toggles camera feed
 ### **Left Ctrl + B**
