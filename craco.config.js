@@ -1,29 +1,45 @@
 const path = require('path');
 const fs = require('fs');
 const homedir = require('os').homedir();
+const internalIp = require('internal-ip');
+const OpenBrowserPlugin = require('open-browser-plugin')
+
 const pathToConfig = path.join(process.env.APPDATA || path.join(homedir, '.config'), 'hud-manager', 'databases', 'config');
-let query = '';
-if (fs.existsSync(pathToConfig)) {
+let port = 1349;
+
+const getPort = () => {
+    if(!fs.existsSync(pathToConfig)){
+        console.warn('LHM Config file unavailable');
+        return port;
+    }
+
     try {
         const config = JSON.parse(fs.readFileSync(pathToConfig, 'utf-8'));
-        if (config.port) {
-            query = `?port=${config.port}`
-            console.log('LHM Port detected as', config.port);
-        } else {
-            console.log('LHM Port unavailable');
+
+        if(!config.port){
+            console.warn('LHM Port unavailable');
         }
+
+        console.warn('LHM Port detected as', config.port);
+        return config.port;
+        
     } catch {
-        console.log('LHM Config file invalid');
+        console.warn('LHM Config file invalid');
+        return port;
     }
-} else {
-    console.log('LHM Config file unavailable');
 }
+
+port = getPort();
 
 module.exports = {
     devServer: {
         port: 3500,
-        open: true,
-        host: 'localhost',
-        openPage: query
+        open: false
+    },
+    webpack: {
+        configure: (webpackConfig) => {
+            webpackConfig.plugins.push(new OpenBrowserPlugin({ url: `http://${internalIp.v4.sync()}:${port}/development/`}))
+            return webpackConfig;
+        }
     }
 };

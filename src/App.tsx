@@ -120,8 +120,7 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 	loadMatch = async (force = false) => {
 		if (!dataLoader.match || force) {
 			dataLoader.match = new Promise((resolve) => {
-				api.match.get().then(matches => {
-					const match = matches.find(match => match.current);
+				api.match.getCurrent().then(match => {
 					if (!match) {
 						dataLoader.match = null;
 						return;

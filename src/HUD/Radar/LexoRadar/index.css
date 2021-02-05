@@ -68,10 +68,19 @@ html, body, .map-container {
 }
 .map .player.dead {
     opacity: 0.2;
+    z-index: 1;
+}
+.map .player:not(.dead) {
+    z-index: 2;
 }
 .map .player.active .background {
     width:120%;
     height:120%;
+}
+.map .player.active {
+    width:120%;
+    height:120%;
+    z-index: 3;
 }
 .map .grenade .background {
     border-radius:50%;

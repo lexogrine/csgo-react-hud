@@ -15,7 +15,7 @@ Fullfledged example of the React HUD made for HUD Manager. It has:
 - Keybinds
 - Killfeed
 - Player cam feed
-- Radar
+- Custom Radar
 
 ## Keybinds:
 ### **Left Alt + S**
@@ -24,6 +24,10 @@ Fullfledged example of the React HUD made for HUD Manager. It has:
 >Makes radar bigger by 20px;
 ### **Left Alt + T**
 >Shows trivia box
+### **Left Alt + M**
+>Toggles upcoming match box
+### **Left Alt + P**
+>Toggles player preview
 ### **Left Alt + C**
 >Toggles camera feed
 ### **Left Ctrl + B**
@@ -132,4 +136,4 @@ The Killfeed component basically just keeps kills in the state during the round,
 This killfeed detects who killed whom, if there was an assist (flash assist as well), used weapon, headshot and wallbang.
 
 ## Radar
-Radar is by default loaded into the iframe by `src/HUD/Radar/Radar.tsx`. If you don't want your HUD to have Radar, you can simply remove the component from `src/HUD/Layout/Layout.tsx`. To load custom css to radar you should just modify the `public/radar.css`.
+Radar is custom React-based component, made by Hubert Walczak, and is easily editable from css.
