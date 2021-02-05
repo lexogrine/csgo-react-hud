@@ -18,5 +18,9 @@
     {
         "bind":"Alt+C",
         "action":"toggleCams"
+    },
+    {
+        "bind":"Alt+M",
+        "action":"toggleUpcomingMatch"
     }
 ]
