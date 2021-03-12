@@ -1,5 +1,5 @@
 import React from 'react';
-import { Team } from 'csgogsi';
+import { Team } from 'csgogsi-socket';
 
 export default class WinAnnouncement extends React.Component<{ team: Team | null, show: boolean }> {
     render() {

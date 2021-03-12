@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const homedir = require('os').homedir();
 const internalIp = require('internal-ip');
-const OpenBrowserPlugin = require('open-browser-plugin')
+const OpenBrowserPlugin = require('./OpenBrowserPlugin');
 
 const pathToConfig = path.join(process.env.APPDATA || path.join(homedir, '.config'), 'hud-manager', 'databases', 'config');
 let port = 1349;

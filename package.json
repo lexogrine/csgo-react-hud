@@ -9,9 +9,7 @@
     "@types/node": "12.11.1",
     "@types/react": "16.9.9",
     "@types/react-dom": "16.9.2",
-    "csgogsi": "^1.3.3",
-    "csgogsi-socket": "^1.3.3",
-    "node-sass": "^4.14.1",
+    "csgogsi-socket": "^2.0.1",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -48,7 +46,7 @@
     "@types/socket.io-client": "^1.4.32",
     "internal-ip": "^6.2.0",
     "npm-build-zip": "^1.0.2",
-    "open-browser-plugin": "^1.1.1",
+    "open": "^8.0.2",
     "sass": "^1.32.5"
   }
 }

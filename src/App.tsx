@@ -4,10 +4,10 @@ import api, { port, isDev } from './api/api';
 import { loadAvatarURL } from './api/avatars';
 import ActionManager, { ConfigManager } from './api/actionManager';
 
-import CSGOGSI, { CSGO, PlayerExtension } from "csgogsi-socket";
+import { CSGO, PlayerExtension, GSISocket } from "csgogsi-socket";
 import { Match } from './api/interfaces';
 
-export const { GSI, socket } = CSGOGSI(isDev ? `localhost:${port}` : '/', "update");
+export const { GSI, socket } = GSISocket(isDev ? `localhost:${port}` : '/', "update");
 
 export const actions = new ActionManager();
 export const configs = new ConfigManager();
@@ -65,7 +65,7 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 
 		gsiLoaded.push(...players);
 
-		GSI.loadPlayers(gsiLoaded);
+		GSI.players = gsiLoaded;
 
 		this.setState({ steamids });
 	}
@@ -115,6 +115,7 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 
 			this.loadMatch(true);
 		});
+
 	}
 
 	loadMatch = async (force = false) => {
@@ -140,16 +141,18 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 						api.teams.getOne(match.left.id).then(left => {
 							const gsiTeamData = { id: left._id, name: left.name, country: left.country, logo: left.logo, map_score: match.left.wins, extra: left.extra };
 
-							if (!isReversed) GSI.setTeamOne(gsiTeamData);
-							else GSI.setTeamTwo(gsiTeamData);
+							if (!isReversed) {
+								GSI.teams.left = gsiTeamData;
+							}
+							else GSI.teams.right = gsiTeamData;
 						});
 					}
 					if (match.right.id) {
 						api.teams.getOne(match.right.id).then(right => {
 							const gsiTeamData = { id: right._id, name: right.name, country: right.country, logo: right.logo, map_score: match.right.wins, extra: right.extra };
 
-							if (!isReversed) GSI.setTeamTwo(gsiTeamData);
-							else GSI.setTeamOne(gsiTeamData);
+							if (!isReversed) GSI.teams.right = gsiTeamData;
+							else GSI.teams.left = gsiTeamData;
 						});
 					}
 

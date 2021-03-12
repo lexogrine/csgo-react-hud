@@ -3,7 +3,7 @@ import * as I from '../../api/interfaces';
 import { avatars } from './../../api/avatars';
 import { apiUrl } from '../../api/api';
 import { getCountry } from '../countries';
-import { Player } from 'csgogsi';
+import { Player } from 'csgogsi-socket';
 import "./playeroverview.scss";
 
 interface IProps {

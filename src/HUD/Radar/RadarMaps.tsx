@@ -1,7 +1,7 @@
 import React from "react";
 import "./radar.scss";
 import { Match, Veto } from "../../api/interfaces";
-import { Map, CSGO, Team } from 'csgogsi';
+import { Map, CSGO, Team } from 'csgogsi-socket';
 import { actions } from './../../App';
 import Radar from './Radar'
 import TeamLogo from "../MatchBar/TeamLogo";
