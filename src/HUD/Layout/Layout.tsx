@@ -122,7 +122,7 @@ export default class Layout extends React.Component<Props, State> {
           <MoneyBox
             team={right.side}
             side="right"
-            loss={Math.min(right.consecutive_round_losses * 500 + 1400)}
+            loss={Math.min(right.consecutive_round_losses * 500 + 1400, 3400)}
             equipment={rightPlayers.map(player => player.state.equip_value).reduce((pre, now) => pre + now, 0)}
             money={rightPlayers.map(player => player.state.money).reduce((pre, now) => pre + now, 0)}
             show={isFreezetime && !forceHide}
