@@ -17,6 +17,8 @@ import Overview from "../Overview/Overview";
 import Tournament from "../Tournament/Tournament";
 import Pause from "../PauseTimeout/Pause";
 import Timeout from "../PauseTimeout/Timeout";
+import SponsorBoxRight from "../SponsorBoxes/SponsorBoxRight";
+import SponsorBoxBottom from "../SponsorBoxes/SponsorBoxBottom";
 
 interface Props {
   game: CSGO,
@@ -128,6 +130,8 @@ export default class Layout extends React.Component<Props, State> {
             show={isFreezetime && !forceHide}
           />
         </div>
+        <SponsorBoxRight />
+        <SponsorBoxBottom />
       </div>
     );
   }

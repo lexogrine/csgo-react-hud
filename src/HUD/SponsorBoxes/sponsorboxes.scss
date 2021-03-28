@@ -1,0 +1,54 @@
+.sponsorbox {
+	position: fixed;
+	display: flex;
+	flex-direction: row;
+
+
+}
+
+.sponsorbox.right {
+	flex: 1;
+	right: 0px;
+	justify-content: flex-end;
+    width: 415px;
+	height: 120px;
+	bottom: 700px;
+	background-image: linear-gradient(to right, transparent, var(--sub-panel-color));
+	backdrop-filter: blur(10px);
+	img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+}
+
+.sponsorbox.bottom {
+	width: 620px;
+	height: 70px;
+	bottom: 0px;
+    margin-left: -310px;
+	left: 50%;
+	background-image: linear-gradient(transparent, var(--sub-panel-color));
+
+	.sponsorlogo_container {
+		display: flex;
+		flex: 1;
+		align-items: center;
+		justify-content: center;
+		margin: 10px;
+
+		svg {
+			margin: 5px;
+			height: 40px;
+			width: auto;
+			max-width: 50px;
+		}
+
+		img {
+			max-width: 100%;
+			max-height: 40px;
+		}
+
+	}
+	
+}
+
