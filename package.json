@@ -1,7 +1,7 @@
 {
-  "name": "lexogrine_hud",
-  "version": "1.9.1",
-  "homepage": "./",
+  "name": "avalanche_lexogrine_hud",
+  "version": "0.1",
+  "homepage": "https://jasperhino.github.io/avalanche/",
   "private": true,
   "dependencies": {
     "@craco/craco": "^5.7.0",
