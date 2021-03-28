@@ -1,7 +1,7 @@
 {
-    "name":"Lexogrine HUD",
+    "name":"Avalanche HUD",
     "version":"2.0.1",
-    "author":"Lexogrine",
+    "author":"Avalanche",
     "legacy": false,
     "radar": true,
     "killfeed": true,
