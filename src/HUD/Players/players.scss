@@ -92,12 +92,12 @@
     .player {
         width: 645px;
         height: 70px;
-        margin-bottom: 4px;
         display: flex;
         flex-direction: row;
         align-items: center;
         &.active {
             .player_data {
+                box-sizing: border-box;
                 border: 2px solid white;
             }
         }
@@ -182,10 +182,7 @@
                 flex: 1;
                 min-width: 0;
                 .hp_bar {
-                    height: 2px;
-                    &.low {
-                        background-color: red;
-                    }
+                    height: 4px;
                 }
                 .row {
                     flex: 1;
@@ -253,10 +250,9 @@
                         svg.weapon {
                             max-height: 30px;
                             width: auto;
-                            margin-left: 5px;
-                            margin-right: 5px;
+                            margin: 5px;
                             max-width: 100px;
-                            height: 30px;
+                            height: 25px;
                         }
                     }
                     .money {

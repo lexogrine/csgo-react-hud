@@ -43,7 +43,7 @@ html, body, .map-container {
 }
 
 .map-container .map {
-    width:1024px;
+    width: 1024px;
     height: 1024px;
     position: relative;
 }

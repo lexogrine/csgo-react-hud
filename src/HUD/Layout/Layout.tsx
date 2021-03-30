@@ -108,7 +108,7 @@ export default class Layout extends React.Component<Props, State> {
         <MapSeries teams={[left, right]} match={match} isFreezetime={isFreezetime} map={game.map} />
         <div className={"boxes left"}>
           <UtilityLevel side={left.side} players={game.players} show={isFreezetime && !forceHide} />
-          <SideBox side="left" hide={forceHide} />
+          <SideBox side="left" hide={true} />
           <MoneyBox
             team={left.side}
             side="left"
@@ -120,7 +120,7 @@ export default class Layout extends React.Component<Props, State> {
         </div>
         <div className={"boxes right"}>
           <UtilityLevel side={right.side} players={game.players} show={isFreezetime && !forceHide} />
-          <SideBox side="right" hide={forceHide} />
+          <SideBox side="right" hide={true} />
           <MoneyBox
             team={right.side}
             side="right"

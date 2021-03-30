@@ -12,7 +12,7 @@ interface State { showRadar: boolean, radarSize: number }
 export default class RadarMaps extends React.Component<Props, State> {
     state = {
         showRadar: true,
-        radarSize: 350
+        radarSize: 400
     }
     componentDidMount() {
         actions.on('radarBigger', () => this.radarChangeSize(20));

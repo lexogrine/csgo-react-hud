@@ -123,6 +123,7 @@
 
     .main_row {
         font-weight: 600;
+
         .logo {
             height: 43px;
             display: flex;
@@ -144,6 +145,9 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            .username {
+                font-size: 20px;
+            }
             .real_name {
                 font-size: 7pt;
                 color: rgba(255, 255, 255, 0.5);
