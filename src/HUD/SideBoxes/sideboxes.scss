@@ -1,6 +1,6 @@
 .boxes {
 	position: fixed;
-	bottom: 384px;
+	bottom: 360px;
 }
 .boxes.left {
 	left: 10px;
@@ -42,8 +42,7 @@
 	opacity: 1;
 	transition: all 0.75s;
 	background-color: var(--sub-panel-color);
-	margin-bottom: 4px;
-	margin-top: 4px;
+
 	align-items: center;
 	.title_container {
 		color: var(--white-full);
@@ -79,10 +78,7 @@
 	opacity: 1;
 	transition: all 0.75s;
 	background-color: var(--sub-panel-color);
-	margin-bottom: 4px;
-	margin-top: 4px;
 	flex-direction: column;
-	margin-bottom: 4px;
 	border-radius: 20px 20px 0 0;
 	.title_container {
 		display: flex;
@@ -128,10 +124,7 @@
 	opacity: 1;
 	transition: all 0.75s;
 	background-color: var(--sub-panel-color);
-	margin-bottom: 4px;
-	margin-top: 4px;
 	font-weight: 600;
-	margin-bottom: 0px;
 	.money_container {
 		display: flex;
 		flex-direction: column;

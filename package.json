@@ -1,6 +1,6 @@
 {
   "name": "avalanche_lexogrine_hud",
-  "version": "0.1",
+  "version": "1.0.0",
   "homepage": "https://jasperhino.github.io/avalanche/",
   "private": true,
   "dependencies": {
