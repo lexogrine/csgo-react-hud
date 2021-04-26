@@ -1,0 +1,37 @@
+	#playerCanvas {
+		width: 2000px;
+		display: flex;
+		flex-direction: column;
+		background: rgba(0, 0, 0, 1);
+		font-family: 'Montserrat';
+		font-size: 130px;
+		text-transform: uppercase;
+		padding-left: 100px;
+		position: absolute;
+		left: 4000px;
+	}
+	.teamName {
+		width: 100%;
+		height: 300px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: orange;
+	}
+	.playerEntry {
+		display: flex;
+		height: 250px;
+		align-items: center;
+	}
+
+	.playerUsername {
+		width: 1200px;
+	}
+
+	.playerStats {
+		width: 200px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
