@@ -1,29 +1,19 @@
 {
     "ar": true,
-    "label": "Trivia",
+    "label": "Cache Scoreboard",
     "name": "ar",
     "inputs": [
         {
-            "type": "text",
-            "name": "title",
-            "label": "Trivia title"
-        },
-        {
-            "type": "text",
-            "name": "content",
-            "label": "Trivia content"
-        },
-        {
             "type": "action",
-            "name": "triviaState",
+            "name": "arState",
             "values": [
                 {
                     "name": "show",
-                    "label": "Show trivia"
+                    "label": "Show scoreboard"
                 },
                 {
                     "name": "hide",
-                    "label": "Hide trivia"
+                    "label": "Hide scoreboard"
                 }
             ]
         }

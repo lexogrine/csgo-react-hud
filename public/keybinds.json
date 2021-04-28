@@ -13,7 +13,7 @@
     },
     {
         "bind":"Alt+T",
-        "action":"toggleTrivia"
+        "action":"toggleAR"
     },
     {
         "bind":"Alt+C",

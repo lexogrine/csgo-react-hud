@@ -1,7 +1,6 @@
 	#playerCanvas {
-		width: 2000px;
+		width: 4000px;
 		display: flex;
-		flex-direction: column;
 		background: rgba(0, 0, 0, 1);
 		font-family: 'Montserrat';
 		font-size: 130px;
@@ -9,19 +8,36 @@
 		padding-left: 100px;
 		position: absolute;
 		left: 4000px;
+		padding-right: 100px;
+		justify-content: space-between;
 	}
 	.teamName {
 		width: 100%;
 		height: 300px;
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-around;
+		font-weight: 700;
+	}
+	.teamName img {
+		max-height: 250px;
+	}
+	.teamName.CT{
+		color: blue;
+	}
+	.teamName.T{
 		color: orange;
 	}
 	.playerEntry {
 		display: flex;
 		height: 250px;
 		align-items: center;
+	}
+	.teamContainer:nth-child(2) .playerEntry {
+		flex-direction: row-reverse;
+	}
+	.teamContainer:nth-child(2) .playerEntry .playerUsername {
+		text-align: right;
 	}
 
 	.playerUsername {
