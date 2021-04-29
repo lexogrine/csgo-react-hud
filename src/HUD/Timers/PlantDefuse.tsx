@@ -19,7 +19,7 @@ export default class Bomb extends React.Component<IProps> {
       </>;
     }
     return <>
-      <I.SmallBomb height={22} fill="var(--color-new-t)"/>
+      <I.C4 height={22} width={22} fill="var(--color-new-t)"/>
       <div className={'T'}>{player.name} is planting the bomb</div>
     </>;
   }
