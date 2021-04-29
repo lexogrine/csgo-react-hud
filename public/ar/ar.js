@@ -1,23 +1,29 @@
 /* eslint-disable no-undef */
-const degreeToRadian = (degree) => degree * Math.PI / 180;
+//const degreeToRadian = (degree) => degree * Math.PI / 180;
 
-let mesh = null;
-let opacity = 0.5;
 
 const startARModule = (scene, _camera, _renderer, GSI) => {
-    if(actions){
-        actions.on("arState", state => {
-            if(!mesh) return;
-            mesh.material.opacity = state === "hide" ? 0 : 0.5;
-            opacity = mesh.material.opacity;
-        });
+    let lastContent = '';
+    function createCSS3DObject(content) 
+    {
+      // convert the string to dome elements
+      var wrapper = document.createElement('div');
+      wrapper.innerHTML = content;
+      var div = wrapper.firstChild;
+
+      // set some values on the div to style it.
+      // normally you do this directly in HTML and 
+      // CSS files.
+      div.style.width = '370px';
+      div.style.height = '370px';
+      div.style.opacity = 0.7;
+      div.style.background = new THREE.Color(Math.random() * 0xffffff).getStyle();
+
+      // create a CSS3Dobject and return it.
+      var object = new THREE.CSS3DObject(div);
+      return object;
     }
-    const playerScoreboardCanvas = document.getElementById("playerCanvas");
-    if (!playerScoreboardCanvas) {
-        const newCanvas = document.createElement("div");
-        newCanvas.id = "playerCanvas";
-        document.body.appendChild(newCanvas);
-    }
+
     fetch('/api/match/current').then(res => res.json()).then(match => {
         if (!match) return;
         let isReversed = false;
@@ -54,9 +60,8 @@ const startARModule = (scene, _camera, _renderer, GSI) => {
         }).catch(() => { });
     }).catch(() => { });
     GSI.on('data', (data) => {
-        if(!data || !data.map || !data.map.name.includes("cache")) return;
+        //if(!data || !data.map || !data.map.name.includes("cache")) return;
         const { players } = data;
-        const playerScoreboardCanvas = document.getElementById("playerCanvas");
 
         const playersLeft = players.filter(player => player.team.orientation === "left");
         const playersRight = players.filter(player => player.team.orientation === "right");
@@ -82,35 +87,23 @@ const startARModule = (scene, _camera, _renderer, GSI) => {
         <div class="playerStats">${player.stats.kills}</div>
     </div>
 `).join('')}</div>`;
-        if (playerScoreboardCanvas.innerHTML !== htmlEntry) {
-            playerScoreboardCanvas.innerHTML = htmlEntry;
-            html2canvas(playerScoreboardCanvas).then(canvas => {
-                const texture = new THREE.CanvasTexture(canvas);
-                texture.needsUpdate = true;
-                const scoreboard = new THREE.Mesh(
-                    new THREE.PlaneGeometry(canvas.width / 10, canvas.height / 10, 1),
-                    new THREE.MeshBasicMaterial({
-                        opacity,
-                        map: texture
-                        //color: 0xffff00, side: THREE.DoubleSide
-                    }));
-                scoreboard.position.set(150, 1900, 150);
-                scoreboard.rotateY(degreeToRadian(90));
-                if (mesh) scene.remove(mesh);
-                scene.add(scoreboard);
-                mesh = scoreboard;
-            });
+        if (lastContent !== htmlEntry) {
+            lastContent = htmlEntry;
+            const obj = createCSS3DObject(lastContent);
+
+            obj.position.set(-150, 1900, -150);
+            scene.add(obj);
         }
     });
 }
 const cleanUpARModule = (scene, GSI) => {
-    if (mesh) {
+   /* if (mesh) {
         scene.remove(mesh);
     }
     const playerScoreboardCanvas = document.getElementById("playerCanvas");
     if (playerScoreboardCanvas) {
         playerScoreboardCanvas.remove();
-    }
+    }*/
     GSI.removeAllListeners("data");
 }
 export { startARModule, cleanUpARModule };
