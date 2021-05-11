@@ -1,27 +1,28 @@
 /* eslint-disable no-undef */
 //const degreeToRadian = (degree) => degree * Math.PI / 180;
 
+let mesh = null;
 
 const startARModule = (scene, _camera, _renderer, GSI) => {
     let lastContent = '';
-    function createCSS3DObject(content) 
-    {
-      // convert the string to dome elements
-      var wrapper = document.createElement('div');
-      wrapper.innerHTML = content;
-      var div = wrapper.firstChild;
+    let scoreboardObject = null;
 
-      // set some values on the div to style it.
-      // normally you do this directly in HTML and 
-      // CSS files.
-      div.style.width = '370px';
-      div.style.height = '370px';
-      div.style.opacity = 0.7;
-      div.style.background = new THREE.Color(Math.random() * 0xffffff).getStyle();
+    function updateScoreboard(content) {
+        const wrapper = scoreboardObject || document.createElement('div');
+        if(!wrapper.id){
+            wrapper.id = 'playerCanvas'
+        }
+        wrapper.innerHTML = content;
+        if (!scoreboardObject) {
+            scoreboardObject = wrapper;
 
-      // create a CSS3Dobject and return it.
-      var object = new THREE.CSS3DObject(div);
-      return object;
+            const object = new THREE.CSS3DObject(wrapper);
+            mesh = object;
+
+            object.position.set(-150, 1900, -150);
+            scene.add(object);
+        }
+        return wrapper;
     }
 
     fetch('/api/match/current').then(res => res.json()).then(match => {
@@ -46,7 +47,7 @@ const startARModule = (scene, _camera, _renderer, GSI) => {
                     else GSI.teams.right = gsiTeamData;
                 }
             }
-             if (match.right && match.right.id) {
+            if (match.right && match.right.id) {
                 const right = teams.find(team => team._id === match.right.id);
                 if (right) {
                     const gsiTeamData = { id: right._id, name: right.name, country: right.country, logo: right.logo, map_score: match.right.wins, extra: right.extra };
@@ -60,7 +61,7 @@ const startARModule = (scene, _camera, _renderer, GSI) => {
         }).catch(() => { });
     }).catch(() => { });
     GSI.on('data', (data) => {
-        //if(!data || !data.map || !data.map.name.includes("cache")) return;
+        if(!data || !data.map || !data.map.name || !data.map.name.toLowerCase().includes("cache")) return;
         const { players } = data;
 
         const playersLeft = players.filter(player => player.team.orientation === "left");
@@ -89,21 +90,14 @@ const startARModule = (scene, _camera, _renderer, GSI) => {
 `).join('')}</div>`;
         if (lastContent !== htmlEntry) {
             lastContent = htmlEntry;
-            const obj = createCSS3DObject(lastContent);
-
-            obj.position.set(-150, 1900, -150);
-            scene.add(obj);
+            updateScoreboard(htmlEntry);
         }
     });
 }
 const cleanUpARModule = (scene, GSI) => {
-   /* if (mesh) {
+    if (mesh) {
         scene.remove(mesh);
     }
-    const playerScoreboardCanvas = document.getElementById("playerCanvas");
-    if (playerScoreboardCanvas) {
-        playerScoreboardCanvas.remove();
-    }*/
     GSI.removeAllListeners("data");
 }
 export { startARModule, cleanUpARModule };
