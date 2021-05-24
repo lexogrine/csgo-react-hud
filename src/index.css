@@ -9,24 +9,26 @@ body,
 
 body {
   margin: 0;
-  font-family: 'Stratum2', 'Montserrat', 'Roboto', sans-serif;
+  font-family: "Stratum2", "Montserrat", "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /*background-image: url('./assets/bg.png');/**/
 }
 
 @font-face {
-  font-family: 'Louis George Cafe';
-  src: local('Louis George Cafe'), url('./fonts/Louis George Cafe.ttf') format('truetype');
+  font-family: "Louis George Cafe";
+  src: local("Louis George Cafe"),
+    url("./fonts/Louis George Cafe.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Rounded_Elegance';
-  src: local('Rounded_Elegance'), url('./fonts/Rounded_Elegance.ttf') format('truetype');
+  font-family: "Rounded_Elegance";
+  src: local("Rounded_Elegance"),
+    url("./fonts/Rounded_Elegance.ttf") format("truetype");
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -41,16 +43,13 @@ code {
   --white-dull: rgba(10, 5, 5, 0.25);
   --white-full: rgba(250, 250, 250, 1);
   --white-half: rgba(250, 250, 250, 0.5);
-  --color-gray: rgba(191, 191, 191, 1.0);
+  --color-gray: rgba(191, 191, 191, 1);
   --color-moneys: #a7d32e;
   --dev-purple: rgba(200, 0, 255, 1);
-  --color-t: #c19511;
-  --color-ct: #5788a8;
-  --color-new-t: #f0c941;
-  --color-new-ct: #5ab8f4;
+  --color-t: #b65e00;
+  --color-ct: #19724b;
+  --color-new-t: #ff8200;
+  --color-new-ct: #169b62;
   --color-bomb: #f22222;
   --color-defuse: #2222f2;
 }
-
-
-

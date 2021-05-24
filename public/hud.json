@@ -1,7 +1,7 @@
 {
-    "name":"Lexogrine HUD",
-    "version":"1.9.1",
-    "author":"Lexogrine",
+    "name":"ICL HUD",
+    "version":"0.0.1",
+    "author":"retsol",
     "legacy": false,
     "radar": true,
     "killfeed": true,
