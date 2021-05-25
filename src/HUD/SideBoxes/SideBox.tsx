@@ -1,14 +1,14 @@
 import React from 'react';
 import './sideboxes.scss'
-import {configs} from './../../App';
-import isSvg from '../isSvg';
+import {configs, hudIdentity} from './../../App';
+import { apiUrl } from '../../api/api';
 
 export default class SideBox extends React.Component<{ side: 'left' | 'right', hide: boolean}, { title: string, subtitle: string, image?: string }> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
             title:'Title',
-            subtitle:'Content'
+            subtitle:'Content',
 		}
 	}
 
@@ -24,7 +24,8 @@ export default class SideBox extends React.Component<{ side: 'left' | 'right', h
                 this.setState({subtitle:display[`${this.props.side}_subtitle`]})
             }
             if(`${this.props.side}_image` in display){
-                this.setState({image:display[`${this.props.side}_image`]})
+                const imageUrl = `${apiUrl}api/huds/${hudIdentity.name || 'dev'}/display_settings/${this.props.side}_image?isDev=${hudIdentity.isDev}&cache=${(new Date()).getTime()}`;
+                this.setState({image:imageUrl})
             }
         });
 	}
@@ -32,7 +33,6 @@ export default class SideBox extends React.Component<{ side: 'left' | 'right', h
 	render() {
         const { image, title, subtitle} = this.state;
         if(!title) return '';
-        const encoding = image && isSvg(Buffer.from(image, 'base64')) ? 'svg+xml':'png';
 		return (
 			<div className={`sidebox ${this.props.side} ${this.props.hide ? 'hide':''}`}>
                 <div className="title_container">
@@ -40,7 +40,7 @@ export default class SideBox extends React.Component<{ side: 'left' | 'right', h
                     <div className="subtitle">{subtitle}</div>
                 </div>
                 <div className="image_container">
-                    {this.state.image ? <img src={`data:image/${encoding};base64,${image}`} id={`image_left`} alt={'Left'}/>:''}
+                    {image ? <img src={image} id={`image_left`} alt={'Left'}/>:''}
                 </div>
             </div>
 		);
