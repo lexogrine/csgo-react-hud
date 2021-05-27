@@ -1,13 +1,31 @@
 /* eslint-disable no-undef */
-//const degreeToRadian = (degree) => degree * Math.PI / 180;
+
+import { api } from './api.js';
 
 let mesh = null;
-
+// if cl_showpos 1 is 3300 -200 2100, then array should be:
+// [-200, 2100, 3300]
+// last element of the array is rotation in degrees
+const positions = {
+    de_cache: [-200, 2100, 3300, 180],
+    de_mirage: [-2100, 159, -1970, 0],
+    de_dust2: [-450, 350, 727, 180],
+    de_inferno: [10, 141, -1866, 0],
+    de_train: [641, 125, -1800, 90],
+    de_overpass: [-1519, 475, -1105, 115],
+    de_nuke: [-3025, -10, 490, 90],
+    de_vertigo: [-615, 12605, -448, 0],
+}
 const startARModule = (scene, _camera, _renderer, GSI) => {
+    //AAAA
+    console.log('ffff')
     let lastContent = '';
     let scoreboardObject = null;
 
-    function updateScoreboard(content) {
+    function updateScoreboard(content, map) {
+        if(!(map in positions)){
+            return;
+        }
         const wrapper = scoreboardObject || document.createElement('div');
         if(!wrapper.id){
             wrapper.id = 'playerCanvas'
@@ -18,14 +36,17 @@ const startARModule = (scene, _camera, _renderer, GSI) => {
 
             const object = new THREE.CSS3DObject(wrapper);
             mesh = object;
+            
+            const position = positions[map];
 
-            object.position.set(-150, 1900, -150);
+            object.position.set(position[0], position[1], position[2]);
+            object.rotateY(THREE.Math.degToRad(position[3]));
             scene.add(object);
         }
         return wrapper;
     }
 
-    fetch('/api/match/current').then(res => res.json()).then(match => {
+    api.match.getCurrent().then(match => {
         if (!match) return;
         let isReversed = false;
         if (GSI.last) {
@@ -35,7 +56,7 @@ const startARModule = (scene, _camera, _renderer, GSI) => {
                 isReversed = true;
             }
         }
-        fetch('/api/teams').then(res => res.json()).then(teams => {
+        api.teams.get().then(teams => {
             if (match.left && match.left.id) {
                 const left = teams.find(team => team._id === match.left.id);
                 if (left) {
@@ -58,10 +79,14 @@ const startARModule = (scene, _camera, _renderer, GSI) => {
                     else GSI.teams.left = gsiTeamData;
                 }
             }
-        }).catch(() => { });
-    }).catch(() => { });
+        });
+    });
+
+
     GSI.on('data', (data) => {
-        if(!data || !data.map || !data.map.name || !data.map.name.toLowerCase().includes("cache")) return;
+        if(!data || !data.map || !data.map.name) return;
+        const mapName = data.map.name.substring(data.map.name.lastIndexOf('/') + 1);
+        if(!mapName || !(mapName in positions)) return;
         const { players } = data;
 
         const playersLeft = players.filter(player => player.team.orientation === "left");
@@ -90,7 +115,7 @@ const startARModule = (scene, _camera, _renderer, GSI) => {
 `).join('')}</div>`;
         if (lastContent !== htmlEntry) {
             lastContent = htmlEntry;
-            updateScoreboard(htmlEntry);
+            updateScoreboard(htmlEntry, mapName);
         }
     });
 }
