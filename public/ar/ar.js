@@ -16,9 +16,8 @@ const positions = {
     de_nuke: [-3025, -10, 490, 90],
     de_vertigo: [-615, 12605, -448, 0],
 }
-const startARModule = (scene, _camera, _renderer, GSI) => {
-    //AAAA
-    console.log('ffff')
+const startARModule = (scene, _camera, _renderer, GSI, actions) => {
+
     let lastContent = '';
     let scoreboardObject = null;
 
@@ -42,6 +41,12 @@ const startARModule = (scene, _camera, _renderer, GSI) => {
             object.position.set(position[0], position[1], position[2]);
             object.rotateY(THREE.Math.degToRad(position[3]));
             scene.add(object);
+
+            
+            actions.on('arState', arState => {
+                const isHidden = arState === "hide";
+                wrapper.classList.toggle('hide', isHidden);
+            });
         }
         return wrapper;
     }

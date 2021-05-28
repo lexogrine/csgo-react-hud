@@ -10,6 +10,12 @@
 		left: 400px;
 		padding-right: 10px;
 		justify-content: space-between;
+
+		transition: opacity 1s;
+		opacity:1;
+	}
+	#playerCanvas.hide {
+		opacity: 0;
 	}
 	.teamName {
 		width: 100%;
