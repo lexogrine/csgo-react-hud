@@ -7,6 +7,7 @@ import de_overpass from './de_overpass';
 import de_nuke from './de_nuke';
 import de_vertigo from './de_vertigo';
 import de_ancient from './de_ancient';
+import api from '../../../../api/api';
 
 export interface ScaleConfig {
     origin: {
@@ -44,5 +45,15 @@ const maps: { [key: string] : MapConfig} = {
     de_vertigo,
     de_ancient
 }
+
+api.maps.get().then(fallbackMaps => {
+    const mapNames = Object.keys(fallbackMaps);
+    for(const mapName of mapNames){
+        if(mapName in maps){
+            continue;
+        }
+        maps[mapName] = fallbackMaps[mapName];
+    }
+}).catch(() => {});
 
 export default maps;

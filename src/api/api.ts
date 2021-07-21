@@ -1,5 +1,6 @@
 import * as I from './interfaces';
 import queryString from 'query-string';
+import { MapConfig } from '../HUD/Radar/LexoRadar/maps';
 
 
 const query = queryString.parseUrl(window.location.href).query;
@@ -36,11 +37,14 @@ const api = {
         get: (): Promise<I.Team[]> => apiV2(`teams`),
     },
     players: {
-        get: async (): Promise<I.Player[]> => apiV2(`players`),
+        get: async (steamids?: string[]): Promise<I.Player[]> => apiV2(steamids ? `players?steamids=${steamids.join(';')}` :`players`),
         getAvatarURLs: async (steamid: string): Promise<{custom: string, steam: string}> => apiV2(`players/avatar/steamid/${steamid}`)
     },
     tournaments: {
         get: () => apiV2('tournament')
+    },
+    maps: {
+        get: (): Promise<{ [key: string] : MapConfig}> => apiV2('radar/maps')
     }
 }
 
