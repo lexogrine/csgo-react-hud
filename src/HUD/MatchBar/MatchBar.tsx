@@ -7,6 +7,10 @@ import Countdown from "./../Timers/Countdown";
 import { GSI } from "../../App";
 import { Match } from "../../api/interfaces";
 
+const getPlayersValue = (players: I.Player[]) => {
+  return players.filter(player => player.state.health > 0).map(player => player.state.equip_value).reduce((a, b) => a+b, 0);
+}
+
 function stringToClock(time: string | number, pad = true) {
   if (typeof time === "string") {
     time = parseFloat(time);
@@ -25,6 +29,7 @@ interface IProps {
   map: I.Map;
   phase: I.PhaseRaw,
   bomb: I.Bomb | null,
+  players: I.Player[]
 }
 
 export interface Timer {
@@ -168,7 +173,7 @@ export default class TeamBox extends React.Component<IProps, IState> {
   }
   render() {
     const { defusing, planting, winState } = this.state;
-    const { bomb, match, map, phase } = this.props;
+    const { bomb, match, map, phase, players } = this.props;
     const time = stringToClock(phase.phase_ends_in);
     const left = map.team_ct.orientation === "left" ? map.team_ct : map.team_t;
     const right = map.team_ct.orientation === "left" ? map.team_t : map.team_ct;
@@ -184,10 +189,27 @@ export default class TeamBox extends React.Component<IProps, IState> {
         else rightTimer = planting;
       }
     }
+
+    const leftValue = getPlayersValue(players.filter(player => player.team.orientation === "left"));
+    const rightValue = getPlayersValue(players.filter(player => player.team.orientation === "right"));
+
+    let leftRatio = 1;
+    let rightRatio = 1;
+
+    if(leftValue !== rightValue){
+      if(!leftValue){
+        leftRatio = 0;
+      } else if(!rightValue){
+        rightRatio = 0;
+      } else {
+        leftRatio = leftValue/rightValue;
+      }
+    }
+
     return (
       <>
         <div id={`matchbar`}>
-          <TeamScore team={left} orientation={"left"} timer={leftTimer} showWin={winState.show && winState.side === "left"} />
+          <TeamScore winsForSeries={bo} wins={left.matches_won_this_series} team={left} orientation={"left"} timer={leftTimer} showWin={winState.show && winState.side === "left"} />
           <div className={`score left ${left.side}`}>{left.score}</div>
           <div id="timer" className={bo === 0 ? 'no-bo' : ''}>
             <div id={`round_timer_text`} className={isPlanted ? "hide":""}>{time}</div>
@@ -195,7 +217,11 @@ export default class TeamBox extends React.Component<IProps, IState> {
             <Bomb />
           </div>
           <div className={`score right ${right.side}`}>{right.score}</div>
-          <TeamScore team={right} orientation={"right"} timer={rightTimer} showWin={winState.show && winState.side === "right"} />
+          <TeamScore winsForSeries={bo} wins={right.matches_won_this_series} team={right} orientation={"right"} timer={rightTimer} showWin={winState.show && winState.side === "right"} />
+          <div className="value-ratio-container">
+            <div className={`value-ratio ${left.side}`} style={{ flex: leftRatio }} />
+            <div className={`value-ratio ${right.side}`} style={{ flex: rightRatio }} />
+          </div>
         </div>
       </>
     );

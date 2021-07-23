@@ -21,42 +21,34 @@
 	flex-direction: row;
 	position: fixed;
 	justify-content: center;
-	width: 1148px;
-	height: 70px;
+	width: 1400px;
+	height: 59px;
 	top: 10px;
 	left: 50%;
 	transform: translateX(-50%);
-	.CT {
-		color: var(--color-new-ct);
-		.round-thingy {
-			.inner {
-				background-color: #28abff;
+	.value-ratio-container {
+		width: 366px;
+		height: 4px;
+		display: flex;
+		position: absolute;
+		bottom: -2px;
+		.value-ratio {
+			height: 100%;
+
+			&.CT {
+				background-color: var(--color-new-ct);
 			}
-			background-color: #28abff80;
-		}
-	}
-	.T {
-		color: var(--color-new-t);
-		.round-thingy {
-			.inner {
-				background-color: #ffc600;
+			&.T {
+				background-color: var(--color-new-t);
 			}
-			background-color: #ffc60080;
 		}
 	}
 	#timer {
 		display: flex;
 		flex-direction: column;
+		width: 122px;
+		background-color: var(--main-panel-color);
 		position: relative;
-		width: 126px;
-		height: 115px;
-		margin-left: 8px;
-		margin-right: 8px;
-		background-color: var(--sub-panel-color);
-        top: -10px;
-        &.no-bo {
-            height: 87px;
-        }
 	}
 	#bomb_container {
 		display: flex;
@@ -65,7 +57,7 @@
 		align-items: center;
 		position: absolute;
 		width: 100%;
-		height: 70px;
+		height: 59px;
 		z-index: 0;
 		.bomb_timer {
 			width: 100%;
@@ -96,13 +88,13 @@
 	#round_timer_text {
 		display: flex;
 		width: 100%;
-		height: 55px;
+		height: 36px;
 		justify-content: center;
-		font-size: 34px;
+		font-size: 28px;
 		font-weight: bold;
 		z-index: 1;
 		color: var(--white-full);
-        align-items: flex-end;
+		margin-top:2px;
         &.hide {
             display: none;
         }
@@ -111,47 +103,53 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		height: 27px;
+		height: 13px;
 		align-items: center;
 		justify-content: center;
-		font-size: 14px;
+		font-size: 10px;
 		font-weight: bold;
 		z-index: 1;
+		text-transform: uppercase;
+		opacity: 0.5;
         color: var(--white-full);
         &.hide {
             display: none;
         }
 	}
 	.team {
-		width: 426px;
+		width: 500px;
 		display: flex;
 		align-items: center;
+		.series-wins-container {
+			height:100%;
+			width:22px;
+			background-color: var(--main-panel-color);
+		}
 		.logo {
 			display: flex;
 			flex-direction: row;
-			width: 105px;
-			height: 70px;
+			width: 57px;
+			height: 59px;
 			align-items: center;
+			justify-content: center;
 			overflow: hidden;
-			background-color: var(--sub-panel-color);
+			background-color: var(--main-panel-color);
 			img {
-				max-width: 90%;
-				max-height: 65%;
+				max-width: 34px;
+				max-height: 33px;
 			}
         }
         &.left {
-            justify-content: center;
             flex-direction: row-reverse;
             .round-thingy {
                 left: -30px;
             }
-            .logo {
-                justify-content: flex-end;
-            }
         }
         &.right {
-            justify-content: center;
             flex-direction: row;
+			.team-name {
+				justify-content: flex-start;
+			}
             .round-thingy {
                 right: -30px;
             }
@@ -163,12 +161,38 @@
 	.team-name {
 		display: flex;
 		width: 360px;
-		height: 70px;
+		height: 59px;
+		align-items: center;
+		justify-content: flex-end;
+		font-weight: 700;
+		color: white;
+		font-size: 30px;
+		margin: 0 26px;
+	}
+	.series-wins-container {
+		width: 4px;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		font-weight: 600;
-		font-size: 30px;
-		background-color: var(--sub-panel-color);
+		.series-win {
+			width: 4px;
+			height: 13px;
+			margin: 1px 0;
+			&:not(.win) {
+				background-color: #4d5055;
+			}
+			&.win {
+				&.CT {
+					background-color: var(--color-new-ct);
+				}
+				&.T {
+					background-color: var(--color-new-t);
+				}
+			}
+
+		}
 	}
 	.round-thingy {
 		width: 60px;
@@ -187,19 +211,26 @@
 	.score {
 		display: flex;
 		flex-direction: row;
-		width: 77px;
-		height: 70px;
+		width: 58px;
+		height: 59px;
 		align-items: center;
 		justify-content: center;
-		font-weight: 600;
-		font-size: 36px;
-		background-color: var(--sub-panel-color);
+		font-weight: 700;
+		font-size: 40px;
+		color: white;
+		background-color: var(--main-panel-color);
+		&.left {
+			padding-left: 8px;
+		}
+		&.right {
+			padding-right: 8px;
+		}
 	}
 	.bar {
 		display: flex;
 		flex-direction: row;
 		width: 10px;
-        height: 70px;
+        height: 59px;
         &.CT {
             background-color: var(--color-new-ct);
         }
@@ -285,7 +316,7 @@
 	position: fixed;
 	justify-content: center;
 	top: 80px;
-	width: 1148px;
+	width: 1300px;
 	height: 50px;
 	left: 50%;
 	transform: translateX(-50%);

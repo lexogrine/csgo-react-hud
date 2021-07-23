@@ -85,7 +85,7 @@ class App extends React.Component<IProps> {
   render() {
     const { players, grenades } = this.props;
     //if(players.length === 0) return null;
-    return <div className="map" style={{ backgroundImage: `url(${maps[this.props.mapName].file})` }}>
+    return <div className="map">
         {players.map(this.renderDot)}
         {grenades.map(this.renderGrenade)}
         {this.renderBomb()}

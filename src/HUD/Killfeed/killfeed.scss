@@ -32,7 +32,7 @@
         margin-bottom:5px;
         color:white;
         animation: KillLifeCycle 5s linear 1;
-        animation-fill-mode: forwards;/**/
+        /*animation-fill-mode: forwards;/**/
         height: 31px;
         font-size: 14px;
         overflow: hidden;
@@ -41,9 +41,8 @@
         font-weight:500;
         padding-left:15px;
         padding-right:15px;
-
+        
         div {
-            margin:10px;
             display:flex;
             align-items:center;
         }
@@ -51,6 +50,7 @@
         svg.weapon {
             height: 28px;
             filter: invert(0%);
+            margin-left: 7px;
         }
 
         .CT {
@@ -60,21 +60,28 @@
         .T {
             color: var(--color-new-t);
         }
-
-        .way .headshot, .way .wallbang, .flash_assist, .flash_kill, .smoke_kill, .noscope_kill {
+        .flash_assist, .flash_kill {
             max-height:20px;
-            margin-left:5px;
+            margin-right: 7px;
+        }
+        .way .headshot, .way .wallbang, .smoke_kill, .noscope_kill {
+            max-height:20px;
+            margin-left:4px;
+        }
+
+        .victim_name {
+            margin-left: 7px;
         }
 
         .flash_assist {
             margin-left: 0;
-            margin-right:5px;
+            margin-right:7px;
         }
 
         .plus {
-            margin-left: 0;
+            margin-left: 7px;
             font-weight: 600;
-            margin-right: 8px;
+            margin-right: 4px;
         }
 
         .assister_name {

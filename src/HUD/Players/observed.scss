@@ -1,27 +1,79 @@
 .observed {
     position: fixed;
-    width: 620px;
+    width: 570px;
     bottom: 120px;
-    margin-left: -310px;
+    margin-left: -285px;
     left: 50%;
-    height: 86px;
+    height: 49px;
     display: flex;
     flex-direction: column;
     color: white;
     background-color: rgba(0,0,0,0.6);
+    align-items: center;
 
     .main_row, .stats_row {
-        flex: 1;
         display: flex;
         align-items: center;
         flex-direction: row;
         position: relative;
-        height: 43px;
     }
 
+    .ammo {
+        height: 100%;
+        width: 140px;
+        display: flex;
+        margin-right: 27px;
+        &.no-weapon {
+            .ammo_icon_container, .ammo_counter {
+                display: none;
+            }
+        }
+        .current_rounds_kills {
+            width: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 24px;
+        }
+        .ammo_counter {
+            width:65px;
+            display: flex;
+            font-size: 18px;
+            font-weight: 600;
+            > div {
+                width: 32px;
+                display: flex;
+                align-items: center;
+            }
+            .ammo_clip {
+                justify-content: flex-end;
+                font-size: 18px;
+            }
+            .ammo_reserve {
+                justify-content: flex-start;
+                opacity: 0.5;
+                font-size: 14px;
+            }
+        }
+        .ammo_icon_container {
+            display: flex;
+            height: 100%;
+            width: 19px;
+            align-items: center;
+            justify-content: center;
+            svg {
+                max-width: 19px;
+                fill: white;
+            }
+        }
+    }
     .stats_row {
-        height: 28px;
-
+        height: 35px;
+        margin-top: 14px;
+        width: calc(100% - 78px);
+        justify-content: space-between;
+        padding: 0 39px;
+    
         .stats_cell {
             height: 100%;
             width: 56px;
@@ -45,63 +97,29 @@
                 justify-content: center;
             }
         }
-        .ammo {
-            height: 100%;
-            width: 140px;
-            display: flex;
-            .ammo_counter {
-                flex: 1;
-                display: flex;
-                font-size: 18px;
-                font-weight: 600;
-                > div {
-                    width: 32px;
-                    display: flex;
-                    align-items: center;
-                }
-                .ammo_clip {
-                    justify-content: flex-end;
-                }
-                .ammo_reserve {
-                    justify-content: flex-start;
-                }
-            }
-            .ammo_icon_container {
-                display: flex;
-                height: 100%;
-                width: 48px;
-                align-items: center;
-                justify-content: center;
-                svg {
-                    max-width: 30px;
-                    fill: white;
-                }
-            }
-        }
         .health_armor_container {
             display: flex;
             height: 100%;
-            width: 140px;
+            width: 160px;
             justify-content: center;
             .text {
-                width: 30px;
+                width: 54px;
                 display: flex;
                 align-items: center;
-                justify-content: center;
                 font-weight: 600;
-                font-size: 21px;
+                font-size: 19px;
                 height: 100%;
-                padding-top: 2px;
+                margin-left:9px;
             }
             
             .icon {
                 display: flex;
-                width: 30px;
+                width: 16px;
                 align-items: center;
                 justify-content: center;
-                svg {
+                svg, img {
                     max-height:30px;
-                    max-width:22px;
+                    max-width:16px;
                 }
             }
         }
@@ -121,40 +139,59 @@
         }
     }
 
+    .grenade_container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        width: 145px;
+        justify-content: flex-end;
+
+        .defuse_indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: auto;
+            svg {
+                width: 19px;
+                height: 19px;
+                fill: white;
+            }
+        }
+    
+    }
+    .weapon.grenade {
+        height: 19px;
+        filter: invert(45%);
+
+        &.active {
+            filter: invert(0%);
+        }
+        &:last-child {
+            margin-right: 5px;
+        }
+    }
     .main_row {
         font-weight: 600;
+        position: absolute;
+        height: 28px;
+        width: 526px;
+        top: -14px;
         .logo {
             height: 43px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .grenade_container {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            width: 140px;
-            justify-content: center;
-        
-        }
-        .username_container {
+        .username {
             height: 100%;
             flex: 1;
             display: flex;
-            align-items: center;
+            margin-left:18px;
             justify-content: center;
             flex-direction: column;
             .real_name {
                 font-size: 7pt;
                 color: rgba(255, 255, 255, 0.5);
-            }
-        }
-        .weapon.grenade {
-            height: 28px;
-            /*filter: invert(1);*/
-
-            &:last-child {
-                margin-right: 5px;
             }
         }
         
@@ -171,12 +208,13 @@
         }
     }
     .flag {
-        height: 43px;
+        height: 18px;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-left: -10px;
         img {
-            height: 43px;
+            height: 18px;
         }
     }
     .avatar {
@@ -191,9 +229,8 @@
     }
     
     &.T {
-        border-bottom: 6px solid var(--color-new-t);
-        .main_row .username_container .username, .stats_row .ammo .ammo_counter .ammo_reserve {
-            color: var(--color-new-t)
+        .main_row {
+            background-color: var(--color-new-t);
         }
         .sidebar {
             background-color: var(--color-new-t)
@@ -202,16 +239,10 @@
             color: var(--color-new-t);
             margin-right: 2px;
         }
-        .stats_row .health_armor_container .icon, .stats_row .ammo .ammo_icon_container {
-            svg {
-                fill: var(--color-new-t);
-            }
-        }
     }
     &.CT {
-        border-bottom: 6px solid var(--color-new-ct);
-        .main_row .username_container .username, .stats_row .ammo .ammo_counter .ammo_reserve {
-            color: var(--color-new-ct)
+        .main_row {
+            background-color: var(--color-new-ct);
         }
         .sidebar {
             background-color: var(--color-new-ct)
@@ -219,11 +250,6 @@
         .stats_row .statistics .stat .label {
             color: var(--color-new-ct);
             margin-right: 2px;
-        }
-        .stats_row .health_armor_container .icon, .stats_row .ammo .ammo_icon_container {
-            svg {
-                fill: var(--color-new-ct);
-            }
         }
         
     }

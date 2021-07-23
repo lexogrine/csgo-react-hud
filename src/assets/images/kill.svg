@@ -1,0 +1,16 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" fill="white">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+	.st2{display:none;fill:#FFFFFF;}
+
+</style>
+<g>
+	<rect x="6" y="0" class="st0" width="2" height="5"/>
+	<rect x="6" y="9" class="st0" width="2" height="5"/>
+	<rect x="10.5" y="4.5" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 18.4968 -4.4977)" class="st0" width="2" height="5"/>
+	<rect x="1.5" y="4.5" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 9.5023 4.4968)" class="st0" width="2" height="5"/>
+	<circle class="st1" cx="7" cy="7" r="4.8"/>
+</g>
+
+</svg>

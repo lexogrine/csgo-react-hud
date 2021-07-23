@@ -2,6 +2,8 @@ import React from "react";
 import { isDev } from './../../api/api';
 import { CSGO } from "csgogsi";
 import LexoRadarContainer from './LexoRadar/LexoRadarContainer';
+import { killHandler } from "../Killfeed/Killfeed";
+import { KillEvent } from "csgogsi-socket";
 
 
 
@@ -34,6 +36,24 @@ export default class Radar extends React.Component<Props, State> {
             }
             this.setState({boltobserv, loaded: true});
         }*/
+        setTimeout(() => {
+            const { players } = this.props.game;
+            if(players.length < 3) return;
+            const kill: KillEvent = {
+                killer: players[0],
+                victim: players[1],
+                assister: players[2],
+                flashed: true,
+                headshot: true,
+                wallbang: true,
+                attackerblind: true,
+                thrusmoke: true,
+                noscope: true,
+                weapon: 'awp'
+            }
+            console.log(kill)
+            killHandler.addKill(kill);
+        })
     }
 
     render() {

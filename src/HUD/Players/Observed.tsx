@@ -1,13 +1,16 @@
 import React from "react";
 import { Player } from "csgogsi-socket";
-import Weapon from "./../Weapon/Weapon";
 import Avatar from "./Avatar";
 import TeamLogo from "./../MatchBar/TeamLogo";
 import "./observed.scss";
 import { apiUrl } from './../../api/api';
 import { getCountry } from "./../countries";
-import { ArmorHelmet, ArmorFull, HealthFull, Bullets } from './../../assets/Icons';
+import Health from './../../assets/health.png';
+import { ArmorHelmet, ArmorFull, Kill, Bullets, SkullRaw } from './../../assets/Icons';
 import { Veto } from "../../api/interfaces";
+import Grenade from "../Weapon/Grenade";
+import { getFlag } from "../../assets/flags";
+import Defuse from "../Indicators/Defuse";
 
 class Statistic extends React.PureComponent<{ label: string; value: string | number, }> {
 	render() {
@@ -36,44 +39,18 @@ export default class Observed extends React.Component<{ player: Player | null, v
 		const grenades = weapons.filter(weapon => weapon.type === "Grenade");
 		const { stats } = player;
 		const ratio = stats.deaths === 0 ? stats.kills : stats.kills / stats.deaths;
-		const countryName = country ? getCountry(country) : null;
-
+		const flag = country ? getFlag(country) : null;
 		return (
 			<div className={`observed ${player.team.side}`}>
 				<div className="main_row">
-					<Avatar steamid={player.steamid} height={140} width={140} showCam={true} slot={player.observer_slot}/>
-					<TeamLogo team={player.team} height={35} width={35} />
-					<div className="username_container">
-						<div className="username">{player.name}</div>
-						<div className="real_name">{player.realName}</div>
-					</div>
-					<div className="flag">{countryName ? <img src={`${apiUrl}files/img/flags/${countryName.replace(/ /g, "-")}.png`} alt={countryName} /> : ''}</div>
-					<div className="grenade_container">
-						{grenades.map(grenade => <React.Fragment key={`${player.steamid}_${grenade.name}_${grenade.ammo_reserve || 1}`}>
-							<Weapon weapon={grenade.name} active={grenade.state === "active"} isGrenade />
-							{ 
-							grenade.ammo_reserve === 2 ? <Weapon weapon={grenade.name} active={grenade.state === "active"} isGrenade /> : null }
-						</React.Fragment>)}
-					</div>
-				</div>
-				<div className="stats_row">
-					<div className="health_armor_container">
-						<div className="health-icon icon">
-							<HealthFull />
+					{/*<Avatar steamid={player.steamid} height={140} width={140} showCam={false} slot={player.observer_slot}/>*/}
+					<div className="flag">{flag ? <img src={flag} alt={flag} /> : ''}</div>
+					<div className="username">{player.name}</div>
+					<div className={`ammo ${!currentWeapon || !currentWeapon.ammo_clip ? 'no-weapon':''}`}>
+						<div className={`current_rounds_kills ${player.state.round_kills ? 'active':''}`}>
+                			<img src={SkullRaw} width={15} />
+							{player.state.round_kills || null}
 						</div>
-						<div className="health text">{player.state.health}</div>
-						<div className="armor-icon icon">
-							{player.state.helmet ? <ArmorHelmet /> : <ArmorFull />}
-						</div>
-						<div className="health text">{player.state.armor}</div>
-					</div>
-					<div className="statistics">
-						<Statistic label={"K"} value={stats.kills} />
-						<Statistic label={"A"} value={stats.assists} />
-						<Statistic label={"D"} value={stats.deaths} />
-						<Statistic label={"K/D"} value={ratio.toFixed(2)} />
-					</div>
-					<div className="ammo">
 						<div className="ammo_icon_container">
 							<Bullets />
 						</div>
@@ -81,6 +58,27 @@ export default class Observed extends React.Component<{ player: Player | null, v
 							<div className="ammo_clip">{(currentWeapon && currentWeapon.ammo_clip) || "-"}</div>
 							<div className="ammo_reserve">/{(currentWeapon && currentWeapon.ammo_reserve) || "-"}</div>
 						</div>
+					</div>
+				</div>
+				<div className="stats_row">
+					<div className="health_armor_container">
+						<div className="health-icon icon">
+							<img src={Health} />
+						</div>
+						<div className="health text">{player.state.health}</div>
+						<div className="armor-icon icon">
+							{player.state.helmet ? <ArmorHelmet /> : <ArmorFull />}
+						</div>
+						<div className="health text">{player.state.armor}</div>
+					</div>
+
+					<div className="grenade_container">
+						<Defuse player={player} width={19} />
+						{grenades.map(grenade => <React.Fragment key={`${player.steamid}_${grenade.name}_${grenade.ammo_reserve || 1}`}>
+							<Grenade weapon={grenade.name} active={grenade.state === 'active'} height={19}/>
+							{ 
+							grenade.ammo_reserve === 2 ? <Grenade weapon={grenade.name} active={false} height={19}/> : null }
+						</React.Fragment>)}
 					</div>
 				</div>
 			</div>

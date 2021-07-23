@@ -5,6 +5,7 @@ import { Map, CSGO, Team } from 'csgogsi-socket';
 import { actions } from './../../App';
 import Radar from './Radar'
 import TeamLogo from "../MatchBar/TeamLogo";
+import maps from "./LexoRadar/maps";
 
 interface Props { match: Match | null, map: Map, game: CSGO }
 interface State { showRadar: boolean, radarSize: number }
@@ -12,7 +13,7 @@ interface State { showRadar: boolean, radarSize: number }
 export default class RadarMaps extends React.Component<Props, State> {
     state = {
         showRadar: true,
-        radarSize: 350
+        radarSize: 372
     }
     componentDidMount() {
         actions.on('radarBigger', () => this.radarChangeSize(20));
@@ -24,9 +25,10 @@ export default class RadarMaps extends React.Component<Props, State> {
 		this.setState({radarSize:newSize > 0 ? newSize : this.state.radarSize});
 	}
     render() {
-        const { match } = this.props;
+        const { match, game } = this.props;
+        const mapName = game.map.name.substring(game.map.name.lastIndexOf('/')+1)
         return (
-            <div id={`radar_maps_container`} className={`${!this.state.showRadar ? 'hide':''}`}>
+            <div id={`radar_maps_container`} className={`${!this.state.showRadar ? 'hide':''}`} style={{ backgroundImage: `url(${maps[mapName].file})` }}>
                 <Radar radarSize={this.state.radarSize} game={this.props.game}/>
                 {match ? <MapsBar match={this.props.match} map={this.props.map}  game={this.props.game}/>:null}
             </div>

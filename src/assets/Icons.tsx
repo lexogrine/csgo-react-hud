@@ -15,16 +15,21 @@ import { ReactComponent as HealthFull }  from './../assets/images/icon_health_fu
 import { ReactComponent as Hourglass }  from './../assets/images/icon_hourglass_default.svg';
 import { ReactComponent as Microphone }  from './../assets/images/icon_microphone.svg';
 import { ReactComponent as Pause }  from './../assets/images/icon_pause_default.svg';
-import { ReactComponent as Skull }  from './../assets/images/icon_skull_default.svg';
+import { ReactComponent as Skull }  from './../assets/images/skull.svg';
+import SkullRaw from './../assets/images/kill.svg';
 import { ReactComponent as Timer }  from './../assets/images/icon_timer_default.svg';
+import { ReactComponent as Kill }  from './../assets/images/kill.svg';
+
 import LogoCT  from './../assets/images/logo_CT_default.png';
 import LogoT  from './../assets/images/logo_T_default.png';
+
 import { ReactComponent as SmallBomb }  from "./../assets/images/bomb.svg";
 
 
 export {
     SmallBomb,
     ArmorFull,
+    Kill,
     ArmorHalf,
     ArmorHalfHelmet,
     ArmorHelmet,
@@ -37,6 +42,7 @@ export {
     C4,
     Defuse,
     Health,
+    SkullRaw,
     HealthFull,
     Hourglass,
     Microphone,

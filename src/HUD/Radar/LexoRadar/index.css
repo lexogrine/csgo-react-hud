@@ -46,6 +46,7 @@ html, body, .map-container {
     width:1024px;
     height: 1024px;
     position: relative;
+    background-size: cover;
 }
 .map .player, .map .grenade, .map .bomb {
     position: absolute;

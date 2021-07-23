@@ -4,6 +4,14 @@ import { KillEvent, Player } from 'csgogsi-socket';
 import Kill from './Kill';
 import './killfeed.scss';
 
+type KillHandler = {
+ addKill: (kill: KillEvent) => void;
+}
+
+export const killHandler: KillHandler = {
+    addKill: () => {}
+}
+
 
 export interface ExtendedKillEvent extends KillEvent {
     type: 'kill'
@@ -42,6 +50,7 @@ export default class Killfeed extends React.Component<any, { events: (BombEvent 
     }
     
 	async componentDidMount() {
+        killHandler.addKill = this.addKill;
 		GSI.on("kill", kill => {
             this.addKill(kill);
         });
