@@ -1,12 +1,13 @@
 import React from "react";
 import Weapon from "./../Weapon/Weapon";
-import { Player, WeaponRaw, Side } from "csgogsi-socket";
+import { Player, WeaponRaw, Side, Orientation } from "csgogsi-socket";
+import Grenade from "../Weapon/Grenade";
 
 interface Props {
-    sides?: 'reversed',
-    show: boolean;
-    side: 'CT' | 'T',
-    players: Player[]
+  orientation: Orientation,
+  show: boolean;
+  side: 'CT' | 'T',
+  players: Player[]
 }
 
 function utilityState(amount: number) {
@@ -76,33 +77,34 @@ export function summarise(players: Player[], side: Side) {
 class GrenadeContainer extends React.PureComponent<{ grenade: string; amount: number }> {
   render() {
     return (
-      <div className="grenade_container">
-        <div className="grenade_image">
-          <Weapon weapon={this.props.grenade} active={false} isGrenade />
-        </div>
-        <div className="grenade_amount">x{this.props.amount}</div>
+      <div className={`grenade_container ${this.props.amount === 0 ? 'empty':''}`}>
+        <Grenade weapon={this.props.grenade} active={false} height={20} />
+        <div className="grenade_amount">{this.props.amount}</div>
       </div>
     );
   }
 }
 
 export default class SideBox extends React.Component<Props> {
-    render() {
-        const grenades = summarise(this.props.players, this.props.side);
-        const total = Object.values(grenades).reduce((a, b) => a+b, 0);
-        return (
-            <div className={`utilitybox ${this.props.side || ''} ${this.props.show ? "show" : "hide"}`}>
-                <div className="title_container">
-                    <div className="title">Utility Level -&nbsp;</div>
-                    <div className="subtitle" style={{color: utilityColor(total)}}>{utilityState(total)}</div>
-                </div>
-                <div className="grenades_container">
-                    <GrenadeContainer grenade="smokegrenade" amount={grenades.smokes} />
-                    <GrenadeContainer grenade={this.props.side === 'CT' ? 'incgrenade' : 'molotov'} amount={grenades.inc} />
-                    <GrenadeContainer grenade="flashbang" amount={grenades.flashes} />
-                    <GrenadeContainer grenade="hegrenade" amount={grenades.hg} />
-                </div>
-            </div>
-        );
-    }
+  render() {
+    const grenades = summarise(this.props.players, this.props.side);
+    const total = Object.values(grenades).reduce((a, b) => a + b, 0);
+    return (
+      <div className={`utilitybox sidebox ${this.props.orientation} ${this.props.side || ''} ${this.props.show ? "show" : "hide"}`}>
+        <div className="title">Team utility</div>
+        <div className="content">
+          <div className="utility_level">
+            <div className="utility_label">Level</div>
+            <div className="utility">{utilityState(total)}</div>
+          </div>
+          <div className="grenades_container">
+            <GrenadeContainer grenade="smokegrenade" amount={grenades.smokes} />
+            <GrenadeContainer grenade={this.props.side === 'CT' ? 'incgrenade' : 'molotov'} amount={grenades.inc} />
+            <GrenadeContainer grenade="flashbang" amount={grenades.flashes} />
+            <GrenadeContainer grenade="hegrenade" amount={grenades.hg} />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }

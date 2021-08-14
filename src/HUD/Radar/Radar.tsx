@@ -52,7 +52,7 @@ export default class Radar extends React.Component<Props, State> {
                 weapon: 'awp'
             }
             console.log(kill)
-            killHandler.addKill(kill);
+            //killHandler.addKill(kill);
         })
     }
 

@@ -21,6 +21,9 @@ export default class PlayerBox extends React.Component<IProps> {
     const secondary = weapons.filter(weapon => weapon.type === "Pistol")[0] || null;
     const grenades = weapons.filter(weapon => weapon.type === "Grenade");
     const isLeft = player.team.orientation === "left";
+
+    const weapon = primary || secondary;
+
     let state = 'neutral';
     if(player.stats.kills > player.stats.deaths) {
       state = 'positive';
@@ -66,6 +69,7 @@ export default class PlayerBox extends React.Component<IProps> {
             </div>
           </div>
         </div>
+        { weapon ? <Weapon weapon={weapon.name} active={weapon.state === 'active'} /> : null}
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import React from 'react';
-import './sideboxes.scss'
 import {configs, hudIdentity} from './../../App';
 import { apiUrl } from '../../api/api';
 

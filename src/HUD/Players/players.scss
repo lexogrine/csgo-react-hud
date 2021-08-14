@@ -44,6 +44,9 @@
     &.right {
         right: 10px;
         .player {
+            > svg {
+                transform: scaleX(-1);
+            }
             &.dead .player_data {
                 
                 -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 141px, rgba(0, 0, 0, 0) 233px);
@@ -112,6 +115,10 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        > svg {
+            height: 35px;
+            margin: 0 14px;
+        }
         &.active {
             .player_data {
             }

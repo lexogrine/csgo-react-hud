@@ -34,6 +34,9 @@
             align-items: center;
             justify-content: space-between;
             margin-right: 24px;
+            &:not(.active){
+                opacity: 0;
+            }
         }
         .ammo_counter {
             width:65px;
@@ -220,12 +223,11 @@
     .avatar {
         align-self: flex-end;
         display: flex;
-        position: relative;
-        width: 140px;
-        height: 140px;
-        img {
-            border-radius:50%;
-        }
+        position: absolute;
+        width: 162px;
+        height: 162px;
+        left: calc(50% - 81px);
+        bottom: -35px;
     }
     
     &.T {
