@@ -48,9 +48,11 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 
 		const loaded = GSI.players.map(player => player.steamid);
 
-		const extensioned = await api.players.get();
+		const notCheckedPlayers = steamids.filter(steamid => !loaded.includes(steamid));
 
-		const lacking = steamids.filter(steamid => !loaded.includes(steamid)).filter(steamid => extensioned.map(player => player.steamid).includes(steamid));
+		const extensioned = await api.players.get(notCheckedPlayers);
+
+		const lacking = notCheckedPlayers.filter(steamid => extensioned.map(player => player.steamid).includes(steamid));
 
 		const players: PlayerExtension[] = extensioned
 			.filter(player => lacking.includes(player.steamid))
@@ -69,9 +71,8 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 		const gsiLoaded = GSI.players;
 
 		gsiLoaded.push(...players);
-
+		
 		GSI.players = gsiLoaded;
-
 		this.setState({ steamids });
 	}
 

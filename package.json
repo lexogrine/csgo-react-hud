@@ -1,6 +1,6 @@
 {
   "name": "lexogrine_hud",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "homepage": "./",
   "private": true,
   "dependencies": {
@@ -24,7 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "pack": "npm run build && npm run zip"
+    "pack": "npm run build && npm run zip",
+    "sign": "npm run build && node sign.js && npm-build-zip --name=signed"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,6 +46,7 @@
     "@types/history": "^4.7.5",
     "@types/socket.io-client": "^1.4.32",
     "internal-ip": "^6.2.0",
+    "jsonwebtoken": "^8.5.1",
     "npm-build-zip": "^1.0.2",
     "open": "^8.0.2",
     "sass": "^1.32.5"
