@@ -27,8 +27,7 @@ export default class Ladder extends React.Component<Props> {
 
 	copyMatchups = (): I.DepthTournamentMatchup[] => {
 		if (!this.props.tournament) return [];
-		const matchups = JSON.parse(JSON.stringify(this.props.tournament.matchups)) as I.DepthTournamentMatchup[];
-		return matchups;
+		return JSON.parse(JSON.stringify(this.props.tournament.matchups)) as I.DepthTournamentMatchup[];
 	};
 
 	setDepth = (matchups: I.DepthTournamentMatchup[], matchup: I.DepthTournamentMatchup, depth: number, force = false) => {
@@ -88,7 +87,7 @@ export default class Ladder extends React.Component<Props> {
 			return (
 				<div className="empty-bracket">
 					{this.renderBracket(matchup, depth + 1, fromChildId, parentsToRender.length)}
-					<div className="connector"></div>
+					<div className="connector"/>
 				</div>
 			);
         }
@@ -105,28 +104,28 @@ export default class Ladder extends React.Component<Props> {
 						className={`match-connector ${
 							!matchup.parents.length || parentsToRender.length === 0 ? 'first-match' : ''
 							} ${isLast ? 'last-match' : ''}`}
-					></div>
-					{parentsToRender.length === 1 ? <div className="loser-parent-indicator"></div> : null}
+					/>
+					{parentsToRender.length === 1 ? <div className="loser-parent-indicator"/> : null}
 					<div className={`match-details ${isCurrent ? 'current':''}`}>
 						<div className="team-data">
 							<div className="team-logo">
 								{match.left.logo ? <img src={match.left.logo} alt="Logo" /> : null}
 							</div>
-							<div className="team-name">{match.left.name}</div>
+							<div className="team-name-container">{match.left.name}</div>
 							<div className="team-score">{match.left.score}</div>
 						</div>
 						<div className="team-data">
 							<div className="team-logo">
 								{match.right.logo ? <img src={match.right.logo} alt="Logo" /> : null}
 							</div>
-							<div className="team-name">{match.right.name}</div>
+							<div className="team-name-container">{match.right.name}</div>
 							<div className="team-score">{match.right.score}</div>
 						</div>
 					</div>
 				</div>
 
 				{childVisibleParents === 2 ? (
-					<div className={`connector amount-${parentsToRender.length}`}></div>
+					<div className={`connector amount-${parentsToRender.length}`}/>
 				) : null}
 			</div>
 		);

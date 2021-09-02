@@ -8,7 +8,7 @@ import { Match } from "../../api/interfaces";
 import RadarMaps from "./../Radar/RadarMaps";
 import Trivia from "../Trivia/Trivia";
 import SideBox from '../SideBoxes/SideBox';
-import { GSI, actions } from "./../../App";
+import { GSI, actions } from "../../App";
 import MoneyBox from '../SideBoxes/Money';
 import UtilityLevel from '../SideBoxes/UtilityLevel';
 import Killfeed from "../Killfeed/Killfeed";
@@ -18,7 +18,6 @@ import Tournament from "../Tournament/Tournament";
 import Pause from "../PauseTimeout/Pause";
 import Timeout from "../PauseTimeout/Timeout";
 import SponsorBoxRight from "../SponsorBoxes/SponsorBoxRight";
-import SponsorBoxBottom from "../SponsorBoxes/SponsorBoxBottom";
 
 interface Props {
   game: CSGO,
@@ -131,7 +130,6 @@ export default class Layout extends React.Component<Props, State> {
           />
         </div>
         <SponsorBoxRight />
-        <SponsorBoxBottom />
       </div>
     );
   }

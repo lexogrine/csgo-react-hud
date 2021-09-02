@@ -1,9 +1,7 @@
 import React from 'react';
 import { isDev, port } from '../../api/api';
 import { actions } from '../../App';
-
-import { avatars } from './../../api/avatars';
-
+import { avatars } from '../../api/avatars';
 import { Skull } from './../../assets/Icons';
 
 interface IProps {

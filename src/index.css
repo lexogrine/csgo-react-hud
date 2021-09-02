@@ -9,10 +9,10 @@ body,
 
 body {
   margin: 0;
-  font-family: 'Stratum2', 'Montserrat', 'Roboto', sans-serif;
+  font-family: 'Montserrat','Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*background-image: url('./assets/bg.png');/**/
+  background-image: url('./assets/bg.png');/**/
 }
 
 @font-face {
@@ -36,16 +36,18 @@ code {
 }
 
 :root {
-  --main-panel-color: rgba(12, 15, 18, 0.85);
-  --sub-panel-color: rgba(0, 0, 0, 0.83);
+  --main-panel-color: rgba(12, 10, 18, 0.7);
+  --sub-panel-color: rgba(12, 10, 18, 0.3);
   --white-dull: rgba(10, 5, 5, 0.25);
   --white-full: rgba(250, 250, 250, 1);
   --white-half: rgba(250, 250, 250, 0.5);
   --color-gray: rgba(191, 191, 191, 1.0);
   --color-moneys: rgba(250, 250, 250, 1);;
   --dev-purple: rgba(200, 0, 255, 1);
-  --color-t: #ff4778;
-  --color-new-t: #f15771;
+  /*--color-t: #ff28a5;*/
+  /*--color-new-t: #ff28a5;*/
+  --color-t: #fdbf02;
+  --color-new-t: #ffb100;
   --color-ct: #5788a8;
   --color-new-ct: #5ab9f4;
   --color-bomb: #f22222;

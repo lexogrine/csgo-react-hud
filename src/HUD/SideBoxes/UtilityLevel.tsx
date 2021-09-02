@@ -1,6 +1,6 @@
 import React from "react";
 import Weapon from "./../Weapon/Weapon";
-import { Player, WeaponRaw, Side } from "csgogsi-socket";
+import {Player, Side, WeaponRaw} from "csgogsi-socket";
 
 interface Props {
     sides?: 'reversed',
@@ -25,7 +25,7 @@ function utilityState(amount: number) {
   if (amount > 0) {
     return "Poor";
   }
-  return "None";
+  return "No";
 }
 
 function utilityColor(amount: number) {
@@ -55,12 +55,11 @@ function sum(grenades: WeaponRaw[], name: string) {
 }
 
 function parseGrenades(players: Player[], side: Side) {
-  const grenades = players
-    .filter(player => player.team.side === side)
-    .map(player => Object.values(player.weapons).filter(weapon => weapon.type === "Grenade"))
-    .flat()
-    .map(grenade => ({ ...grenade, name: grenade.name.replace("weapon_", "") }));
-  return grenades;
+    return players
+      .filter(player => player.team.side === side)
+      .map(player => Object.values(player.weapons).filter(weapon => weapon.type === "Grenade"))
+      .flat()
+      .map(grenade => ({...grenade, name: grenade.name.replace("weapon_", "")}));
 }
 
 export function summarise(players: Player[], side: Side) {
@@ -93,8 +92,8 @@ export default class SideBox extends React.Component<Props> {
         return (
             <div className={`utilitybox ${this.props.side || ''} ${this.props.show ? "show" : "hide"}`}>
                 <div className="title_container">
-                    <div className="title">Utility Level -&nbsp;</div>
                     <div className="subtitle" style={{color: utilityColor(total)}}>{utilityState(total)}</div>
+                    <div className="title">&nbsp; Utility</div>
                 </div>
                 <div className="grenades_container">
                     <GrenadeContainer grenade="smokegrenade" amount={grenades.smokes} />

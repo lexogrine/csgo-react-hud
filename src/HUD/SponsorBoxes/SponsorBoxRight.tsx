@@ -1,5 +1,7 @@
 import React from 'react'
 import { Logo99DamageLiga } from '../../assets/Sponsors'
+import './sponsorboxes.scss'
+
 
 export default class SponsorBoxRight extends React.Component {
     render() {

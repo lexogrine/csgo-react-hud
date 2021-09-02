@@ -17,13 +17,12 @@ import { ReactComponent as Microphone }  from './../assets/images/icon_microphon
 import { ReactComponent as Pause }  from './../assets/images/icon_pause_default.svg';
 import { ReactComponent as Skull }  from './../assets/images/icon_skull_default.svg';
 import { ReactComponent as Timer }  from './../assets/images/icon_timer_default.svg';
+
 import LogoCT  from './../assets/images/logo_CT_default.png';
 import LogoT  from './../assets/images/logo_T_default.png';
-import { ReactComponent as SmallBomb }  from "./../assets/images/bomb.svg";
 
 
 export {
-    SmallBomb,
     ArmorFull,
     ArmorHalf,
     ArmorHalfHelmet,

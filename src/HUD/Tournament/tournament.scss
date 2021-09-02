@@ -27,7 +27,7 @@
 	}
 	&:nth-child(2) {
 		>.connector {
-			top: 0%;
+			top: 0;
 		}
 	}
 }
@@ -50,7 +50,7 @@
 	&:nth-child(2) {
 		>.bracket {
 			>.connector {
-				top: 0%;
+				top: 0;
 			}
 		}
 	}
@@ -78,7 +78,7 @@
 				border-bottom: 1px solid transparent;
 			}
 			display: flex;
-			.team-name {
+			.team-name-container {
 				flex: 1;
 				display: flex;
 				align-items: center;
