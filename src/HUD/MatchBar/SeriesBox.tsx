@@ -15,6 +15,10 @@ export default class SeriesBox extends React.Component<Props> {
     const bo = (match && Number(match.matchType.substr(-1))) || 0;
     const left = map.team_ct.orientation === "left" ? map.team_ct : map.team_t;
     const right = map.team_ct.orientation === "left" ? map.team_t : map.team_ct;
+
+    left.matches_won_this_series = 2;
+    right.matches_won_this_series = 1;
+
     return (
       <div id="encapsulator">
         <div className="container left">
@@ -27,10 +31,11 @@ export default class SeriesBox extends React.Component<Props> {
           </div>
         </div>
         <div id="series_container">
-          <div id="series_text">{ bo ? `BEST OF ${bo}` : '' }</div>
+          <div className="series_trapezoid"/>
+          <div className="series_text">{ bo ? `BEST OF ${bo}` : '' }</div>
         </div>
         <div className="container right">
-          <div className={`series_wins right `}>
+          <div className={`series_wins right`}>
             <div className={`wins_box_container`}>
               {new Array(amountOfMaps).fill(0).map((_, i) => (
                 <div key={i} className={`wins_box ${right.matches_won_this_series > i ? "win" : ""} ${right.side}`} />

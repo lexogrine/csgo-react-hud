@@ -17,11 +17,12 @@ export default class TeamScore extends React.Component<IProps> {
     const { orientation, timer, team, showWin } = this.props;
     return (
       <>
-        <div className={`team ${orientation} ${team.side}`}>
-          <div className="team-name">{team.name}</div>
+        <div className={`team skew ${orientation} ${team.side}`}>
+          <div className="team-name-container">
+              <div className="team-name unskew">{team.name}</div></div>
           <TeamLogo team={team} />
         </div>
-        <PlantDefuse timer={timer} side={orientation} />
+        <PlantDefuse timer={timer} orientation={orientation} side={team.side}/>
         <WinIndicator team={team} show={showWin}/>
       </>
     );

@@ -2,7 +2,7 @@ import React from 'react';
 
 class LossBox extends React.PureComponent<{ active: boolean, side: 'CT' | 'T' }>{
     render(){
-        return <div className={`loss-box ${this.props.side} ${this.props.active ? 'active':''}`}></div>
+        return <div className={`loss-box ${this.props.side} ${this.props.active ? 'active':''}`}/>
     }
 }
 
@@ -28,18 +28,17 @@ export default class Money extends React.PureComponent<Props> {
                 </div>
                 <div className="money_container">
                     <div className="title">Loss Bonus</div>
-                    <div className="value">${this.props.loss}</div>
+                    <div className="value">+{this.props.loss}$</div>
                 </div>
                 <div className="money_container">
                     <div className="title">Team Money</div>
-                    <div className="value">${this.props.money}</div>
+                    <div className="value">{this.props.money}$</div>
                 </div>
                 <div className="money_container">
                     <div className="title">Equipment Value</div>
-                    <div className="value">${this.props.equipment}</div>
+                    <div className="value">{this.props.equipment}$</div>
                 </div>
             </div>
 		);
 	}
-
 }

@@ -1,6 +1,6 @@
 .boxes {
 	position: fixed;
-	bottom: 360px;
+	bottom: 385px;
 }
 .boxes.left {
 	left: 10px;
@@ -41,7 +41,7 @@
 	flex-direction: row;
 	opacity: 1;
 	transition: all 0.75s;
-	background-color: var(--sub-panel-color);
+	background-color: var(--main-panel-color);
 
 	align-items: center;
 	.title_container {
@@ -74,12 +74,10 @@
 	width: 415px;
 	height: 70px;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	opacity: 1;
 	transition: all 0.75s;
-	background-color: var(--sub-panel-color);
-	flex-direction: column;
-	border-radius: 20px 20px 0 0;
+	background-color: var(--main-panel-color);
 	.title_container {
 		display: flex;
 		flex-direction: row;
@@ -97,7 +95,6 @@
 	}
 	.grenades_container {
 		display: flex ;
-		
 		flex: 1;
 		height: 46px;
 		.grenade_container {
@@ -105,13 +102,14 @@
 			flex: 1;
 			color: white;
 			align-items: center;
-			font-weight: 600;
+			font-weight: 400;
 			font-size: 18px;
 			justify-content: center;
 			
 			svg {
 				height: 30px;
-				width:auto;				
+				width:auto;
+				margin: 4px;
 			}
 		}
 	}
@@ -123,18 +121,20 @@
 	flex-direction: row;
 	opacity: 1;
 	transition: all 0.75s;
-	background-color: var(--sub-panel-color);
-	font-weight: 600;
+	background-color: var(--main-panel-color);
+	font-weight: 400;
 	.money_container {
 		display: flex;
 		flex-direction: column;
 		flex: 1;
 		color: white;
 		.title {
+			color: white;
+			font-weight: 600;
 			height: 25px;
 			display: flex;
 			align-items: flex-end;
-			font-size: 16px;
+			font-size: 14px;
 			justify-content: center;
 		}
 		.value {
@@ -154,7 +154,7 @@
 		.loss-box {
 			height: 13px;
 			width: 100%;
-			background-color: #515254;
+			background-color: rgb(194 194 194 / 29%);
 			margin-top: 1px;
 			margin-bottom: 1px;
 		}

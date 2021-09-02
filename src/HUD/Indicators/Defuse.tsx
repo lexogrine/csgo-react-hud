@@ -7,7 +7,7 @@ export default class Defuse extends React.Component<{ player: Player }> {
         if(!player.state.health || !player.state.defusekit) return '';
         return (
             <div className={`defuse_indicator`}>
-                <DefuseIcon />
+                <DefuseIcon fill="white"/>
             </div>
         );
     }

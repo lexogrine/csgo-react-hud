@@ -1,10 +1,10 @@
 import React from "react";
 import { Player, WeaponRaw } from "csgogsi-socket";
 import Weapon from "./../Weapon/Weapon";
-import Avatar from "./Avatar";
 import Armor from "./../Indicators/Armor";
 import Bomb from "./../Indicators/Bomb";
 import Defuse from "./../Indicators/Defuse";
+import {Skull} from "../../assets/Icons";
 
 interface IProps {
   player: Player,
@@ -18,11 +18,12 @@ export default class PlayerBox extends React.Component<IProps> {
     const primary = weapons.filter(weapon => !['C4', 'Pistol', 'Knife', 'Grenade', undefined].includes(weapon.type))[0] || null;
     const secondary = weapons.filter(weapon => weapon.type === "Pistol")[0] || null;
     const grenades = weapons.filter(weapon => weapon.type === "Grenade");
-    const isLeft = player.team.orientation === "left";
     return (
       <div className={`player ${player.state.health === 0 ? "dead" : ""} ${this.props.isObserved ? 'active' : ''}`}>
         <div className="player_data">
-          <Avatar steamid={player.steamid} height={57} width={57} showSkull={false}/>
+          <div className="icon">
+            <Skull/>
+          </div>
           <div className="dead-stats">
             <div className="labels">
               <div className="stat-label">K</div>
@@ -41,12 +42,12 @@ export default class PlayerBox extends React.Component<IProps> {
                 {player.state.health}
               </div>
               <div className="username">
-                <div>{isLeft ? <span>{player.observer_slot}</span> : null} {player.name} {!isLeft ? <span>{player.observer_slot}</span> : null}</div>
+                <div>{player.name}</div>
                 {primary || secondary ? <Weapon weapon={primary ? primary.name : secondary.name} active={primary ? primary.state === "active" : secondary.state === "active"} /> : ""}
-                {player.state.round_kills ? <div className="roundkills-container">{player.state.round_kills}</div> : null}
+                {player.state.round_kills ? <div className="roundkills-container"><div>{player.state.round_kills}</div><div><Skull /></div></div> : null}
               </div>
             </div>
-            <div className={`hp_bar ${player.state.health <= 20 ? 'low':''}`} style={{ width: `${player.state.health}%` }}></div>
+            <div className={`hp_bar ${player.state.health <= 20 ? 'low':''}`} style={{ width: `${player.state.health}%` }}/>
             <div className="row">
               <div className="armor_and_utility">
                 <Bomb player={player} />
@@ -55,7 +56,7 @@ export default class PlayerBox extends React.Component<IProps> {
               </div>
               <div className="money">${player.state.money}</div>
               <div className="grenades">
-                {grenades.map(grenade => (
+                {grenades.sort((a, b) => a.name.localeCompare(b.name)).map(grenade => (
                   [
                     <Weapon key={`${grenade.name}-${grenade.state}`} weapon={grenade.name} active={grenade.state === "active"} isGrenade />,
                     grenade.ammo_reserve === 2 ? <Weapon key={`${grenade.name}-${grenade.state}-double`} weapon={grenade.name} active={grenade.state === "active"} isGrenade /> : null,
@@ -64,7 +65,7 @@ export default class PlayerBox extends React.Component<IProps> {
               </div>
               <div className="secondary_weapon">{primary && secondary ? <Weapon weapon={secondary.name} active={secondary.state === "active"} /> : ""}</div>
             </div>
-            <div className="active_border"></div>
+            <div className="active_border"/>
           </div>
         </div>
       </div>

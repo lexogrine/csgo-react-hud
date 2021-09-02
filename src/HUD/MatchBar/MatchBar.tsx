@@ -188,13 +188,17 @@ export default class TeamBox extends React.Component<IProps, IState> {
       <>
         <div id={`matchbar`}>
           <TeamScore team={left} orientation={"left"} timer={leftTimer} showWin={winState.show && winState.side === "left"} />
-          <div className={`score left ${left.side}`}>{left.score}</div>
+          <div className={`score left skew ${left.side}`}>
+            <div className="unskew">{left.score}</div>
+          </div>
           <div id="timer" className={bo === 0 ? 'no-bo' : ''}>
             <div id={`round_timer_text`} className={isPlanted ? "hide":""}>{time}</div>
             <div id="round_now" className={isPlanted ? "hide":""}>{this.getRoundLabel()}</div>
             <Bomb />
           </div>
-          <div className={`score right ${right.side}`}>{right.score}</div>
+          <div className={`score right skew ${right.side}`}>
+            <div className="unskew">{right.score}</div>
+          </div>
           <TeamScore team={right} orientation={"right"} timer={rightTimer} showWin={winState.show && winState.side === "right"} />
         </div>
       </>

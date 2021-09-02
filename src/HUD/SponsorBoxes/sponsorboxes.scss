@@ -6,12 +6,12 @@
 
 .sponsorbox.right {
 	flex: 1;
-	right: 0px;
+	right: 0;
 	justify-content: flex-end;
     width: 425px;
-	height: 120px;
+	height: 100px;
 	bottom: 700px;
-	background-image: linear-gradient(to right, transparent, var(--sub-panel-color));
+	background-image: linear-gradient(to right, transparent, var(--main-panel-color));
 
 	border-bottom-left-radius: 20px;
 	border-top-left-radius: 20px;
@@ -25,12 +25,12 @@
 .sponsorbox.bottom {
 	width: 400px;
 	height: 50px;
-	bottom: 0px;
+	bottom: 0;
     left: 50%;
 	margin-left: -200px;
 	border-top-right-radius: 20px;
 	border-top-left-radius: 20px;
-	background-color: var(--sub-panel-color);
+	background-color: var(--main-panel-color);
 
 	.sponsorlogo_container {
 		display: flex;
@@ -53,6 +53,6 @@
 		}
 
 	}
-	
+
 }
 
