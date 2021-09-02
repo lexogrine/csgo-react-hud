@@ -80,10 +80,10 @@ export default class Layout extends React.Component<Props, State> {
     return (
       <div className="layout">
         <div className={`players_alive`}>
-          <div className="title_container">Players alive</div>
+          <div className={`counter_trapezoid`}/>
           <div className="counter_container">
             <div className={`team_counter ${left.side}`}>{leftPlayers.filter(player => player.state.health > 0).length}</div>
-            <div className={`vs_counter`}>VS</div>
+            <div className={`vs_counter`}>vs</div>
             <div className={`team_counter ${right.side}`}>{rightPlayers.filter(player => player.state.health > 0).length}</div>
           </div>
         </div>

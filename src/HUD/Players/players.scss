@@ -339,29 +339,41 @@
 }
 
 .players_alive {
+    flex: 1;
     display: flex;
-    flex-direction: column;
     width: 180px;
-    background-color: rgba(0,0,0,0.5);
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: 8px;
     position: fixed;
-    right: 10px;
-    top: 10px;
     opacity: 1;
     transition: opacity 1s;
+    overflow: hidden;
+    justify-content: center;
+    .counter_trapezoid {
+        width: 100%;
+        border-top: 100px solid var(--main-panel-color);
+        border-left: 35px solid transparent;
+        border-right: 35px solid transparent;
+        box-sizing: border-box;
+        height: 0;
+        position: absolute;
+        z-index: -1;
+    }
     .counter_container {
-        display: flex;
+        width: 130px;
         height: 45px;
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         > div {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size:30px;
+            font-size: 30px;
             color: white;
-            background-color: rgba(0,0,0,0.5);
-        }
-        .team_counter {
-            background-color: rgba(0,0,0,0.75);
         }
         .CT {
             color: var(--color-new-ct);

@@ -1,8 +1,8 @@
 .observed {
     position: fixed;
     width: 550px;
-    bottom: 120px;
-    margin-left: -310px;
+    bottom: 50px;
+    transform: translateX(-50%);
     left: 50%;
     height: 86px;
     display: flex;
@@ -198,7 +198,7 @@
     }
     
     &.T {
-        border-bottom: 6px solid var(--color-new-t);
+        border-bottom: 4px solid var(--color-new-t);
         .stats_row .ammo .ammo_counter .ammo_reserve {
             color: var(--color-new-t)
         }
@@ -219,7 +219,7 @@
         }
     }
     &.CT {
-        border-bottom: 6px solid var(--color-new-ct);
+        border-bottom: 4px solid var(--color-new-ct);
         .stats_row .ammo .ammo_counter .ammo_reserve {
             color: var(--color-new-ct)
         }
