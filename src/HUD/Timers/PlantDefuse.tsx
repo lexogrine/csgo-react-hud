@@ -11,7 +11,7 @@ interface IProps {
   side: "CT" | "T"
 }
 
-export default class Bomb extends React.Component<IProps> {
+export default class PlantDefuseNotification extends React.Component<IProps> {
   getCaption = (type: "defusing" | "planting", player: Player | null) => {
     if(!player) return null;
     if(type === "defusing"){
@@ -28,11 +28,11 @@ export default class Bomb extends React.Component<IProps> {
   render() {
     const { orientation, timer, side } = this.props;
     return (
-      <div className={`defuse_plant_container ${orientation} ${side} ${timer && timer.active ? 'show' :'hide'}`}>
-        <div className="defuse_plant_bar" style={{width: `${(timer && timer.width) || 0}%`}}/>
+      <div className={`plant_defuse_container ${orientation} ${side} ${timer && timer.active ? 'show' : 'hide'}`}>
+        <div className="plant_defuse_bar" style={{width: `${(timer && timer.width) || 0}%`}}/>
         {
           timer ?
-          <div className={`defuse_plant_caption`}>
+          <div className={`plant_defuse_caption`}>
             {this.getCaption(timer.type, timer.player)}
           </div> : null
         }

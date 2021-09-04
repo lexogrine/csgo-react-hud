@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GSI } from "./../../App";
+import { GSI } from "../../App";
 import BombTimer from "./Countdown";
 import { C4 } from "./../../assets/Icons";
 
@@ -25,7 +25,7 @@ export default class Bomb extends React.Component<any, { height: number; show: b
       if (data.bomb && data.bomb.countdown) {
         if (data.bomb.state === "planted") {
           this.setState({ show: true });
-          return bomb.go(data.bomb.countdown);
+          return bomb.start(data.bomb.countdown);
         }
         if (data.bomb.state !== "defusing") {
           this.hide();
@@ -39,7 +39,7 @@ export default class Bomb extends React.Component<any, { height: number; show: b
   render() {
     return (
       <div id={`bomb_container`}>
-        <div className={`bomb_timer ${this.state.show ? "show" : "hide"}`} style={{ height: `${this.state.height}%` }}></div>
+        <div className={`bomb_timer ${this.state.show ? "show" : "hide"}`} style={{ height: `${this.state.height}%` }}/>
         <div className={`bomb_icon ${this.state.show ? "show" : "hide"}`}>
           <C4 fill="white" />
         </div>

@@ -20,7 +20,7 @@ export default class SeriesBox extends React.Component<Props> {
     right.matches_won_this_series = 1;
 
     return (
-      <div id="encapsulator">
+      <div id="series_box">
         <div className="container left">
           <div className={`series_wins left `}>
             <div className={`wins_box_container`}>
@@ -31,7 +31,6 @@ export default class SeriesBox extends React.Component<Props> {
           </div>
         </div>
         <div id="series_container">
-          <div className="series_trapezoid"/>
           <div className="series_text">{ bo ? `BEST OF ${bo}` : '' }</div>
         </div>
         <div className="container right">

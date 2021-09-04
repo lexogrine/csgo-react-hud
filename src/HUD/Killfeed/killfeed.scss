@@ -37,7 +37,7 @@
         font-size: 14px;
         overflow: hidden;
         align-items: center;
-        font-family: Montserrat;
+        font-family: Montserrat, sans-serif;
         font-weight:500;
         padding-left:15px;
         padding-right:15px;
@@ -78,7 +78,7 @@
         }
 
         .assister_name {
-            margin-left:0px;
+            margin-left:0;
         }
 
         .way {
@@ -89,7 +89,7 @@
             }
         }
         &.hide {
-            transition:height 1s, padding 1s,  opacity 1s, margin 1s;
+            transition:height 1s, padding 1s, opacity 1s, margin 1s;
             opacity:0;
             height:0;
             margin:0;

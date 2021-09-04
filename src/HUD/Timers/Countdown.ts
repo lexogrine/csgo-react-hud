@@ -22,13 +22,11 @@ export default class Countdown {
             this.time = Number((this.time - (time - this.last)/1000));
             this.step(this.time);
         }
-        this.last =time;
-
-
+        this.last = time;
         if(this.last) requestAnimationFrame(this.stepWrapper)
     }
 
-    go(duration: string | number){
+    start(duration: string | number){
         //console.log("STARTED WITH ", duration);
         if(typeof duration === "string") duration = Number(duration);
         if(Math.abs(duration - this.time) > 2) this.time = duration;
