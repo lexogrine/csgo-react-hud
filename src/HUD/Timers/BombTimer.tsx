@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GSI } from "../../App";
+import { GSI } from "./../../App";
 import BombTimer from "./Countdown";
 import { C4 } from "./../../assets/Icons";
 

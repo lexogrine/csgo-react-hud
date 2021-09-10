@@ -1,6 +1,6 @@
 import React from "react";
 import Weapon from "./../Weapon/Weapon";
-import {Player, Side, WeaponRaw} from "csgogsi-socket";
+import { Player, WeaponRaw, Side } from "csgogsi-socket";
 
 interface Props {
     sides?: 'reversed',

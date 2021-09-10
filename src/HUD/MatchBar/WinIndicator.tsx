@@ -1,5 +1,5 @@
 import React from 'react';
-import {Team} from 'csgogsi-socket';
+import { Team } from 'csgogsi-socket';
 
 export default class WinIndicator extends React.Component<{ team: Team | null, show: boolean }> {
     render() {

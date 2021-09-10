@@ -16,9 +16,6 @@ export default class SeriesBox extends React.Component<Props> {
     const left = map.team_ct.orientation === "left" ? map.team_ct : map.team_t;
     const right = map.team_ct.orientation === "left" ? map.team_t : map.team_ct;
 
-    left.matches_won_this_series = 2;
-    right.matches_won_this_series = 1;
-
     return (
       <div id="series_box">
         <div className="container left">

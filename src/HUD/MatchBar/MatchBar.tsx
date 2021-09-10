@@ -4,7 +4,7 @@ import "./matchbar.scss";
 import TeamScore from "./TeamScore";
 import Bomb from "./../Timers/BombTimer";
 import Countdown from "./../Timers/Countdown";
-import {GSI} from "../../App";
+import {GSI} from "./../../App";
 import {Match} from "../../api/interfaces";
 import WinAnnouncement from "./WinAnnouncement";
 import PlantDefuse from "../Timers/PlantDefuse";
