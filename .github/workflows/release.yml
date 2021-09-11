@@ -1,0 +1,23 @@
+name: "Release"
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  release:
+    runs-on: "ubuntu-latest"
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14
+    - run: npm ci
+    - run: npm run pack
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        files: "avalanche_lexogrine_hud*.zip"
