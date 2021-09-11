@@ -164,9 +164,6 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 							else GSI.teams.left = gsiTeamData;
 						});
 					}
-
-
-
 				}).catch(() => {
 					dataLoader.match = null;
 				});
