@@ -8,11 +8,11 @@
 	flex: 1;
 	right: 0;
 	justify-content: flex-end;
-    width: 225px;
-	height: 80px;
-	bottom: 700px;
-	background-image: linear-gradient(to right, transparent, var(--main-panel-color));
-
+    width: 150px;
+	height: 70px;
+	top: 10px;
+	background-color: var(--main-panel-color);//linear-gradient(to right, transparent, var(--main-panel-color));
+	clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%);
 	img {
 		max-width: 100%;
 		max-height: 100%;

@@ -7,7 +7,7 @@ import "./mapseries.scss";
 interface IProps {
     match: Match | null;
     teams: I.Team[];
-    isFreezetime: boolean;
+    show: boolean;
     map: I.Map
 }
 
@@ -20,9 +20,9 @@ interface IVetoProps {
 class VetoEntry extends React.Component<IVetoProps> {
     render(){
         const { veto, teams, active } = this.props;
-        return <div className={`veto_container ${active ? 'active' : ''}`}>
+        return <div className={`veto_container ${active ? 'active' : ''} ${veto.mapName}`}>
             <div className="veto_map_name">
-                {veto.mapName}
+                {veto.mapName.replace("de_","")}
             </div>
             <div className="veto_picker">
                 <TeamLogo team={teams.filter(team => team.id === veto.teamId)[0]} />
@@ -43,20 +43,20 @@ class VetoEntry extends React.Component<IVetoProps> {
 export default class MapSeries extends React.Component<IProps> {
 
     render() {
-        const { match, teams, isFreezetime, map } = this.props;
+        const { match, teams, show, map } = this.props;
         if (!match || !match.vetos.length) return null;
         return (
-            <div className={`map_series_container ${isFreezetime ? 'show': 'hide'}`}>
-                <div className="title_bar">
-                    <div className="picked">Picked</div>
-                    <div className="winner">Winner</div>
-                    <div className="score">Score</div>
-                </div>
-                {match.vetos.filter(veto => veto.type !== "ban").map(veto => {
-                    if(!veto.mapName) return null;
-                    return <VetoEntry key={`${match.id}${veto.mapName}${veto.teamId}${veto.side}`} veto={veto} teams={teams} active={map.name.includes(veto.mapName)}/>
-                })}
-            </div>
+          <div className={`map_series_container ${show ? 'show': 'hide'}`}>
+              <div className="title_bar">
+                  <div className="picked">Picked</div>
+                  <div className="winner">Winner</div>
+                  <div className="score">Score</div>
+              </div>
+              {match.vetos.filter(veto => veto.type !== "ban").map(veto => {
+                  if(!veto.mapName) return null;
+                  return <VetoEntry key={`${match.id}${veto.mapName}${veto.teamId}${veto.side}`} veto={veto} teams={teams} active={map.name.includes(veto.mapName)}/>
+              })}
+          </div>
         );
     }
 }

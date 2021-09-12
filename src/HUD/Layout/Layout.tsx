@@ -7,7 +7,7 @@ import { Match } from "../../api/interfaces";
 import RadarMaps from "./../Radar/RadarMaps";
 import Trivia from "../Trivia/Trivia";
 import SideBox from '../SideBoxes/SideBox';
-import { GSI, actions } from "./../../App";
+import { GSI, actions } from "../../App";
 import MoneyBox from '../SideBoxes/Money';
 import UtilityLevel from '../SideBoxes/UtilityLevel';
 import Killfeed from "../Killfeed/Killfeed";
@@ -102,7 +102,7 @@ export default class Layout extends React.Component<Props, State> {
 
         <Trivia />
 
-        <MapSeries teams={[left, right]} match={match} isFreezetime={isFreezetime} map={game.map} />
+        <MapSeries teams={[left, right]} match={match} show={isFreezetime} map={game.map} />
         <div className={"boxes left"}>
           <UtilityLevel side={left.side} players={game.players} show={isFreezetime && !forceHide} />
           <SideBox side="left" hide={true} />
