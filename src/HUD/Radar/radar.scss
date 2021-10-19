@@ -4,12 +4,25 @@
 	left: 10px;
 	border: none;
 	background-color: rgba(0,0,0,0.5);
+	transition: all 1s;
+	.map-container {
+		transition: all 1s;
+	}
 }
 #iframe_radar {
 	border: none;
 }
 #radar_maps_container.hide {
 	opacity: 0;
+}
+#radar_maps_container.preview {
+    transform: rotate3d(1, 0, 0, 14deg) translateX(-50%);
+    transform-style: preserve-3d;
+    left: 50%;
+    top: 100px;
+	.map {
+		perspective: 500px;
+	}
 }
 #maps_container {
 	width: 100%;

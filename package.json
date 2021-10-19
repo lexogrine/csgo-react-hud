@@ -1,6 +1,6 @@
 {
   "name": "lexogrine_hud",
-  "version": "2.0.2",
+  "version": "2.2.0",
   "homepage": "./",
   "private": true,
   "dependencies": {
@@ -15,7 +15,6 @@
     "react-dom": "^16.13.1",
     "react-scripts": "4.0.0",
     "simple-websockets": "^1.1.0",
-    "socket.io-client": "^2.3.0",
     "typescript": "3.6.4",
     "uuid": "^8.3.2"
   },
@@ -52,6 +51,7 @@
     "jsonwebtoken": "^8.5.1",
     "npm-build-zip": "^1.0.2",
     "open": "^8.0.2",
-    "sass": "^1.32.5"
+    "sass": "^1.32.5",
+    "socket.io-client": "^2.4.0"
   }
 }

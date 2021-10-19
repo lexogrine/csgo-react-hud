@@ -32,6 +32,9 @@ const api = {
         get: async (): Promise<I.Match[]> => apiV2(`match`),
         getCurrent: async (): Promise<I.Match> => apiV2(`match/current`)
     },
+    camera: {
+        get: (): Promise<{ availablePlayers: ({steamid:string, label: string})[], uuid: string }> => apiV2('camera')
+    },
     teams: {
         getOne: async (id: string): Promise<I.Team> => apiV2(`teams/${id}`),
         get: (): Promise<I.Team[]> => apiV2(`teams`),

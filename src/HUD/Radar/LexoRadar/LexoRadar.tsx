@@ -29,7 +29,7 @@ class App extends React.Component<IProps> {
     return (
       <div key={grenade.id} className={`grenade ${grenade.type} ${grenade.state} ${grenade.visible ? 'visible':'hidden'}`}
         style={{
-          transform: `translateX(${grenade.position[0]}px) translateY(${grenade.position[1]}px)`,
+          transform: `translateX(${grenade.position[0]}px) translateY(${grenade.position[1]}px) translateZ(10px)`,
         }}>
           <div className="explode-point"></div>
           <div className="background"></div>
@@ -41,7 +41,7 @@ class App extends React.Component<IProps> {
       <div key={player.id}
         className={`player ${player.side} ${player.hasBomb ? 'hasBomb':''} ${player.isActive ? 'active' : ''} ${!player.isAlive ? 'dead' : ''} ${player.visible ? 'visible':'hidden'}`}
         style={{
-          transform: `translateX(${player.position[0]}px) translateY(${player.position[1]}px)`,
+          transform: `translateX(${player.position[0]}px) translateY(${player.position[1]}px) translateZ(10px)`,
           width: config.playerSize,
           height: config.playerSize,
         }}>
@@ -61,7 +61,7 @@ class App extends React.Component<IProps> {
       return (
         <div className={`bomb ${bomb.state} visible`}
           style={{
-            transform: `translateX(${position[0]}px) translateY(${position[1]}px)`
+            transform: `translateX(${position[0]}px) translateY(${position[1]}px) translateZ(10px)`
           }}>
           <div className="explode-point"></div>
           <div className="background"></div>
@@ -74,7 +74,7 @@ class App extends React.Component<IProps> {
       return (
         <div className={`bomb ${bomb.state} ${config.isVisible(bomb.position.split(", ").map(Number)[2]) ? 'visible':'hidden'}`}
           style={{
-            transform: `translateX(${position[0]}px) translateY(${position[1]}px)`
+            transform: `translateX(${position[0]}px) translateY(${position[1]}px) translateZ(10px)`
           }}>
           <div className="explode-point"></div>
           <div className="background"></div>

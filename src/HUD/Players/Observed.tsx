@@ -37,11 +37,10 @@ export default class Observed extends React.Component<{ player: Player | null, v
 		const { stats } = player;
 		const ratio = stats.deaths === 0 ? stats.kills : stats.kills / stats.deaths;
 		const countryName = country ? getCountry(country) : null;
-
 		return (
 			<div className={`observed ${player.team.side}`}>
 				<div className="main_row">
-					<Avatar steamid={player.steamid} height={140} width={140} showCam={true} slot={player.observer_slot}/>
+					{<Avatar steamid={player.steamid} height={140} width={140} showCam={true} slot={player.observer_slot}/>}
 					<TeamLogo team={player.team} height={35} width={35} />
 					<div className="username_container">
 						<div className="username">{player.name}</div>
@@ -51,8 +50,8 @@ export default class Observed extends React.Component<{ player: Player | null, v
 					<div className="grenade_container">
 						{grenades.map(grenade => <React.Fragment key={`${player.steamid}_${grenade.name}_${grenade.ammo_reserve || 1}`}>
 							<Weapon weapon={grenade.name} active={grenade.state === "active"} isGrenade />
-							{ 
-							grenade.ammo_reserve === 2 ? <Weapon weapon={grenade.name} active={grenade.state === "active"} isGrenade /> : null }
+							{
+								grenade.ammo_reserve === 2 ? <Weapon weapon={grenade.name} active={grenade.state === "active"} isGrenade /> : null}
 						</React.Fragment>)}
 					</div>
 				</div>
