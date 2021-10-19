@@ -65,7 +65,6 @@ const PlayerCamera = (props: { steamid: string, roomId: string, socket: SocketIO
             (remoteVideo as any).srcObject = stream;
         }
         peerConnection.oniceconnectionstatechange = (ev) => {
-            console.log('disconected', !!peerConnection)
             if(!peerConnection) return;
 
             const state = peerConnection.iceConnectionState;
@@ -83,7 +82,6 @@ const PlayerCamera = (props: { steamid: string, roomId: string, socket: SocketIO
             if(!connectionInfo) return;
             const { peerConnection } = connectionInfo;
             if(props.steamid !== steamid || props.roomId !== roomId || !peerConnection) return;
-            console.log(props.steamid)
             
             await peerConnection.setRemoteDescription(new RTCSessionDescription(offerData.offer));
             const answer = await peerConnection.createAnswer();
