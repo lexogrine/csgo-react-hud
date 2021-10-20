@@ -1,6 +1,6 @@
 {
   "name": "lexogrine_hud",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "homepage": "./",
   "private": true,
   "dependencies": {
@@ -9,11 +9,13 @@
     "@types/node": "12.11.1",
     "@types/react": "16.9.9",
     "@types/react-dom": "16.9.2",
+    "@types/simple-peer": "^9.11.3",
     "csgogsi-socket": "^2.3.6",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "4.0.0",
+    "simple-peer": "^9.11.0",
     "simple-websockets": "^1.1.0",
     "typescript": "3.6.4",
     "uuid": "^8.3.2"
