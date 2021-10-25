@@ -4,9 +4,6 @@
 - no utility on radar
 - no current round kills displayed on player bar
 - when player is dead, only lower K or D number or icon on player bar is transparent
-- no black team text duplicate under white in scoreboard 
-- there is no indication for weapons on player sidebar if he is holding it or not
 - no tech pause design
-- when player buys armor withour helmet, it displays white box on player sidebar
 
 - for some reason texts are too bold if you compare it to design (eg.: HP in player bar, timer in scoreboard, utility level)

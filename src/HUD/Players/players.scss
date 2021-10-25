@@ -118,6 +118,10 @@
         > svg {
             height: 35px;
             margin: 0 14px;
+
+            &:not(.active){
+                opacity: 0.6;
+            }
         }
         &.active {
             .player_data {

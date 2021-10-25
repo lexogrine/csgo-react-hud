@@ -104,7 +104,7 @@ export default class Layout extends React.Component<Props, State> {
         </div>
         <Killfeed />
         <Overview match={match} map={game.map} players={game.players || []} />
-        {/*<RadarMaps match={match} map={game.map} game={game} />*/}
+        {<RadarMaps match={match} map={game.map} game={game} />}
         <MatchBar map={game.map} phase={game.phase_countdowns} bomb={game.bomb} match={match} players={game.players || []} />
         <Pause  phase={game.phase_countdowns}/>
         <Timeout map={game.map} phase={game.phase_countdowns} />

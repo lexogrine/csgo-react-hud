@@ -13,7 +13,7 @@ body {
   font-family: 'Poppins', 'Stratum2', 'Montserrat', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*background-image: url('./assets/bg.png');/**/
+  background-image: url('./assets/bg.png');/**/
 }
 
 @font-face {
