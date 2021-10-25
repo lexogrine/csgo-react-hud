@@ -132,7 +132,7 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 			dataLoader.match = new Promise((resolve) => {
 				api.match.getCurrent().then(match => {
 					if (!match) {
-						dataLoader.match = null;
+						//dataLoader.match = null;
 						return;
 					}
 					this.setState({ match });
@@ -168,7 +168,7 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 
 
 				}).catch(() => {
-					dataLoader.match = null;
+					//dataLoader.match = null;
 				});
 			});
 		}

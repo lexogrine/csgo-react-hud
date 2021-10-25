@@ -123,6 +123,7 @@
                 svg, img {
                     max-height:30px;
                     max-width:16px;
+                    width: 16px;
                 }
             }
         }
@@ -149,7 +150,7 @@
         width: 145px;
         justify-content: flex-end;
 
-        .defuse_indicator {
+        .defuse_indicator, .armor_indicator {
             display: flex;
             align-items: center;
             justify-content: center;

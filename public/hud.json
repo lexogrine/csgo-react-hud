@@ -1,7 +1,7 @@
 {
-    "name":"Lexogrine HUD",
+    "name":"HUDEV HUD",
     "version":"2.0.1",
-    "author":"Lexogrine",
+    "author":"HUDEV",
     "legacy": false,
     "radar": true,
     "killfeed": true,

@@ -11,6 +11,7 @@ import { Veto } from "../../api/interfaces";
 import Grenade from "../Weapon/Grenade";
 import { getFlag } from "../../assets/flags";
 import Defuse from "../Indicators/Defuse";
+import Bomb from "../Indicators/Bomb";
 
 class Statistic extends React.PureComponent<{ label: string; value: string | number, }> {
 	render() {
@@ -40,6 +41,7 @@ export default class Observed extends React.Component<{ player: Player | null, v
 		const { stats } = player;
 		const ratio = stats.deaths === 0 ? stats.kills : stats.kills / stats.deaths;
 		const flag = country ? getFlag(country) : null;
+		console.log(player.weapons)
 		return (
 			<div className={`observed ${player.team.side}`}>
 				<div className="main_row">
@@ -74,6 +76,7 @@ export default class Observed extends React.Component<{ player: Player | null, v
 
 					<div className="grenade_container">
 						<Defuse player={player} width={19} />
+						<Bomb player={player} width={19} />
 						{grenades.map(grenade => <React.Fragment key={`${player.steamid}_${grenade.name}_${grenade.ammo_reserve || 1}`}>
 							<Grenade weapon={grenade.name} active={grenade.state === 'active'} height={19}/>
 							{ 

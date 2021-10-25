@@ -190,8 +190,8 @@ export default class TeamBox extends React.Component<IProps, IState> {
       }
     }
 
-    const leftValue = getPlayersValue(players.filter(player => player.team.orientation === "left"));
-    const rightValue = getPlayersValue(players.filter(player => player.team.orientation === "right"));
+    const leftValue = getPlayersValue(players.filter(player => player.team.orientation === "left" && player.state.health));
+    const rightValue = getPlayersValue(players.filter(player => player.team.orientation === "right" && player.state.health));
 
     let leftRatio = 1;
     let rightRatio = 1;

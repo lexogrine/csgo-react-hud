@@ -26,7 +26,7 @@ function utilityState(amount: number) {
   if (amount > 0) {
     return "Poor";
   }
-  return "None";
+  return "Poor";
 }
 
 function utilityColor(amount: number) {

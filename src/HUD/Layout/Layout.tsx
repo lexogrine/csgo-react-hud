@@ -27,7 +27,7 @@ interface State {
   showWin: boolean,
   forceHide: boolean
 }
-
+const IS_REPLAY = false;
 export default class Layout extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -74,7 +74,25 @@ export default class Layout extends React.Component<Props, State> {
     const rightPlayers = game.players.filter(player => player.team.side === right.side);
     const isFreezetime = (game.round && game.round.phase === "freezetime") || game.phase_countdowns.phase === "freezetime";
     const { forceHide } = this.state;
+    if(IS_REPLAY){
+      return (
+        <div className="layout">
+          <div className={`players_alive`}>
+            <div className="counter_container">
+              <div className={`team_counter ${left.side}`}>{leftPlayers.filter(player => player.state.health > 0).length}<div className="team-border" /></div>
+              <div className={`vs_counter`}>VS</div>
+              <div className={`team_counter ${right.side}`}>{rightPlayers.filter(player => player.state.health > 0).length}<div className="team-border" /></div>
+            </div>
+          </div>
+          <Killfeed />
+          <MatchBar map={game.map} phase={game.phase_countdowns} bomb={game.bomb} match={match} players={game.players || []} />
+  
+  
+          <Observed player={game.player} veto={this.getVeto()} round={game.map.round+1}/>
 
+        </div>
+      );
+    }
     return (
       <div className="layout">
         <div className={`players_alive`}>
@@ -86,7 +104,7 @@ export default class Layout extends React.Component<Props, State> {
         </div>
         <Killfeed />
         <Overview match={match} map={game.map} players={game.players || []} />
-        <RadarMaps match={match} map={game.map} game={game} />
+        {/*<RadarMaps match={match} map={game.map} game={game} />*/}
         <MatchBar map={game.map} phase={game.phase_countdowns} bomb={game.bomb} match={match} players={game.players || []} />
         <Pause  phase={game.phase_countdowns}/>
         <Timeout map={game.map} phase={game.phase_countdowns} />

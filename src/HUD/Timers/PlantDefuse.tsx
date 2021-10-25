@@ -25,7 +25,8 @@ export default class Bomb extends React.Component<IProps> {
   }
   render() {
     const { side, timer } = this.props;
-    return (
+    return null;
+    /*return (
       <div className={`defuse_plant_container ${side} ${timer && timer.active ? 'show' :'hide'}`}>
         {
           timer ?
@@ -36,6 +37,6 @@ export default class Bomb extends React.Component<IProps> {
           
           <div className="defuse_plant_bar" style={{ width: `${(timer && timer.width) || 0}%` }}></div>
       </div>
-    );
+    );*/
   }
 }

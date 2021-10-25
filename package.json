@@ -1,5 +1,5 @@
 {
-  "name": "lexogrine_hud",
+  "name": "hudev_hud",
   "version": "2.0.2",
   "homepage": "./",
   "private": true,
@@ -9,12 +9,11 @@
     "@types/node": "12.11.1",
     "@types/react": "16.9.9",
     "@types/react-dom": "16.9.2",
-    "csgogsi-socket": "^2.2.0",
+    "csgogsi-socket": "^2.4.0",
     "query-string": "^6.12.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-scripts": "4.0.0",
-    "socket.io-client": "^2.3.0",
     "typescript": "3.6.4"
   },
   "license": "GPL-3.0",
