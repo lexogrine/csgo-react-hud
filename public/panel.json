@@ -76,6 +76,16 @@
                         "label": "Hide boxes"
                     }
                 ]
+            },
+            {
+                "type": "action",
+                "name": "toggleRadarView",
+                "values": [
+                    {
+                        "name": "toggler",
+                        "label": "Toggle radar view"
+                    }
+                ]
             }
         ]
     },

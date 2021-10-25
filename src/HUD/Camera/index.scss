@@ -1,0 +1,13 @@
+#cameras-container {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    video {
+        height: 100%;
+        position: absolute;
+    }
+}
