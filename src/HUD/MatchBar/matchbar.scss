@@ -123,7 +123,7 @@
         }
 	}
 	.team {
-		width: 426px;
+		width: 350px;
 		display: flex;
 		align-items: center;
 		.logo {
@@ -136,7 +136,19 @@
 			background-color: var(--sub-panel-color);
 			img {
 				max-width: 90%;
-				max-height: 65%;
+				max-height: 95%;
+			}
+			.foreLogo {
+				z-index: 2;
+				filter: drop-shadow( 0px 5px 7px rgba(255, 255, 255, 0.4));
+			}
+			.bgLogo {
+				position: absolute;
+				filter: blur(2px) grayscale(30%) opacity(0.5);
+				z-index: 1;
+				transform: scale(1.5, 1.5);
+				-webkit-clip-path: inset(center center 70px 70px);
+				clip-path: inset(56px 70px 57px 70px);
 			}
         }
         &.left {
@@ -334,7 +346,7 @@
 .container {
 	display: flex;
 	flex-direction: row;
-	width: 511px;
+	width: 350px;
 	height: 100%;
 }
 .container.left {

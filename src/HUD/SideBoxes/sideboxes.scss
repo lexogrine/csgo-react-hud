@@ -83,7 +83,7 @@
 	margin-top: 4px;
 	flex-direction: column;
 	margin-bottom: 4px;
-	border-radius: 20px 20px 0 0;
+	//border-radius: 20px 20px 0 0;
 	.title_container {
 		display: flex;
 		flex-direction: row;
@@ -114,6 +114,7 @@
 			justify-content: center;
 			
 			svg {
+				fill: white;
 				height: 30px;
 				width:auto;				
 			}
@@ -153,17 +154,24 @@
 		}
 	}
 	.loss_container {
-		width: 4px;
+		margin-top: 2px;
+	
+		position:absolute;
+		z-index: 0;
+		opacity: 0.5;
+		width: 2%;
 		display: flex;
 		align-items: center;
 		flex-direction: column;
 		justify-content: center;
 		.loss-box {
-			height: 13px;
+			border-bottom: 1px solid;
+			height: 16px;
 			width: 100%;
-			background-color: #515254;
-			margin-top: 1px;
-			margin-bottom: 1px;
+			background-color: #424249;
+		}
+		.loss-box:last-child {
+			border-bottom: 0;
 		}
 		.loss-box.active.CT {
 			background-color: var(--color-new-ct);
@@ -202,11 +210,21 @@
 		color: var(--color-new-t);
 	}
 }
+
+.moneybox.left {
+	.loss_container {
+		margin-left: 4px;
+	}
+}
 .moneybox.right {
 	flex-direction: row-reverse;
+	.loss_container {
+		margin-right: 4px;
+	}
 }
 .moneybox.CT {
 	.money_container {
+		z-index: 1;
 		.title {
 			color: var(--color-new-ct);
 		}

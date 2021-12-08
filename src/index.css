@@ -1,33 +1,39 @@
 @import "fonts/montserrat.css";
 @import "fonts/stratum2.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alata&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 html,
 body,
 #root {
+  background: url(https://zagruzkamods.com/uploads/posts/2015-03/1427575037_5.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 100%;
   height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: 'Stratum2', 'Montserrat', 'Roboto', sans-serif;
+  font-family: "Josefin Sans", "Montserrat", "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /*background-image: url('./assets/bg.png');/**/
 }
 
 @font-face {
-  font-family: 'Louis George Cafe';
-  src: local('Louis George Cafe'), url('./fonts/Louis George Cafe.ttf') format('truetype');
+  font-family: "Louis George Cafe";
+  src: local("Louis George Cafe"), url("./fonts/Louis George Cafe.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Rounded_Elegance';
-  src: local('Rounded_Elegance'), url('./fonts/Rounded_Elegance.ttf') format('truetype');
+  font-family: "Rounded_Elegance";
+  src: local("Rounded_Elegance"), url("./fonts/Rounded_Elegance.ttf") format("truetype");
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .layout {
@@ -37,21 +43,33 @@ code {
 }
 
 :root {
-  --main-panel-color: rgba(12, 15, 18, 0.85);
-  --sub-panel-color: rgba(0, 0, 0, 0.83);
+  --main-panel-color: rgba(28, 28, 40, 0.95);
+  --sub-panel-color: rgba(28, 28, 40, 0.7);
   --white-dull: rgba(10, 5, 5, 0.25);
   --white-full: rgba(250, 250, 250, 1);
   --white-half: rgba(250, 250, 250, 0.5);
-  --color-gray: rgba(191, 191, 191, 1.0);
+  --color-gray: rgba(191, 191, 191, 1);
   --color-moneys: #a7d32e;
   --dev-purple: rgba(200, 0, 255, 1);
-  --color-t: #c19511;
-  --color-ct: #5788a8;
-  --color-new-t: #f0c941;
-  --color-new-ct: #5ab8f4;
+
+  /* COLORS */
+  --color-t: rgba(235, 145, 0, 1);
+  --color-ct: rgba(22, 74, 168, 1);
+  --color-new-t: rgba(245, 171, 54, 1);
+  --color-new-ct: rgba(81, 139, 245, 1);
+  /* HEALTH */
+  --grad-new-t: linear-gradient(90deg, rgba(245, 171, 54, 1) 0%, rgba(235, 145, 0, 1) 100%);
+  --grad-new-ct: linear-gradient(90deg, rgba(22, 74, 168, 1) 0%, rgba(81, 139, 245, 1) 100%);
+  /* ACTIVE */
+  --grad-new-t2: linear-gradient(270deg,  rgba(28, 28, 40, 0) 1%, rgba(245, 194, 81, 0.3) 55%);
+  --grad-new-ct2: linear-gradient(270deg, rgba(28, 28, 40, 0) 1%, rgba(22, 74, 168, 0.3) 55%);
+  /* ACTIVE */
+  --grad-new-t3: linear-gradient(270deg, rgba(245, 194, 81, 0.7) 1%, rgba(28, 28, 40, 0.7) 55%);
+  --grad-new-ct3: linear-gradient(90deg, rgba(22, 74, 168, 0.7) 1%, rgba(28, 28, 40, 0.7) 55%);
   --color-bomb: #f22222;
   --color-defuse: #2222f2;
+  --color-border-t: rgba(122, 104, 37, 0.1);
+  --color-border-ct: rgba(45, 91, 119, 0.1);
+  --color-border-t2: rgba(122, 104, 37, 0.1);
+  --color-border-ct2: rgba(45, 91, 119, 0.1);
 }
-
-
-
