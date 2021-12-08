@@ -21,7 +21,7 @@ export default class RadarMaps extends React.Component<Props, State> {
         actions.on('toggleRadar', () => { this.setState(state => ({ showRadar: !state.showRadar })) });
 
         actions.on("toggleRadarView", () => {
-            this.setState({showBig:!this.state.showBig});
+            this.setState({ showBig: !this.state.showBig });
         });
     }
     radarChangeSize = (delta: number) => {
@@ -32,27 +32,35 @@ export default class RadarMaps extends React.Component<Props, State> {
         const { match } = this.props;
         const { radarSize, showBig, showRadar } = this.state;
         return (
-            <div id={`radar_maps_container`} className={`${!showRadar ? 'hide' : ''} ${showBig ? 'preview':''}`}>
-                <Radar radarSize={showBig ? 600: radarSize} game={this.props.game} />
+            <div id={`radar_maps_container`} className={`${!showRadar ? 'hide' : ''} ${showBig ? 'preview' : ''}`}>
                 {match ? <MapsBar match={this.props.match} map={this.props.map} game={this.props.game} /> : null}
+                <Radar radarSize={showBig ? 600 : radarSize} game={this.props.game} />
             </div>
         );
     }
 }
 
 class MapsBar extends React.PureComponent<Props> {
+
     render() {
         const { match, map } = this.props;
+        const bo = (match && Number(match.matchType.substr(-1))) || 0;
         if (!match || !match.vetos.length) return '';
         const picks = match.vetos.filter(veto => veto.type !== "ban" && veto.mapName);
         if (picks.length > 3) {
             const current = picks.find(veto => map.name.includes(veto.mapName));
             if (!current) return null;
             return <div id="maps_container">
+                <div className="bestof"> 
+                    BO{bo}
+                </div>
                 {<MapEntry veto={current} map={map} team={current.type === "decider" ? null : map.team_ct.id === current.teamId ? map.team_ct : map.team_t} />}
             </div>
         }
         return <div id="maps_container">
+            <div className="bestof">
+                BO{bo}
+            </div>
             {match.vetos.filter(veto => veto.type !== "ban").filter(veto => veto.teamId || veto.type === "decider").map(veto => <MapEntry key={veto.mapName} veto={veto} map={this.props.map} team={veto.type === "decider" ? null : map.team_ct.id === veto.teamId ? map.team_ct : map.team_t} />)}
         </div>
     }

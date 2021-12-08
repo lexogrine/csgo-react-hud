@@ -66,6 +66,10 @@ html, body, .map-container {
     background-repeat: no-repeat;
     transition:transform 0.1s linear;
 }
+
+
+
+
 .map .player.dead {
     opacity: 0.2;
     z-index: 1;

@@ -1,16 +1,17 @@
 .observed {
     position: fixed;
     width: 620px;
-    bottom: 120px;
+    bottom: 60px;
     margin-left: -310px;
     left: 50%;
     height: 86px;
     display: flex;
     flex-direction: column;
     color: white;
-    background-color: rgba(0,0,0,0.6);
+    background-color: var(--sub-panel-color);
 
-    .main_row, .stats_row {
+    .main_row,
+    .stats_row {
         flex: 1;
         display: flex;
         align-items: center;
@@ -73,7 +74,7 @@
                 align-items: center;
                 justify-content: center;
                 svg {
-                    max-width: 30px;
+                    max-height: 25px;
                     fill: white;
                 }
             }
@@ -82,6 +83,7 @@
             display: flex;
             height: 100%;
             width: 140px;
+
             justify-content: center;
             .text {
                 width: 30px;
@@ -89,19 +91,20 @@
                 align-items: center;
                 justify-content: center;
                 font-weight: 600;
-                font-size: 21px;
+                font-size: 18px;
                 height: 100%;
-                padding-top: 2px;
+                //padding-top: 2px;
             }
-            
+
             .icon {
                 display: flex;
                 width: 30px;
                 align-items: center;
                 justify-content: center;
+                margin-bottom: 2px;
                 svg {
-                    max-height:30px;
-                    max-width:22px;
+                    max-height: 30px;
+                    max-width: 22px;
                 }
             }
         }
@@ -124,10 +127,18 @@
     .main_row {
         font-weight: 600;
         .logo {
+            margin-left: 10px;
             height: 43px;
             display: flex;
             align-items: center;
             justify-content: center;
+            .foreLogo {
+                z-index: 2;
+                filter: drop-shadow(0px 5px 7px rgba(255, 255, 255, 0.4));
+            }
+            .bgLogo {
+                display: none;
+            }
         }
         .grenade_container {
             height: 100%;
@@ -135,7 +146,6 @@
             align-items: center;
             width: 140px;
             justify-content: center;
-        
         }
         .username_container {
             height: 100%;
@@ -145,9 +155,12 @@
             justify-content: center;
             flex-direction: column;
             .real_name {
-                font-size: 7pt;
+                font-size: 8pt;
                 color: rgba(255, 255, 255, 0.5);
             }
+        }
+        .weapon.currentWeapon {
+            height: 30px;
         }
         .weapon.grenade {
             height: 28px;
@@ -157,7 +170,6 @@
                 margin-right: 5px;
             }
         }
-        
     }
     .sidebar {
         width: 10px;
@@ -185,47 +197,79 @@
         position: relative;
         width: 140px;
         height: 140px;
+
         img {
-            border-radius:50%;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            margin-left: 2px;
+            margin-top: 2px;
         }
     }
-    
+
     &.T {
-        border-bottom: 6px solid var(--color-new-t);
-        .main_row .username_container .username, .stats_row .ammo .ammo_counter .ammo_reserve {
-            color: var(--color-new-t)
+        //border-bottom: 6px solid var(--color-new-t);
+        .main_row .username_container .username,
+        .stats_row .ammo .ammo_counter .ammo_reserve {
+            font-size: 15pt;
+            color: var(--color-new-t);
         }
         .sidebar {
-            background-color: var(--color-new-t)
+            background-color: var(--color-new-t);
         }
         .stats_row .statistics .stat .label {
             color: var(--color-new-t);
             margin-right: 2px;
         }
-        .stats_row .health_armor_container .icon, .stats_row .ammo .ammo_icon_container {
+        .stats_row .health_armor_container {
+            background: var(--grad-new-t2);
+        }
+        .stats_row .health_armor_container .icon,
+        .stats_row .ammo .ammo_icon_container {
             svg {
                 fill: var(--color-new-t);
             }
         }
+        .hp_bar {
+            height: 4px;
+            background: var(--grad-new-t);
+            transition: ease-in-out 0.5s;
+        }
+        .main_row #cameras-container {
+            border: 2px solid var(--color-t);
+        }
     }
     &.CT {
-        border-bottom: 6px solid var(--color-new-ct);
-        .main_row .username_container .username, .stats_row .ammo .ammo_counter .ammo_reserve {
-            color: var(--color-new-ct)
+        //border-bottom: 6px solid var(--color-new-ct);
+        .main_row .username_container .username,
+        .stats_row .ammo .ammo_counter .ammo_reserve {
+            font-size: 15pt;
+            color: var(--color-new-ct);
         }
         .sidebar {
-            background-color: var(--color-new-ct)
+            background-color: var(--color-new-ct);
         }
         .stats_row .statistics .stat .label {
             color: var(--color-new-ct);
             margin-right: 2px;
         }
-        .stats_row .health_armor_container .icon, .stats_row .ammo .ammo_icon_container {
+        .stats_row .health_armor_container {
+            background: var(--grad-new-ct2);
+        }
+        .stats_row .health_armor_container .icon,
+        .stats_row .ammo .ammo_icon_container {
             svg {
                 fill: var(--color-new-ct);
             }
         }
-        
+        .hp_bar {
+            height: 4px;
+            background: var(--grad-new-ct);
+            transition: ease-in-out 0.5s;
+        }
+        .main_row #cameras-container {
+            border: 2px solid var(--color-ct);
+        }
     }
 }
 

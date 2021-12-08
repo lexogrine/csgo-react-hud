@@ -16,7 +16,8 @@ export default class TeamLogo extends React.Component<{ team?: Team | I.Team | n
     }
     return (
       <div className={`logo`}>
-          { logo && id ? <img src={`${apiUrl}api/teams/logo/${id}`} width={this.props.width} height={this.props.height} alt={'Team logo'} /> : ''}
+          { logo && id ? <img src={`${apiUrl}api/teams/logo/${id}`} className="foreLogo" width={this.props.width} height={this.props.height} alt={'Team logo'} /> : ''}
+          { logo && id ? <img src={`${apiUrl}api/teams/logo/${id}`} className="bgLogo" width={this.props.width} height={this.props.height} alt={'Team logo'} /> : ''}
       </div>
     );
   }
