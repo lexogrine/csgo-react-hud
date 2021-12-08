@@ -1,5 +1,4 @@
 import React from 'react';
-import { actions } from '../../App';
 import CameraContainer from '../Camera/Container';
 
 import { avatars } from './../../api/avatars';
@@ -15,23 +14,24 @@ interface IProps {
   showCam?: boolean
 }
 export default class Avatar extends React.Component<IProps> {
-  render(){
+
+  render() {
     const { showCam, steamid, width, height, showSkull } = this.props;
     //const url = avatars.filter(avatar => avatar.steamid === this.props.steamid)[0];
     const avatarData = avatars[this.props.steamid];
-    if(!avatarData || !avatarData.url){
-        return null;
+    if (!avatarData || !avatarData.url) {
+      return null;
     }
 
     return (
       <div className={`avatar`}>
-          {
-            showCam ? <CameraContainer observedSteamid={steamid} /> : null
-          }
-          {
-            showSkull ? <Skull height={height} width={width} /> : <img src={avatarData.url} height={height} width={width} alt={'Avatar'} />
-          }
-          
+        {
+          showCam ? <CameraContainer observedSteamid={steamid} /> : null
+        }
+        {
+          showSkull ? <Skull height={height} width={width} /> : <img src={avatarData.url} height={height} width={width} alt={'Avatar'} />
+        }
+
       </div>
     );
   }

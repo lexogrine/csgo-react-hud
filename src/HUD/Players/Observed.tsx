@@ -8,6 +8,7 @@ import { apiUrl } from './../../api/api';
 import { getCountry } from "./../countries";
 import { ArmorHelmet, ArmorFull, HealthFull, Bullets } from './../../assets/Icons';
 import { Veto } from "../../api/interfaces";
+import { actions } from "../../App";
 
 class Statistic extends React.PureComponent<{ label: string; value: string | number, }> {
 	render() {
@@ -20,7 +21,19 @@ class Statistic extends React.PureComponent<{ label: string; value: string | num
 	}
 }
 
-export default class Observed extends React.Component<{ player: Player | null, veto: Veto | null, round: number }> {
+export default class Observed extends React.Component<{ player: Player | null, veto: Veto | null, round: number }, { showCam: boolean }> {
+	constructor(props: any){
+		super(props);
+		this.state = {
+		  showCam: true
+		}
+	  }
+	componentDidMount() {
+		actions.on('toggleCams', () => {
+			console.log(this.state.showCam)
+			this.setState({ showCam: !this.state.showCam });
+		});
+	}
 	getAdr = () => {
 		const { veto, player } = this.props;
 		if (!player || !veto || !veto.rounds) return null;
@@ -40,7 +53,7 @@ export default class Observed extends React.Component<{ player: Player | null, v
 		return (
 			<div className={`observed ${player.team.side}`}>
 				<div className="main_row">
-					{<Avatar steamid={player.steamid} height={140} width={140} showCam={true} slot={player.observer_slot}/>}
+					{<Avatar steamid={player.steamid} height={140} width={140} showCam={this.state.showCam} slot={player.observer_slot} />}
 					<TeamLogo team={player.team} height={35} width={35} />
 					<div className="username_container">
 						<div className="username">{player.name}</div>
