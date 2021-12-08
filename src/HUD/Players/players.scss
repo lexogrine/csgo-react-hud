@@ -6,13 +6,55 @@
     opacity: 1;
     transition: opacity 0.75s;
     &.CT {
-        .player .hp_bar {
-            background-color: var(--color-new-ct);
+        .player {
+            .player_data {
+                background: var(--sub-panel-color);
+                //border: 1px solid var(--color-border-ct);
+            }
+            &.active {
+                .player_data {
+                    background: var(--grad-new-ct3);
+                    transition: ease-in-out 0.3s;
+                    //border: 1px solid var(--color-border-ct);
+                }
+            }
+            &.dead {
+                .player_data {
+                    background: black;
+                    transition: ease-in-out 0.2s;
+                    //border: 1px solid var(--color-border-ct);
+                }
+            }
+            .hp_bar {
+                background: var(--grad-new-ct);
+                transition: ease-in-out 0.5s;
+            }
         }
     }
     &.T {
-        .player .hp_bar {
-            background-color: var(--color-new-t);
+        .player {
+            .player_data {
+                background: var(--sub-panel-color);
+                //border: 1px solid var(--color-border-t);
+            }
+            &.active {
+                .player_data { 
+
+                    background: var(--grad-new-t3);
+                    transition: ease-in-out 0.3s;
+                    //border: 1px solid var(--color-border-t);
+                }
+            }
+            &.dead {
+                .player_data {
+                    transition: ease-in-out 0.1s;
+                    //border: 1px solid var(--color-border-t);
+                }
+            }
+            .hp_bar {
+                background: var(--grad-new-t);
+                transition: ease-in-out 0.5s;
+            }
         }
     }
     &.hide {
@@ -26,7 +68,7 @@
                 .grenades {
                     padding-right: 5px;
                 }
-                
+
                 .armor_and_utility {
                     justify-content: flex-start;
                 }
@@ -39,7 +81,6 @@
                 .secondary_weapon {
                     padding-right: 10px;
                 }
-                
             }
             .dead-stats {
                 right: 8px;
@@ -48,6 +89,7 @@
     }
     &.right {
         right: 10px;
+        align-items: flex-end;
         .player {
             flex-direction: row-reverse;
             .dead-stats {
@@ -78,7 +120,7 @@
                     .money {
                         margin-left: auto;
                         justify-content: flex-end;
-                    } 
+                    }
                     .weapon {
                         transform: scaleX(-1);
                     }
@@ -88,7 +130,7 @@
                 }
             }
         }
-    }  
+    }
     .player {
         width: 645px;
         height: 70px;
@@ -98,11 +140,13 @@
         align-items: center;
         &.active {
             .player_data {
-                border: 2px solid white;
+                //border: 2px solid white;
             }
         }
         &.dead {
             opacity: 0.7;
+            width: 350px;
+            transition: ease-in-out 0.5s;
             .player_side_bar {
                 background-color: var(--main-panel-color) !important;
             }
@@ -135,7 +179,7 @@
             }
         }
         &:last-child .player_data {
-            border-radius: 0 0 20px 20px;
+            //border-radius: 0 0 20px 20px;
         }
         .player_side_bar {
             width: 10px;
@@ -157,11 +201,13 @@
             color: white;
             opacity: 0.75;
             top: 10%;
-            .labels, .values {
+            .labels,
+            .values {
                 display: flex;
                 flex-direction: row;
                 flex: 1;
-                .stat-label, .stat-value {
+                .stat-label,
+                .stat-value {
                     display: flex;
                     flex: 1;
                     align-items: center;
@@ -170,7 +216,6 @@
             }
         }
         .player_data {
-            background-color: var(--sub-panel-color);
             width: 415px;
             display: flex;
             flex-direction: row;
@@ -182,7 +227,9 @@
                 flex: 1;
                 min-width: 0;
                 .hp_bar {
-                    height: 2px;
+                    position: absolute;
+                    z-index: 0;
+                    height: 35px;
                     &.low {
                         background-color: red;
                     }
@@ -192,12 +239,14 @@
                     display: flex;
                     position: relative;
                     svg.weapon {
-                        filter: invert(45%);
+                        filter: drop-shadow( 0px 5px 10px rgba(255, 255, 255, 0.33)) invert(45%);
+                        //filter: invert(45%);
                         &.active {
-                            filter: invert(0);
+                            filter: drop-shadow( 0px 5px 10px rgba(0, 0, 0, 0.23)) invert(0);
                         }
                     }
-                    .hp_background, .hp_background_2 {
+                    .hp_background,
+                    .hp_background_2 {
                         position: absolute;
                         width: 100%;
                         height: 100%;
@@ -213,8 +262,11 @@
                         align-items: center;
                         padding-left: 5px;
                         padding-right: 5px;
-                        .armor_indicator, .bomb_indicator, .defuse_indicator {
+                        .armor_indicator,
+                        .bomb_indicator,
+                        .defuse_indicator {
                             svg {
+                                filter: drop-shadow( 0px 5px 7px rgba(255, 255, 255, 0.4));
                                 max-height: 20px;
                                 fill: white;
                             }
@@ -225,6 +277,7 @@
                         }
                     }
                     .username {
+                    
                         flex: 1;
                         display: flex;
                         align-items: center;
@@ -239,16 +292,19 @@
                         white-space: nowrap;
                         .roundkills-container {
                             position: absolute;
-                            background-image: url('./../../assets/images/icon_skull_default.svg');
+                            background-image: url("./../../assets/images/icon_skull_default.svg");
                             background-repeat: no-repeat;
                             background-size: 10px;
                             background-position: left 2px;
                             padding-left: 16px;
                             font-size: 13px;
                         }
+                        div {
+                            filter: drop-shadow( 0px 5px 7px rgba(0, 0, 0, 0.43));
+                        }
                         div span {
                             opacity: 0.6;
-                            font-size:15px;
+                            font-size: 14px;
                         }
                         svg.weapon {
                             max-height: 30px;
@@ -277,6 +333,7 @@
                         }
                     }
                     .health {
+                        filter: drop-shadow( 0px 5px 7px rgba(0, 0, 0, 0.43));
                         width: 49px;
                         display: flex;
                         align-items: center;
@@ -284,7 +341,7 @@
                         z-index: 1;
                         color: white;
                         font-weight: 600;
-                        font-size:18px;
+                        font-size: 18px;
                     }
                     .secondary_weapon {
                         display: flex;
@@ -302,7 +359,7 @@
                 align-items: center;
                 justify-content: flex-end;
                 img {
-                    border-radius:50%;
+                    //border-radius:50%;
                 }
             }
         }
@@ -313,7 +370,7 @@
     display: flex;
     flex-direction: column;
     width: 180px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
     right: 10px;
     top: 10px;
@@ -327,12 +384,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size:30px;
+            font-size: 30px;
             color: white;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
         }
         .team_counter {
-            background-color: rgba(0,0,0,0.75);
+            background-color: rgba(0, 0, 0, 0.75);
         }
         .CT {
             color: var(--color-new-ct);
@@ -345,12 +402,12 @@
         color: white;
         text-transform: uppercase;
         text-align: center;
-        height:20px;
-        font-size:14px;
+        height: 20px;
+        font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rgba(0,0,0,0.75);
+        background-color: rgba(0, 0, 0, 0.75);
     }
     &.hide {
         opacity: 0;
