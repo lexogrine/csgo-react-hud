@@ -1,8 +1,9 @@
 @import "fonts/montserrat.css";
 @import "fonts/stratum2.css";
+@import "fonts/bison.css";
 
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Alata&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 html,
 body,
@@ -16,7 +17,7 @@ body,
 
 body {
   margin: 0;
-  font-family: "Josefin Sans", "Montserrat", "Roboto", sans-serif;
+  font-family: "Lato", "Montserrat", "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /*background-image: url('./assets/bg.png');/**/

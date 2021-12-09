@@ -1,0 +1,43 @@
+
+@font-face {
+    font-family: 'Bison';
+    font-style: normal;
+    font-weight: 100;
+    src: url('./bison/Bison\ Light.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bison';
+    font-style: normal;
+    font-weight: 300;
+    src: url('./bison/Bison\ Regular.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bison';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./bison/Bison\ Demi\ Bold.otf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'Bison';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./bison/Bison\ Bold.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bison';
+    font-style: normal;
+    font-weight: 800;
+    src: url('./bison/Bison\ Thin\ Outline.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bison';
+    font-style: normal;
+    font-weight: 900;
+    src: url('./bison/Bison\ Thick\ Outline.otf') format('truetype');
+}

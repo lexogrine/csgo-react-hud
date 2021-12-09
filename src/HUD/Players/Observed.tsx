@@ -22,12 +22,12 @@ class Statistic extends React.PureComponent<{ label: string; value: string | num
 }
 
 export default class Observed extends React.Component<{ player: Player | null, veto: Veto | null, round: number }, { showCam: boolean }> {
-	constructor(props: any){
+	constructor(props: any) {
 		super(props);
 		this.state = {
-		  showCam: true
+			showCam: true
 		}
-	  }
+	}
 	componentDidMount() {
 		actions.on('toggleCams', () => {
 			console.log(this.state.showCam)
@@ -85,7 +85,6 @@ export default class Observed extends React.Component<{ player: Player | null, v
 						<Statistic label={"A"} value={stats.assists} />
 						<Statistic label={"D"} value={stats.deaths} />
 						<Statistic label={"K/D"} value={ratio.toFixed(2)} />
-						<Statistic label={"K/D"} value={ratio.toFixed(2)} />
 					</div>
 					<div className="ammo">
 
@@ -94,11 +93,11 @@ export default class Observed extends React.Component<{ player: Player | null, v
 						</div>
 						<div className="ammo_counter">
 							<div className="ammo_clip">{currentWeapon && ['c4', 'knife'].indexOf(currentWeapon.name) === -1 ? (currentWeapon.ammo_clip) : "-"}</div>
-							<div className="ammo_reserve">{currentWeapon && ['c4', 'knife'].indexOf(currentWeapon.name) === -1 ? "/" + (currentWeapon.ammo_reserve) : "/-"}</div> 
+							<div className="ammo_reserve">{currentWeapon && ['c4', 'knife'].indexOf(currentWeapon.name) === -1 ? "/" + (currentWeapon.ammo_reserve) : "/-"}</div>
 						</div>
 					</div>
 				</div>
-				<div className={`hp_bar ${player.state.health <= 20 ? 'low':''}`} style={{ width: `${player.state.health}%` }}></div>
+				<div className={`hp_bar ${player.state.health <= 20 ? 'low' : ''}`} style={{ width: `${player.state.health}%` }}></div>
 			</div>
 		);
 	}
