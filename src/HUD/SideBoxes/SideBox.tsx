@@ -40,7 +40,7 @@ export default class SideBox extends React.Component<{ side: 'left' | 'right', h
                     <div className="subtitle">{subtitle}</div>
                 </div>
                 <div className="image_container">
-                    {image ? <img src={image} id={`image_left`} alt={'Left'}/>:''}
+                    {image ? <img src={image} id={`image_`+this.props.side} alt={this.props.side}/>:''}
                 </div>
             </div>
 		);

@@ -8,8 +8,8 @@
 html,
 body,
 #root {
-  background: url(https://zagruzkamods.com/uploads/posts/2015-03/1427575037_5.jpg);
-  background-repeat: no-repeat;
+  /*background: url(https://zagruzkamods.com/uploads/posts/2015-03/1427575037_5.jpg);
+  background-repeat: no-repeat;*/
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -53,6 +53,8 @@ code {
   --color-moneys: #a7d32e;
   --dev-purple: rgba(200, 0, 255, 1);
 
+  --league-color: #d2bf3e;
+
   /* COLORS */
   --color-t: rgba(235, 145, 0, 1);
   --color-ct: rgba(22, 74, 168, 1);
@@ -61,12 +63,16 @@ code {
   /* HEALTH */
   --grad-new-t: linear-gradient(90deg, rgba(245, 171, 54, 1) 0%, rgba(235, 145, 0, 1) 100%);
   --grad-new-ct: linear-gradient(90deg, rgba(22, 74, 168, 1) 0%, rgba(81, 139, 245, 1) 100%);
-  /* ACTIVE */
+  /* OBSERVER */
   --grad-new-t2: linear-gradient(270deg,  rgba(28, 28, 40, 0) 1%, rgba(245, 194, 81, 0.3) 55%);
   --grad-new-ct2: linear-gradient(270deg, rgba(28, 28, 40, 0) 1%, rgba(22, 74, 168, 0.3) 55%);
-  /* ACTIVE */
-  --grad-new-t3: linear-gradient(270deg, rgba(245, 194, 81, 0.7) 1%, rgba(28, 28, 40, 0.7) 55%);
-  --grad-new-ct3: linear-gradient(90deg, rgba(22, 74, 168, 0.7) 1%, rgba(28, 28, 40, 0.7) 55%);
+  /* ACTIVE PLAYERS CT VS T */
+  --grad-new-t3: linear-gradient(270deg, rgba(245, 171, 54, 0.7) 1%, rgba(28, 28, 40, 0.7) 25%);
+  --grad-new-ct3: linear-gradient(90deg, rgba(22, 74, 168, 0.7) 1%, rgba(28, 28, 40, 0.7) 25%);
+  /* ACTIVE PLAYERS T VS CT */
+  --grad-new-t4: linear-gradient(90deg, rgba(245, 194, 81, 0.7) 1%, rgba(28, 28, 40, 0.7) 25%);
+  --grad-new-ct4: linear-gradient(270deg, rgba(22, 74, 168, 0.7) 1%, rgba(28, 28, 40, 0.7) 25%);
+
   --color-bomb: #f22222;
   --color-defuse: #2222f2;
   --color-border-t: rgba(122, 104, 37, 0.1);

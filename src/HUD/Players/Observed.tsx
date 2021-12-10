@@ -46,6 +46,7 @@ export default class Observed extends React.Component<{ player: Player | null, v
 		const country = player.country || player.team.country;
 		const weapons = Object.values(player.weapons).map(weapon => ({ ...weapon, name: weapon.name.replace("weapon_", "") }));
 		const currentWeapon = weapons.filter(weapon => weapon.state === "active")[0];
+		const weaponsNoAmmo = ['c4', ...weapons.filter(weapon => weapon.type === "Grenade").map(weapon => weapon.name), ...weapons.filter(weapon => weapon.type === "Knife").map(weapon => weapon.name)];
 
 		const grenades = weapons.filter(weapon => weapon.type === "Grenade");
 		const { stats } = player;
@@ -92,8 +93,8 @@ export default class Observed extends React.Component<{ player: Player | null, v
 							<Weapon className="currentWeapon" weapon={currentWeapon ? currentWeapon.name : ""} active={true} />
 						</div>
 						<div className="ammo_counter">
-							<div className="ammo_clip">{currentWeapon && ['c4', 'knife'].indexOf(currentWeapon.name) === -1 ? (currentWeapon.ammo_clip) : "-"}</div>
-							<div className="ammo_reserve">{currentWeapon && ['c4', 'knife'].indexOf(currentWeapon.name) === -1 ? "/" + (currentWeapon.ammo_reserve) : "/-"}</div>
+							<div className="ammo_clip">{currentWeapon && weaponsNoAmmo.indexOf(currentWeapon.name) === -1 ? (currentWeapon.ammo_clip)  : "-"}</div>
+							<div className="ammo_reserve">{currentWeapon && weaponsNoAmmo.indexOf(currentWeapon.name) === -1 ? "/" + (currentWeapon.ammo_reserve)  : "/-"}</div>
 						</div>
 					</div>
 				</div>

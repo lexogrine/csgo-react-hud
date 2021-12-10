@@ -186,7 +186,8 @@
 	.title_container {
 		>div {
 			flex-direction: row-reverse;
-			text-align: right;
+			justify-content: start;
+			text-align: left;
 			padding-right: 10px;
 		}
 	}
@@ -195,8 +196,17 @@
 	.title_container {
 		>div {
 			flex-direction: row;
-			text-align: left;
+			justify-content: end;
+			text-align: right;
 			padding-left: 10px;
+		}
+		.title {
+			font-weight: 900;
+		}
+		.subtitle {
+			//justify-content: center;
+			font-weight: 400;
+			color: var(--league-color);
 		}
 	}
 }

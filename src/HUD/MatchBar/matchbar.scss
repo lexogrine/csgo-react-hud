@@ -139,16 +139,8 @@
 				max-height: 95%;
 			}
 			.foreLogo {
-				z-index: 2;
-				filter: drop-shadow( 0px 5px 7px rgba(255, 255, 255, 0.4));
-			}
-			.bgLogo {
-				position: absolute;
-				filter: blur(2px) grayscale(30%) opacity(0.5);
-				z-index: 1;
-				transform: scale(1.5, 1.5);
-				-webkit-clip-path: inset(center center 70px 70px);
-				clip-path: inset(56px 70px 57px 70px);
+				z-index: 3;
+				filter: drop-shadow( 0px 5px 7px rgba(0, 0, 0, 0.4));
 			}
         }
         &.left {
@@ -159,7 +151,17 @@
             }
             .logo {
                 justify-content: flex-end;
+
+				.bgLogo {
+					position: absolute;
+					filter: blur(3px) grayscale(60%) opacity(1);
+					z-index: 1;
+					transform: scale(2, 2);
+					//-webkit-clip-path: inset(center center 70px 70px);
+					clip-path: inset(16px 0px 16px 10px);
+				}
             }
+			
         }
         &.right {
             justify-content: center;
@@ -169,6 +171,14 @@
             }
             .logo {
                 justify-content: flex-start;
+				.bgLogo {
+					position: absolute;
+					filter: blur(3px) grayscale(60%) opacity(1);
+					z-index: 1;
+					transform: scale(2, 2);
+					//-webkit-clip-path: inset(center center 70px 70px);
+					clip-path: inset(16px 10px 16px 0px);
+				}
             }
         }
 	}
@@ -258,10 +268,10 @@
 	align-items: center;
 	color: white;
     justify-content: center;
-    background-color: rgba(0,0,0,0.65);
+    background-color: var(--main-panel-color);
 	.defuse_plant_bar {
 		height: 49px;
-		background-color: #3c3c3c;
+		//background-color: #3c3c3c;
 		position: absolute;
 		width: 0%;
 	}
@@ -390,13 +400,13 @@
 	box-sizing: border-box;
 }
 .wins_box.CT {
-	background-color: rgba(0,0,0,0.6);
+	background-color: var(--sub-panel-color);
 }
 .wins_box.CT.win {
 	background-color: var(--color-new-ct);
 }
 .wins_box.T {
-	background-color: rgba(0,0,0,0.6);
+	background-color: var(--sub-panel-color);
 }
 .wins_box.T.win {
 	background-color: var(--color-new-t);
