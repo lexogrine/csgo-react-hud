@@ -1,7 +1,7 @@
 {
-    "name":"Lexogrine HUD",
-    "version":"2.4.0",
-    "author":"Lexogrine",
+    "name":"GRHUD",
+    "version":"1.0.0",
+    "author":"Lexogrine / HWK",
     "legacy": false,
     "radar": true,
     "killfeed": true,

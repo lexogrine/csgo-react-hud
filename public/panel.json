@@ -34,6 +34,11 @@
         "name":"display_settings",
         "inputs": [
             {
+                "type": "checkbox",
+                "name": "match_has_avatar",
+                "label": "Enable avatars"
+            },
+            {
                 "type": "text",
                 "name": "left_title",
                 "label": "Left box's title"

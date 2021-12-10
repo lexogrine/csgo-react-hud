@@ -1,6 +1,6 @@
 {
-  "name": "lexogrine_hud",
-  "version": "2.4.0",
+  "name": "grhud",
+  "version": "1.0.0",
   "homepage": "./",
   "private": true,
   "dependencies": {
