@@ -41,7 +41,6 @@ export default class Observed extends React.Component<{ player: Player | null, v
 		const { stats } = player;
 		const ratio = stats.deaths === 0 ? stats.kills : stats.kills / stats.deaths;
 		const flag = country ? getFlag(country) : null;
-		console.log(player.weapons)
 		return (
 			<div className={`observed ${player.team.side}`}>
 				<div className="main_row">

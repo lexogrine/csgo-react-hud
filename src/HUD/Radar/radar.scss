@@ -11,6 +11,15 @@
 #radar_maps_container.hide {
 	opacity: 0;
 }
+#radar_maps_container.preview {
+    transform: rotate3d(1, 0, 0, 14deg) translateX(-50%);
+    transform-style: preserve-3d;
+    left: 50%;
+    top: 100px;
+	.map {
+		perspective: 500px;
+	}
+}
 #maps_container {
 	width: 100%;
 	height: 30px;
