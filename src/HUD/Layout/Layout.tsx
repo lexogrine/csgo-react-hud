@@ -18,6 +18,7 @@ import Pause from "../PauseTimeout/Pause";
 import Timeout from "../PauseTimeout/Timeout";
 import RoundHistory from "../RoundHistory";
 import PlayerCamera from "../Camera/Camera";
+import PlayerFaces from "../PlayerFaces";
 
 interface Props {
   game: CSGO,
@@ -124,6 +125,8 @@ export default class Layout extends React.Component<Props, State> {
 
         <TeamBox team={left} players={leftPlayers} side="left" current={game.player} isFreezetime={isFreezetime} />
         <TeamBox team={right} players={rightPlayers} side="right" current={game.player} isFreezetime={isFreezetime} />
+
+        <PlayerFaces players={leftPlayers} visible={true} />
 
         <Trivia />
 

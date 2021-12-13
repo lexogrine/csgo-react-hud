@@ -1,0 +1,27 @@
+
+
+.player-faces {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0.9);
+    display: flex;
+    z-index: -111;
+    flex-wrap: wrap;
+    opacity: 0;
+    justify-content: space-around;
+    transition: opacity 1s, z-index 0s 3s;
+    align-content: center;
+
+    &.visible {
+        transition: opacity 1s;
+        z-index: 99999;
+        opacity: 1;
+    }
+
+    video {
+        width: 480px;
+        height: 270px;
+        margin: 10px 80px;
+    }
+}
