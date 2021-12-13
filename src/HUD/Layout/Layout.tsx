@@ -16,6 +16,7 @@ import Overview from "../Overview/Overview";
 import Tournament from "../Tournament/Tournament";
 import Pause from "../PauseTimeout/Pause";
 import Timeout from "../PauseTimeout/Timeout";
+import RoundHistory from "../RoundHistory";
 
 interface Props {
   game: CSGO,
@@ -74,6 +75,12 @@ export default class Layout extends React.Component<Props, State> {
     const rightPlayers = game.players.filter(player => player.team.side === right.side);
     const isFreezetime = (game.round && game.round.phase === "freezetime") || game.phase_countdowns.phase === "freezetime";
     const { forceHide } = this.state;
+    
+    let currentRound = game.map.round + 1;
+    if (game.round && game.round.phase === 'over') {
+        currentRound = game.map.round;
+    }
+
     if(IS_REPLAY){
       return (
         <div className="layout">
@@ -103,6 +110,7 @@ export default class Layout extends React.Component<Props, State> {
           </div>
         </div>
         <Killfeed />
+        <RoundHistory rounds={game.map.rounds} currentRound={currentRound} left={left} right={right} />
         <Overview match={match} map={game.map} players={game.players || []} />
         {<RadarMaps match={match} map={game.map} game={game} />}
         <MatchBar map={game.map} phase={game.phase_countdowns} bomb={game.bomb} match={match} players={game.players || []} />

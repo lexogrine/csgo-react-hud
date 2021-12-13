@@ -61,7 +61,7 @@ html, body, .map-container {
 .map .player .background {
     /*background-color:white;*/
     /*clip-path: polygon(0 0, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0 0);*/
-    background-image: url('./assets/playerBg.png');
+    /*background-image: url('./assets/playerBg.png');/**/
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -164,6 +164,11 @@ html, body, .map-container {
     border-radius: 50%;
     -webkit-font-smoothing: subpixel-antialiased;
     font-size: 27px;
+
+
+    
+    border: 1px solid black;
+    box-shadow: 0 0 4px 0px rgb(0 0 0 / 40%), inset 0 0 4px 0px rgb(0 0 0 / 40%);
 }
 .map .bomb .background {
     background-image: url('./grenades/bomb.png');
@@ -182,13 +187,14 @@ html, body, .map-container {
     animation: BombDefused 2s 1 forwards;
 }
 .map .player.CT .label {
-    background: radial-gradient(rgb(61, 141, 224), rgb(42, 49, 119));
+    background: var(--color-new-ct)
 }
 .map .player.T .label {
-    background: radial-gradient(rgb(255, 129, 0), var(--color-new-t));
+    background: var(--color-new-t)
 }
 .map .player.T.hasBomb .label {
-    background: red;
+    background: #e84545;
+
 }
 
 .map .hidden {

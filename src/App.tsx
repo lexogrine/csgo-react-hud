@@ -107,7 +107,7 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 		});
 
 		socket.on("refreshHUD", () => {
-			window.top.location.reload();
+			window.top && window.top.location.reload();
 		});
 
 		socket.on("update_mirv", (data: any) => {

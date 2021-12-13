@@ -5,5 +5,3 @@
 - no current round kills displayed on player bar
 - when player is dead, only lower K or D number or icon on player bar is transparent
 - no tech pause design
-
-- for some reason texts are too bold if you compare it to design (eg.: HP in player bar, timer in scoreboard, utility level)

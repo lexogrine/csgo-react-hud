@@ -8,7 +8,7 @@ import TeamLogo from "../MatchBar/TeamLogo";
 import maps from "./LexoRadar/maps";
 
 interface Props { match: Match | null, map: Map, game: CSGO }
-interface State { showRadar: boolean, radarSize: number, showBig: boolean }
+interface State { showRadar: boolean, radarSize: number }
 
 export default class RadarMaps extends React.Component<Props, State> {
     state = {
