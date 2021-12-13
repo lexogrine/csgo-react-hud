@@ -6,6 +6,7 @@ import ActionManager, { ConfigManager } from './api/actionManager';
 
 import { CSGO, PlayerExtension, GSISocket } from "csgogsi-socket";
 import { Match } from './api/interfaces';
+import { initiateConnection } from './HUD/Camera/mediaStream';
 
 export const { GSI, socket } = GSISocket(isDev ? `localhost:${port}` : '/', "update");
 
@@ -95,6 +96,7 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 
 		socket.on("readyToRegister", () => {
 			socket.emit("register", name, isDev);
+			initiateConnection();
 		});
 		socket.on(`hud_config`, (data: any) => {
 			configs.save(data);

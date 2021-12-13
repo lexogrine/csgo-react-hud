@@ -12,6 +12,7 @@ import Grenade from "../Weapon/Grenade";
 import { getFlag } from "../../assets/flags";
 import Defuse from "../Indicators/Defuse";
 import Bomb from "../Indicators/Bomb";
+import { actions } from "../../App";
 
 class Statistic extends React.PureComponent<{ label: string; value: string | number, }> {
 	render() {
@@ -24,7 +25,19 @@ class Statistic extends React.PureComponent<{ label: string; value: string | num
 	}
 }
 
-export default class Observed extends React.Component<{ player: Player | null, veto: Veto | null, round: number }> {
+export default class Observed extends React.Component<{ player: Player | null, veto: Veto | null, round: number }, { showCam: boolean }> {
+	constructor(props: any){
+		super(props);
+		this.state = {
+		  showCam: true
+		}
+	  }
+	componentDidMount() {
+		actions.on('toggleCams', () => {
+			console.log(this.state.showCam)
+			this.setState({ showCam: !this.state.showCam });
+		});
+	}
 	getAdr = () => {
 		const { veto, player } = this.props;
 		if (!player || !veto || !veto.rounds) return null;
