@@ -64,11 +64,19 @@ html, body, .map-container {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    transition:transform 0.1s linear;
+    transition:transform 0.2s ease;
 }
 .map .player.dead {
     opacity: 0.2;
     z-index: 1;
+}
+.map .player {
+    transition:transform 0.1s ease;
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    image-rendering: -o-crisp-edges; /* Opera */
+    image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
 }
 .map .player:not(.dead) {
     z-index: 2;
@@ -94,6 +102,9 @@ html, body, .map-container {
     background-color: rgba(255,255,255,0.5);
     opacity: 1;
     transition: opacity 1s;
+}
+.map .grenade.smoke {
+    transition: all 0.5s;
 }
 .map .grenade.smoke.inair .background {
     background-color: transparent;
@@ -163,6 +174,9 @@ html, body, .map-container {
     border-radius: 50%;
     -webkit-font-smoothing: subpixel-antialiased;
     font-size: 27px;
+}
+.map .bomb {
+    transition:transform 0.1s ease;
 }
 .map .bomb .background {
     background-image: url('./grenades/bomb.png');
