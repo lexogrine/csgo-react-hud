@@ -173,7 +173,8 @@ html, body, .map-container {
     font-weight: 600;
     border-radius: 50%;
     -webkit-font-smoothing: subpixel-antialiased;
-    font-size: 27px;
+    font-size: 37px;
+    text-shadow: 4px 4px 0 black;
 }
 .map .bomb {
     transition:transform 0.1s ease;
@@ -195,10 +196,10 @@ html, body, .map-container {
     animation: BombDefused 2s 1 forwards;
 }
 .map .player.CT .label {
-    background: radial-gradient(rgb(61, 141, 224), rgb(42, 49, 119));
+    background: rgb(16, 88, 197)
 }
 .map .player.T .label {
-    background: radial-gradient(rgb(255, 129, 0), var(--color-new-t));
+    background: rgb(255, 153, 0);
 }
 .map .player.T.hasBomb .label {
     background: red;
