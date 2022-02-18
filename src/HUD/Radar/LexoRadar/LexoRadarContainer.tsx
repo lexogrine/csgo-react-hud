@@ -7,7 +7,13 @@ import config from './config';
 
 let playersStates: Player[][] = [];
 let grenadesStates: ExtendedGrenade[][] = [];
-const directions: { [key: string]: number } = {};
+const directions: Record<string, number> = {};
+type ShootingState = {
+    ammo: number,
+    weapon: string,
+    lastShoot: number
+}
+let shootingState: Record<string, ShootingState> = {};
 
 const calculateDirection = (player: Player) => {
     if (directions[player.steamid] && !player.state.health) return directions[player.steamid];
@@ -116,6 +122,22 @@ class App extends React.Component<IProps> {
         if (!(this.props.mapName in maps)) {
             return null;
         }
+
+        const weapons = player.weapons ? Object.values(player.weapons) : [];
+        const weapon = weapons.find(weapon => weapon.state === "active" && weapon.type !== "C4" && weapon.type !== "Knife" && weapon.type !== "Grenade");
+
+        const shooting: ShootingState = { ammo: weapon && weapon.ammo_clip || 0, weapon: weapon && weapon.name || '', lastShoot: 0 };
+
+        const lastShoot = shootingState[player.steamid] || shooting;
+
+        let isShooting = false;
+
+        if(shooting.weapon === lastShoot.weapon && shooting.ammo < lastShoot.ammo){
+            isShooting = true;
+        }
+
+        shootingState[player.steamid] = shooting;
+
         const map = maps[this.props.mapName];
         const playerObject: RadarPlayerObject = {
             id: player.steamid,
@@ -127,7 +149,9 @@ class App extends React.Component<IProps> {
             forward: 0,
             steamid: player.steamid,
             isAlive: player.state.health > 0,
-            hasBomb: !!Object.values(player.weapons).find(weapon => weapon.type === "C4")
+            hasBomb: !!Object.values(player.weapons).find(weapon => weapon.type === "C4"),
+            flashed: player.state.flashed > 35,
+            shooting: isShooting
         }
         if ("config" in map) {
             const position = this.getPosition(player, map.config);

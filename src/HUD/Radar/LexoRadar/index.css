@@ -81,10 +81,29 @@ html, body, .map-container {
 .map .player:not(.dead) {
     z-index: 2;
 }
+
+.map .player.flashed.CT:not(.dead) .label {
+    background: rgb(159 197 255);
+}
+.map .player.flashed.T:not(.dead) .label {
+    background: rgb(255 219 165);
+}
 .map .player.active .background {
     width:120%;
     height:120%;
 }
+
+
+.map .player.shooting .background {
+    width: 110%;
+    height: 110%;
+}
+
+.map .player.active.shooting .background {
+    width: 132%;
+    height: 132%;
+}
+
 .map .player.active {
     width:120%;
     height:120%;

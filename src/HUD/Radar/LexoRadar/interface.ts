@@ -11,6 +11,8 @@ export interface RadarPlayerObject {
     isAlive: boolean,
     steamid: string,
     hasBomb: boolean,
+    flashed: boolean,
+    shooting: boolean
 }
 
 export interface RadarGrenadeObject {
