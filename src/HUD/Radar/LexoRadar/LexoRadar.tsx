@@ -43,7 +43,7 @@ class App extends React.Component<IProps> {
       <div key={player.id}
         className={`player ${player.shooting? 'shooting':''} ${player.side} ${player.hasBomb ? 'hasBomb':''} ${player.isActive ? 'active' : ''} ${!player.isAlive ? 'dead' : ''} ${player.visible ? 'visible':'hidden'}`}
         style={{
-          transform: `translateX(${player.position[0]}px) translateY(${player.position[1]}px) translateZ(10px)`,
+          transform: `translateX(${player.position[0]}px) translateY(${player.position[1]}px) translateZ(10px) scale(${player.scale})`,
           width: config.playerSize,
           height: config.playerSize,
         }}>

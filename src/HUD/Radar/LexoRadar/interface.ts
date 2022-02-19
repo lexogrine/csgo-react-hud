@@ -13,7 +13,8 @@ export interface RadarPlayerObject {
     hasBomb: boolean,
     flashed: boolean,
     shooting: boolean,
-    lastShoot: number
+    lastShoot: number,
+    scale: number
 }
 
 export interface RadarGrenadeObject {

@@ -15,7 +15,8 @@ export interface ScaleConfig {
         y:number
     },
     pxPerUX: number,
-    pxPerUY: number
+    pxPerUY: number,
+    originHeight?: number
 }
 
 interface SingleLayer {

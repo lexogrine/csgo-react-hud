@@ -140,6 +140,7 @@ class App extends React.Component<IProps> {
 
         shootingState[player.steamid] = shooting;
 
+
         const map = maps[this.props.mapName];
         const playerObject: RadarPlayerObject = {
             id: player.steamid,
@@ -154,18 +155,26 @@ class App extends React.Component<IProps> {
             hasBomb: !!Object.values(player.weapons).find(weapon => weapon.type === "C4"),
             flashed: player.state.flashed > 35,
             shooting: isShooting,
-            lastShoot: shooting.lastShoot
+            lastShoot: shooting.lastShoot,
+            scale: 1
         }
         if ("config" in map) {
             const position = this.getPosition(player, map.config);
             playerObject.position = position;
+            
+            let scale = 1;
+            if(map.config.originHeight !== undefined){
+                scale = 1 + (player.position[2] - map.config.originHeight)/750;
+            }
+            playerObject.scale = scale;
             return playerObject;
         }
         return map.configs.map(config => ({
             ...playerObject,
             position: this.getPosition(player, config.config),
             id: `${player.steamid}_${config.id}`,
-            visible: config.isVisible(player.position[2])
+            visible: config.isVisible(player.position[2]),
+            scale: config.config.originHeight === undefined ? 1 : (1 + (player.position[2] - config.config.originHeight)/750)
         }));
     }
     mapGrenade = (extGrenade: ExtendedGrenade) => {
