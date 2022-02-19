@@ -84,7 +84,7 @@ class App extends React.Component<IProps> {
         }
         let size = 30;
         if (grenade.type === "smoke") {
-            size = 40;
+            size = 60;
         }
         return this.parsePosition(grenade.position.split(", ").map(pos => Number(pos)), size, config);
     }
@@ -200,6 +200,7 @@ class App extends React.Component<IProps> {
             const flames = Object.keys(extGrenade.flames).map(mapFlame).flat();
             const flameObjects: RadarGrenadeObject[] = flames.map(flame => ({
                 ...flame,
+                side: extGrenade.side,
                 type: 'inferno',
                 state: 'landed'
             }));
@@ -212,6 +213,7 @@ class App extends React.Component<IProps> {
             const grenadeObject: RadarGrenadeObject = {
                 type: extGrenade.type,
                 state: 'inair',
+                side: extGrenade.side,
                 position,
                 id: extGrenade.id,
                 visible: true
@@ -236,6 +238,7 @@ class App extends React.Component<IProps> {
             const grenadeObject: RadarGrenadeObject = {
                 type: extGrenade.type,
                 state: 'inair',
+                side: extGrenade.side,
                 position,
                 id: `${extGrenade.id}_${config.id}`,
                 visible: config.isVisible(extGrenade.position.split(", ").map(Number)[2])
@@ -256,6 +259,11 @@ class App extends React.Component<IProps> {
         }).filter((grenade): grenade is RadarGrenadeObject => grenade !== null);
 
     }
+    getSideOfGrenade = (grenade: Grenade) => {
+        const owner = this.props.players.find(player => player.steamid === grenade.owner);
+        if(!owner) return null;
+        return owner.team.side;
+    }
     render() {
         const players: RadarPlayerObject[] = this.props.players.map(this.mapPlayer(this.props.player)).filter((player): player is RadarPlayerObject => player !== null).flat();
         playersStates.unshift(this.props.players);
@@ -263,7 +271,7 @@ class App extends React.Component<IProps> {
             playersStates = playersStates.slice(0, 5);
         }
         let grenades: RadarGrenadeObject[] = [];
-        const currentGrenades = Object.keys(this.props.grenades as { [key: string]: Grenade }).map(grenadeId => ({ ...this.props.grenades[grenadeId], id: grenadeId })) as ExtendedGrenade[];
+        const currentGrenades = Object.keys(this.props.grenades as { [key: string]: Grenade }).map(grenadeId => ({ ...this.props.grenades[grenadeId], id: grenadeId, side: this.getSideOfGrenade(this.props.grenades[grenadeId]) })) as ExtendedGrenade[];
         if (currentGrenades) {
             grenades = currentGrenades.map(this.mapGrenade).filter(entry => entry !== null).flat() as RadarGrenadeObject[];
             grenadesStates.unshift(currentGrenades);

@@ -191,7 +191,16 @@ html, body, .map-container {
     opacity: 0;
 }
 .map .grenade.smoke .background {
+    border: 5px solid grey;
     background-color: rgba(255,255,255,0.5);
+}
+.map .grenade.smoke.CT .background {
+    border: 5px solid var(--color-new-ct);
+    background-color: rgba(255, 255, 255,0.5);
+}
+.map .grenade.smoke.T .background {
+    border: 5px solid var(--color-new-t);
+    background-color: rgba(255, 255, 255,0.5);
 }
 .map .grenade.firebomb .background {
     background-color:transparent;
@@ -203,8 +212,8 @@ html, body, .map-container {
     height:12px;
 }
 .map .grenade.smoke {
-    width:40px;
-    height:40px;
+    width:60px;
+    height:60px;
 }
 .map .grenade.inferno .background {
     background-color: red;

@@ -19,6 +19,7 @@ export interface RadarPlayerObject {
 
 export interface RadarGrenadeObject {
     state: 'inair' | 'landed' | 'exploded'
+    side: Side | null,
     type: 'decoy' | 'smoke' | 'frag' | 'firebomb' | 'flashbang' | 'inferno',
     position: number[],
     visible: boolean,
@@ -50,4 +51,4 @@ export interface InfernoGrenade extends GrenadeBase {
 
 export type Grenade = DecoySmokeGrenade | DefaultGrenade | InfernoGrenade;
 
-export type ExtendedGrenade = Grenade & { id: string };
+export type ExtendedGrenade = Grenade & { id: string, side: Side | null, };

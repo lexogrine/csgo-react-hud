@@ -29,7 +29,7 @@ class App extends React.Component<IProps> {
       return null;
     }
     return (
-      <div key={grenade.id} className={`grenade ${grenade.type} ${grenade.state} ${grenade.visible ? 'visible':'hidden'}`}
+      <div key={grenade.id} className={`grenade ${grenade.type} ${grenade.side || ''} ${grenade.state} ${grenade.visible ? 'visible':'hidden'}`}
         style={{
           transform: `translateX(${grenade.position[0]}px) translateY(${grenade.position[1]}px) translateZ(10px)`,
         }}>
