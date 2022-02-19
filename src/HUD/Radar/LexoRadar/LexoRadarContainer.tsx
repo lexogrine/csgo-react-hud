@@ -136,6 +136,8 @@ class App extends React.Component<IProps> {
             isShooting = true;
         }
 
+        shooting.lastShoot = isShooting ? (new Date()).getTime() : lastShoot.lastShoot;
+
         shootingState[player.steamid] = shooting;
 
         const map = maps[this.props.mapName];
@@ -151,7 +153,8 @@ class App extends React.Component<IProps> {
             isAlive: player.state.health > 0,
             hasBomb: !!Object.values(player.weapons).find(weapon => weapon.type === "C4"),
             flashed: player.state.flashed > 35,
-            shooting: isShooting
+            shooting: isShooting,
+            lastShoot: shooting.lastShoot
         }
         if ("config" in map) {
             const position = this.getPosition(player, map.config);

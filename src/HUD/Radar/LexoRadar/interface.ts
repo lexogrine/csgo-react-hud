@@ -12,7 +12,8 @@ export interface RadarPlayerObject {
     steamid: string,
     hasBomb: boolean,
     flashed: boolean,
-    shooting: boolean
+    shooting: boolean,
+    lastShoot: number
 }
 
 export interface RadarGrenadeObject {
