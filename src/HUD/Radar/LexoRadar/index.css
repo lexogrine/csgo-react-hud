@@ -46,6 +46,8 @@ html, body, .map-container {
     width:1024px;
     height: 1024px;
     position: relative;
+    transform: scale(1);
+    transition: all 0.5s;
 }
 .map .player, .map .grenade, .map .bomb {
     position: absolute;
@@ -96,7 +98,7 @@ html, body, .map-container {
     position: relative;
     left: 50%;
     animation: Blink;
-    animation-duration: 0.1s;
+    animation-duration: 0.25s;
     animation-iteration-count: infinite;
 }
 .map .player.dead {
@@ -104,7 +106,7 @@ html, body, .map-container {
     z-index: 1;
 }
 .map .player {
-    transition:transform 0.1s ease;
+    transition:transform 0.1s ease, opacity 1s;
     image-rendering: -moz-crisp-edges; /* Firefox */
     image-rendering: -o-crisp-edges; /* Opera */
     image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
@@ -159,7 +161,8 @@ html, body, .map-container {
     transition: all 0.5s;
 }
 .map .grenade.smoke.inair .background {
-    background-color: transparent;
+    background-color: transparent !important;
+    border: none !important;
     background-image: url('./grenades/smoke.png');
     filter: invert(1);
 }
@@ -233,7 +236,7 @@ html, body, .map-container {
     color: white;
     font-weight: 600;
     border-radius: 50%;
-    -webkit-font-smoothing: subpixel-antialiased;
+    -webkit-font-smoothing: crisp-edges;
     font-size: 37px;
     text-shadow: 4px 4px 0 black;
 }
@@ -266,6 +269,16 @@ html, body, .map-container {
     background: red;
 }
 
+@keyframes Hidden {
+    from {
+    }
+    to {
+        display: none !important;
+    }
+}
 .map .hidden {
-    opacity: 0 !important;
+    opacity: 0;
+    animation: Hidden 1s ease 1s 1;
+    animation-fill-mode: forwards;/**/
+
 }
