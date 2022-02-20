@@ -1,4 +1,4 @@
-import { Side } from "csgogsi";
+import { Player, Side } from "csgogsi";
 
 export interface RadarPlayerObject {
     id: string,
@@ -14,7 +14,8 @@ export interface RadarPlayerObject {
     flashed: boolean,
     shooting: boolean,
     lastShoot: number,
-    scale: number
+    scale: number,
+    player: Player
 }
 
 export interface RadarGrenadeObject {
