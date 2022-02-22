@@ -22,7 +22,7 @@ export default class PlayerBox extends React.Component<IProps> {
     return (
       <div className={`player ${player.state.health === 0 ? "dead" : ""} ${this.props.isObserved ? 'active' : ''}`}>
         <div className="player_data">
-          <Avatar steamid={player.steamid} height={57} width={57} showSkull={false}/>
+          <Avatar steamid={player.steamid} height={57} width={57} showSkull={false} showCam={false} sidePlayer={true} />
           <div className="dead-stats">
             <div className="labels">
               <div className="stat-label">K</div>
