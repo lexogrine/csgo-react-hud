@@ -46,6 +46,8 @@ html, body, .map-container {
     width:1024px;
     height: 1024px;
     position: relative;
+    transform: scale(1);
+    transition: all 0.5s;
 }
 .map .player, .map .grenade, .map .bomb {
     position: absolute;
@@ -64,7 +66,40 @@ html, body, .map-container {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    transition:transform 0.1s linear;
+    transition:transform 0.2s ease;
+}
+.map .player .background-fire {
+    position: absolute;
+    width:200%;
+    height:200%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:transform 0.2s ease;
+    /*background-color:white;*/
+    /*clip-path: polygon(0 0, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0 0);*/
+
+}
+@keyframes Blink {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.map .player .background-fire .bg {
+    width:100%;
+    height:100%;
+    background-image: url('./assets/shootFire.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    left: 50%;
+    animation: Blink;
+    animation-duration: 0.25s;
+    animation-iteration-count: infinite;
 }
 
 
@@ -74,13 +109,40 @@ html, body, .map-container {
     opacity: 0.2;
     z-index: 1;
 }
+.map .player {
+    transition:transform 0.1s ease, opacity 1s;
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    image-rendering: -o-crisp-edges; /* Opera */
+    image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
+}
 .map .player:not(.dead) {
     z-index: 2;
+}
+
+.map .player.flashed.CT:not(.dead) .label {
+    background: rgb(159 197 255);
+}
+.map .player.flashed.T:not(.dead) .label {
+    background: rgb(255 219 165);
 }
 .map .player.active .background {
     width:120%;
     height:120%;
 }
+
+/*
+.map .player.shooting .background {
+    width: 110%;
+    height: 110%;
+}
+
+.map .player.active.shooting .background {
+    width: 132%;
+    height: 132%;
+}
+*/
 .map .player.active {
     width:120%;
     height:120%;
@@ -99,8 +161,12 @@ html, body, .map-container {
     opacity: 1;
     transition: opacity 1s;
 }
+.map .grenade.smoke {
+    transition: all 0.5s;
+}
 .map .grenade.smoke.inair .background {
-    background-color: transparent;
+    background-color: transparent !important;
+    border: none !important;
     background-image: url('./grenades/smoke.png');
     filter: invert(1);
 }
@@ -132,7 +198,16 @@ html, body, .map-container {
     opacity: 0;
 }
 .map .grenade.smoke .background {
+    border: 5px solid grey;
     background-color: rgba(255,255,255,0.5);
+}
+.map .grenade.smoke.CT .background {
+    border: 5px solid var(--color-new-ct);
+    background-color: rgba(255, 255, 255,0.5);
+}
+.map .grenade.smoke.T .background {
+    border: 5px solid var(--color-new-t);
+    background-color: rgba(255, 255, 255,0.5);
 }
 .map .grenade.firebomb .background {
     background-color:transparent;
@@ -144,8 +219,8 @@ html, body, .map-container {
     height:12px;
 }
 .map .grenade.smoke {
-    width:40px;
-    height:40px;
+    width:60px;
+    height:60px;
 }
 .map .grenade.inferno .background {
     background-color: red;
@@ -165,8 +240,12 @@ html, body, .map-container {
     color: white;
     font-weight: 600;
     border-radius: 50%;
-    -webkit-font-smoothing: subpixel-antialiased;
-    font-size: 27px;
+    -webkit-font-smoothing: crisp-edges;
+    font-size: 37px;
+    text-shadow: 4px 4px 0 black;
+}
+.map .bomb {
+    transition:transform 0.1s ease;
 }
 .map .bomb .background {
     background-image: url('./grenades/bomb.png');
@@ -185,15 +264,25 @@ html, body, .map-container {
     animation: BombDefused 2s 1 forwards;
 }
 .map .player.CT .label {
-    background: radial-gradient(rgb(61, 141, 224), rgb(42, 49, 119));
+    background: rgb(16, 88, 197)
 }
 .map .player.T .label {
-    background: radial-gradient(rgb(255, 129, 0), var(--color-new-t));
+    background: rgb(255, 153, 0);
 }
 .map .player.T.hasBomb .label {
     background: red;
 }
 
+@keyframes Hidden {
+    from {
+    }
+    to {
+        display: none !important;
+    }
+}
 .map .hidden {
-    opacity: 0 !important;
+    opacity: 0;
+    animation: Hidden 1s ease 1s 1;
+    animation-fill-mode: forwards;/**/
+
 }

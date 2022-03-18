@@ -1,3 +1,4 @@
+import { Player } from 'csgogsi-socket';
 import radar from './radar.png'
 
 const high = {
@@ -31,6 +32,21 @@ const config = {
             isVisible: (height: number) => height < 11700,
         },
     ],
+    zooms: [{
+        threshold: (players: Player[]) => {
+            const alivePlayers = players.filter(player => player.state.health);
+            return alivePlayers.length > 0 && alivePlayers.every(player => player.position[2] < 11700)
+        },
+        origin: [472, 1130],
+        zoom: 2
+    }, {
+        threshold: (players: Player[]) => {
+            const alivePlayers = players.filter(player => player.state.health);
+            return alivePlayers.length > 0 && players.filter(player => player.state.health).every(player => player.position[2] >= 11700);
+        },
+        origin: [528, 15],
+        zoom: 1.75
+    }],
     file: radar
 }
 

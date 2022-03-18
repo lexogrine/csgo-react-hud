@@ -381,10 +381,18 @@
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
-                padding:  2px 4px 2px 4px;
-                //border-left: 3px solid var(--main-panel-color);
-                img {
-                    //border-radius:50%;
+                overflow: hidden;
+                position: relative;
+                .videofeed {
+                    width:70px;
+                    height:70px;
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    video {
+                        height: 70px;
+                        position: absolute;
+                    }
                 }
             }
         }

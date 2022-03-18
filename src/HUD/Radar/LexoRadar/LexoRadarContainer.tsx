@@ -5,9 +5,18 @@ import LexoRadar from './LexoRadar';
 import { ExtendedGrenade, Grenade, RadarPlayerObject, RadarGrenadeObject } from './interface';
 import config from './config';
 
+const DESCALE_ON_ZOOM = true;
+
+
 let playersStates: Player[][] = [];
 let grenadesStates: ExtendedGrenade[][] = [];
-const directions: { [key: string]: number } = {};
+const directions: Record<string, number> = {};
+type ShootingState = {
+    ammo: number,
+    weapon: string,
+    lastShoot: number
+}
+let shootingState: Record<string, ShootingState> = {};
 
 const calculateDirection = (player: Player) => {
     if (directions[player.steamid] && !player.state.health) return directions[player.steamid];
@@ -78,7 +87,7 @@ class App extends React.Component<IProps> {
         }
         let size = 30;
         if (grenade.type === "smoke") {
-            size = 40;
+            size = 60;
         }
         return this.parsePosition(grenade.position.split(", ").map(pos => Number(pos)), size, config);
     }
@@ -97,10 +106,10 @@ class App extends React.Component<IProps> {
 
         return [x / entryAmount, y / entryAmount];
     }
-    getPosition = (player: Player, mapConfig: ScaleConfig) => {
+    getPosition = (player: Player, mapConfig: ScaleConfig, scale: number) => {
         const playerData = playersStates.slice(0, 5).map(players => players.filter(pl => pl.steamid === player.steamid)[0]).filter(pl => !!pl);
         if (playerData.length === 0) return [0, 0];
-        const positions = playerData.map(playerEntry => this.parsePosition(playerEntry.position, config.playerSize, mapConfig));
+        const positions = playerData.map(playerEntry => this.parsePosition(playerEntry.position, config.playerSize * scale, mapConfig));
         const entryAmount = positions.length;
         let x = 0;
         let y = 0;
@@ -116,6 +125,25 @@ class App extends React.Component<IProps> {
         if (!(this.props.mapName in maps)) {
             return null;
         }
+
+        const weapons = player.weapons ? Object.values(player.weapons) : [];
+        const weapon = weapons.find(weapon => weapon.state === "active" && weapon.type !== "C4" && weapon.type !== "Knife" && weapon.type !== "Grenade");
+
+        const shooting: ShootingState = { ammo: weapon && weapon.ammo_clip || 0, weapon: weapon && weapon.name || '', lastShoot: 0 };
+
+        const lastShoot = shootingState[player.steamid] || shooting;
+
+        let isShooting = false;
+
+        if (shooting.weapon === lastShoot.weapon && shooting.ammo < lastShoot.ammo) {
+            isShooting = true;
+        }
+
+        shooting.lastShoot = isShooting ? (new Date()).getTime() : lastShoot.lastShoot;
+
+        shootingState[player.steamid] = shooting;
+
+
         const map = maps[this.props.mapName];
         const playerObject: RadarPlayerObject = {
             id: player.steamid,
@@ -127,19 +155,35 @@ class App extends React.Component<IProps> {
             forward: 0,
             steamid: player.steamid,
             isAlive: player.state.health > 0,
-            hasBomb: !!Object.values(player.weapons).find(weapon => weapon.type === "C4")
+            hasBomb: !!Object.values(player.weapons).find(weapon => weapon.type === "C4"),
+            flashed: player.state.flashed > 35,
+            shooting: isShooting,
+            lastShoot: shooting.lastShoot,
+            scale: 1,
+            player
         }
         if ("config" in map) {
-            const position = this.getPosition(player, map.config);
+            const scale = map.config.originHeight === undefined ? 1 : (1 + (player.position[2] - map.config.originHeight) / 1000);
+
+            playerObject.scale = scale;
+
+            const position = this.getPosition(player, map.config, scale);
             playerObject.position = position;
+
             return playerObject;
         }
-        return map.configs.map(config => ({
-            ...playerObject,
-            position: this.getPosition(player, config.config),
-            id: `${player.steamid}_${config.id}`,
-            visible: config.isVisible(player.position[2])
-        }));
+        return map.configs.map(config => {
+            const scale = config.config.originHeight === undefined ? 1 : (1 + (player.position[2] - config.config.originHeight) / 750);
+
+            playerObject.scale = scale;
+
+            return ({
+                ...playerObject,
+                position: this.getPosition(player, config.config, scale),
+                id: `${player.steamid}_${config.id}`,
+                visible: config.isVisible(player.position[2])
+            })
+        });
     }
     mapGrenade = (extGrenade: ExtendedGrenade) => {
         if (!(this.props.mapName in maps)) {
@@ -164,6 +208,7 @@ class App extends React.Component<IProps> {
             const flames = Object.keys(extGrenade.flames).map(mapFlame).flat();
             const flameObjects: RadarGrenadeObject[] = flames.map(flame => ({
                 ...flame,
+                side: extGrenade.side,
                 type: 'inferno',
                 state: 'landed'
             }));
@@ -176,6 +221,7 @@ class App extends React.Component<IProps> {
             const grenadeObject: RadarGrenadeObject = {
                 type: extGrenade.type,
                 state: 'inair',
+                side: extGrenade.side,
                 position,
                 id: extGrenade.id,
                 visible: true
@@ -200,6 +246,7 @@ class App extends React.Component<IProps> {
             const grenadeObject: RadarGrenadeObject = {
                 type: extGrenade.type,
                 state: 'inair',
+                side: extGrenade.side,
                 position,
                 id: `${extGrenade.id}_${config.id}`,
                 visible: config.isVisible(extGrenade.position.split(", ").map(Number)[2])
@@ -220,6 +267,11 @@ class App extends React.Component<IProps> {
         }).filter((grenade): grenade is RadarGrenadeObject => grenade !== null);
 
     }
+    getSideOfGrenade = (grenade: Grenade) => {
+        const owner = this.props.players.find(player => player.steamid === grenade.owner);
+        if (!owner) return null;
+        return owner.team.side;
+    }
     render() {
         const players: RadarPlayerObject[] = this.props.players.map(this.mapPlayer(this.props.player)).filter((player): player is RadarPlayerObject => player !== null).flat();
         playersStates.unshift(this.props.players);
@@ -227,7 +279,7 @@ class App extends React.Component<IProps> {
             playersStates = playersStates.slice(0, 5);
         }
         let grenades: RadarGrenadeObject[] = [];
-        const currentGrenades = Object.keys(this.props.grenades as { [key: string]: Grenade }).map(grenadeId => ({ ...this.props.grenades[grenadeId], id: grenadeId })) as ExtendedGrenade[];
+        const currentGrenades = Object.keys(this.props.grenades as { [key: string]: Grenade }).map(grenadeId => ({ ...this.props.grenades[grenadeId], id: grenadeId, side: this.getSideOfGrenade(this.props.grenades[grenadeId]) })) as ExtendedGrenade[];
         if (currentGrenades) {
             grenades = currentGrenades.map(this.mapGrenade).filter(entry => entry !== null).flat() as RadarGrenadeObject[];
             grenadesStates.unshift(currentGrenades);
@@ -237,6 +289,15 @@ class App extends React.Component<IProps> {
         }
         const size = this.props.size || 300;
         const offset = (size - (size * size / 1024)) / 2;
+
+        const config = maps[this.props.mapName];
+
+        const zooms = config && config.zooms || [];
+
+        const activeZoom = zooms.find(zoom => zoom.threshold(players.map(pl => pl.player)));
+
+        const reverseZoom = 1/(activeZoom && activeZoom.zoom || 1);
+
         // s*(1024-s)/2048
         if (!(this.props.mapName in maps)) {
             return <div className="map-container" style={{ width: size, height: size, transform: `scale(${size / 1024})`, top: -offset, left: -offset }}>
@@ -251,6 +312,8 @@ class App extends React.Component<IProps> {
                 bomb={this.props.bomb}
                 mapName={this.props.mapName}
                 mapConfig={maps[this.props.mapName]}
+                zoom={activeZoom}
+                reverseZoom={DESCALE_ON_ZOOM ? reverseZoom.toFixed(2) : '1'}
             />
         </div>;
     }
