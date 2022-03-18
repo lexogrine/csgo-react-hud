@@ -31,8 +31,10 @@ export default class RadarMaps extends React.Component<Props, State> {
     render() {
         const { match } = this.props;
         const { radarSize, showBig, showRadar } = this.state;
+        const size = showBig ? 600 : radarSize;
         return (
-            <div id={`radar_maps_container`} className={`${!showRadar ? 'hide' : ''} ${showBig ? 'preview' : ''}`}>
+            <div id={`radar_maps_container`} className={`${!showRadar ? 'hide' : ''} ${showBig ? 'preview':''}`}>
+                <div className="radar-component-container" style={{width: `${size}px`, height: `${size}px`}}><Radar radarSize={size} game={this.props.game} /></div>
                 {match ? <MapsBar match={this.props.match} map={this.props.map} game={this.props.game} /> : null}
                 <Radar radarSize={showBig ? 600 : radarSize} game={this.props.game} />
             </div>
@@ -50,7 +52,7 @@ class MapsBar extends React.PureComponent<Props> {
         if (picks.length > 3) {
             const current = picks.find(veto => map.name.includes(veto.mapName));
             if (!current) return null;
-            return <div id="maps_container">
+            return <div id="maps_container ">
                 <div className="bestof">
                     BO{bo}
                 </div>

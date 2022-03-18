@@ -7,7 +7,8 @@ const config = {
             "y": 340.2921393569175
         },
         "pxPerUX": 0.20118507589946494,
-        "pxPerUY": -0.20138282875746794
+        "pxPerUY": -0.20138282875746794,
+        "originHeight": -170,
     },
     "file": radar
 }

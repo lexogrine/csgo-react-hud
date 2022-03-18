@@ -8,6 +8,13 @@ import de_nuke from './de_nuke';
 import de_vertigo from './de_vertigo';
 import de_ancient from './de_ancient';
 import api from '../../../../api/api';
+import { Player } from 'csgogsi-socket';
+
+export type ZoomAreas = {
+    threshold: (players: Player[]) => boolean;
+    origin: number[],
+    zoom: number
+}
 
 export interface ScaleConfig {
     origin: {
@@ -15,12 +22,14 @@ export interface ScaleConfig {
         y:number
     },
     pxPerUX: number,
-    pxPerUY: number
+    pxPerUY: number,
+    originHeight?: number
 }
 
 interface SingleLayer {
     config: ScaleConfig,
-    file: string
+    file: string,
+    zooms?: ZoomAreas[]
 }
 
 interface DoubleLayer {
@@ -29,7 +38,8 @@ interface DoubleLayer {
         config: ScaleConfig,
         isVisible: (height: number) => boolean
     }[],
-    file: string
+    file: string,
+    zooms?: ZoomAreas[]
 }
 
 export type MapConfig = SingleLayer | DoubleLayer;

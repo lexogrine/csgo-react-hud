@@ -24,6 +24,11 @@
 		perspective: 500px;
 	}
 }
+.radar-component-container {
+	width: 350px;
+	height:350px;
+	overflow: hidden;
+}
 #maps_container {
 	.foreLogo {
 		max-height: 20px;
