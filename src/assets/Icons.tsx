@@ -17,6 +17,12 @@ import { ReactComponent as Microphone }  from './../assets/images/icon_microphon
 import { ReactComponent as Pause }  from './../assets/images/icon_pause_default.svg';
 import { ReactComponent as Skull }  from './../assets/images/icon_skull_default.svg';
 import { ReactComponent as Timer }  from './../assets/images/icon_timer_default.svg';
+import { ReactComponent as FlashedKill } from './../assets/images/flashed_kill.svg';
+import { ReactComponent as Headshot } from './../assets/images/headshot.svg';
+import { ReactComponent as NoScope } from './../assets/images/noscope.svg';
+import { ReactComponent as SmokeKill } from './../assets/images/smoke_kill.svg';
+import { ReactComponent as Suicide } from './../assets/images/suicide.svg';
+import { ReactComponent as Wallbang } from './../assets/images/wallbang.svg';
 import LogoCT  from './../assets/images/logo_CT_default.png';
 import LogoT  from './../assets/images/logo_T_default.png';
 import { ReactComponent as SmallBomb }  from "./../assets/images/bomb.svg";
@@ -26,6 +32,12 @@ export {
     SmallBomb,
     ArmorFull,
     ArmorHalf,
+    FlashedKill,
+    Headshot,
+    NoScope,
+    SmokeKill,
+    Suicide,
+    Wallbang,
     ArmorHalfHelmet,
     ArmorHelmet,
     ArmorNone,
