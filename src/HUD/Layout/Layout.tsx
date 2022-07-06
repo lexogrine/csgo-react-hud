@@ -99,8 +99,8 @@ export default class Layout extends React.Component<Props, State> {
 
         <Observed player={game.player} veto={this.getVeto()} round={game.map.round+1}/>
 
-        <TeamBox team={left} players={leftPlayers} side="left" current={game.player} isFreezetime={isFreezetime} />
-        <TeamBox team={right} players={rightPlayers} side="right" current={game.player} isFreezetime={isFreezetime} />
+        <TeamBox team={left} players={leftPlayers} side="left" current={game.player} />
+        <TeamBox team={right} players={rightPlayers} side="right" current={game.player} />
 
         <Trivia />
 

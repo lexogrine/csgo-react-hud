@@ -54,8 +54,8 @@ const getConnectionInfo = (steamid: string) => mediaStreams.players.find(player 
 const closeConnection = (steamid: string) => {
     const connectionInfo = getConnectionInfo(steamid);
     try {
-        if(connectionInfo){
-            if(connectionInfo.peerConnection){
+        if (connectionInfo) {
+            if (connectionInfo.peerConnection) {
                 connectionInfo.peerConnection.removeAllListeners();
                 connectionInfo.peerConnection.destroy();
             }
@@ -64,9 +64,9 @@ const closeConnection = (steamid: string) => {
     } catch {
 
     }
-        
-    for(const listener of mediaStreams.listeners.filter(listener => listener.steamid === steamid)){
-        if(listener.event === "destroy") listener.listener();
+
+    for (const listener of mediaStreams.listeners.filter(listener => listener.steamid === steamid)) {
+        if (listener.event === "destroy") listener.listener();
     }
     mediaStreams.players = mediaStreams.players.filter(player => player.steamid !== steamid);
     console.log(mediaStreams.players)
@@ -83,7 +83,7 @@ const initiateConnection = async () => {
         const blockedSteamids = players.filter(player => !player.allow).map(player => player.steamid);
         mediaStreams.blocked = blockedSteamids;
 
-        for(const listener of mediaStreams.blockedListeners){
+        for (const listener of mediaStreams.blockedListeners) {
             listener(blockedSteamids);
         }
     });
@@ -95,15 +95,15 @@ const initiateConnection = async () => {
             return;
         }*/
         const currentConnection = getConnectionInfo(steamid);
-        
+
         // Connection already made, ignore incoming request
-        if(currentConnection){
+        if (currentConnection) {
             console.log("Connection has been made already");
             return;
         }
 
         if (camera.uuid !== roomId) return;
-        
+
         const peerConnection: PeerInstance = new Peer({ initiator: false, trickle: false });
 
         const mediaStreamPlayer: MediaStreamPlayer = { peerConnection, steamid };
@@ -120,21 +120,21 @@ const initiateConnection = async () => {
             console.log(err)
             closeConnection(steamid);
         });
-        
+
         peerConnection.on('stream', () => {
             console.log("STREAM COMING IN");
             const currentConnection = getConnectionInfo(steamid);
-            if(!currentConnection){
+            if (!currentConnection) {
                 console.log("Connection not established");
                 closeConnection(steamid);
                 return;
             }
-            if(peerConnection._remoteStreams.length === 0){
+            if (peerConnection._remoteStreams.length === 0) {
                 console.log('no stream?');
                 return;
             }
-            for(const listener of mediaStreams.listeners.filter(listener => listener.steamid === steamid)){
-                if(listener.event === "create") listener.listener(peerConnection._remoteStreams[0]);
+            for (const listener of mediaStreams.listeners.filter(listener => listener.steamid === steamid)) {
+                if (listener.event === "create") listener.listener(peerConnection._remoteStreams[0]);
             }
         });
 

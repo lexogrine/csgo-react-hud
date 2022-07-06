@@ -8,7 +8,6 @@ interface Props {
   team: I.Team,
   side: 'right' | 'left',
   current: I.Player | null,
-  isFreezetime: boolean,
 }
 
 export default class TeamBox extends React.Component<Props> {
@@ -19,7 +18,6 @@ export default class TeamBox extends React.Component<Props> {
           key={player.steamid}
           player={player}
           isObserved={!!(this.props.current && this.props.current.steamid === player.steamid)}
-          isFreezetime={this.props.isFreezetime}
         />)}
       </div>
     );
