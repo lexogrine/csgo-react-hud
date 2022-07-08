@@ -236,6 +236,7 @@ html, body, .map-container {
     color: white;
     font-weight: 600;
     border-radius: 50%;
+    transition: background-color 0.5s;
     -webkit-font-smoothing: crisp-edges;
     font-size: 37px;
     text-shadow: 4px 4px 0 black;

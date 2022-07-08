@@ -45,7 +45,7 @@ class App extends React.Component<IProps> {
     const { reverseZoom } = this.props;
     return (
       <div key={player.id}
-        className={`player ${player.shooting? 'shooting':''} ${player.side} ${player.hasBomb ? 'hasBomb':''} ${player.isActive ? 'active' : ''} ${!player.isAlive ? 'dead' : ''} ${player.visible ? 'visible':'hidden'}`}
+        className={`player ${player.shooting? 'shooting':''} ${player.flashed ? 'flashed':''} ${player.side} ${player.hasBomb ? 'hasBomb':''} ${player.isActive ? 'active' : ''} ${!player.isAlive ? 'dead' : ''} ${player.visible ? 'visible':'hidden'}`}
         style={{
           transform: `translateX(${player.position[0].toFixed(2)}px) translateY(${player.position[1].toFixed(2)}px) translateZ(10px) scale(${reverseZoom})`,
           width: config.playerSize * player.scale,
