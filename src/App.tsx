@@ -141,8 +141,11 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 		})
 		GSI.on('data', game => {
 			if (!this.state.game || this.state.steamids.length) this.verifyPlayers(game);
+
+			const wasLoaded = !!this.state.game;
+
 			this.setState({ game }, () => {
-				if (!this.state.checked) this.loadMatch();
+				if(!wasLoaded) this.loadMatch(true);
 			});
 		});
 		socket.on('match', () => {
@@ -157,7 +160,8 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 			dataLoader.match = new Promise((resolve) => {
 				api.match.getCurrent().then(match => {
 					if (!match) {
-						//dataLoader.match = null;
+						GSI.teams.left = null;
+						GSI.teams.right = null;
 						return;
 					}
 					this.setState({ match });
