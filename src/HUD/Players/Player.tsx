@@ -131,4 +131,5 @@ const arePropsEqual = (prevProps: Readonly<IProps>, nextProps: Readonly<IProps>)
   return arePlayersEqual(prevProps.player, nextProps.player);
 }
 
-export default React.memo(Player, arePropsEqual);
+//export default React.memo(Player, arePropsEqual);
+export default Player;
