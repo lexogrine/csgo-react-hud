@@ -6,6 +6,7 @@ import de_train from './de_train';
 import de_overpass from './de_overpass';
 import de_nuke from './de_nuke';
 import de_vertigo from './de_vertigo';
+import de_anubis from './de_anubis';
 import de_ancient from './de_ancient';
 import api from '../../../../api/api';
 import { Player } from 'csgogsi-socket';
@@ -53,7 +54,8 @@ const maps: { [key: string] : MapConfig} = {
     de_overpass,
     de_nuke,
     de_vertigo,
-    de_ancient
+    de_ancient,
+    de_anubis
 }
 
 api.maps.get().then(fallbackMaps => {
