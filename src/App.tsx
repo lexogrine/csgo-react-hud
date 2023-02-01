@@ -141,7 +141,7 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 		})
 		GSI.on('data', game => {
 			if (!this.state.game || this.state.steamids.length) this.verifyPlayers(game);
-
+			
 			const wasLoaded = !!this.state.game;
 
 			this.setState({ game }, () => {
