@@ -5,11 +5,11 @@
 	}
 	5% {
 		opacity: 1;
-		height: 38px;
+		height: 43px;
 	}
 	95% {
 		opacity: 1;
-		height: 38px;
+		height: 43px;
 	}
 	100% {
 		opacity: 0;
@@ -24,16 +24,18 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-
+    .single_kill_container {
+        animation: KillLifeCycle 5s linear 1;
+        animation-fill-mode: forwards;/**/
+        overflow: hidden;
+    }
     .single_kill {
         display: flex;
         flex-direction: row;
         background-color: rgba(0,0,0,0.64);
         margin-bottom:5px;
         color:white;
-        animation: KillLifeCycle 5s linear 1;
-        animation-fill-mode: forwards;/**/
-        height: 31px;
+        height: 38px;
         font-size: 14px;
         overflow: hidden;
         align-items: center;
@@ -41,6 +43,11 @@
         font-weight:500;
         padding-left:15px;
         padding-right:15px;
+
+        > svg {
+            max-height: 24px;
+            max-width: 28px;
+        }
 
         div {
             margin:10px;
@@ -86,6 +93,10 @@
 
             .wallbang {
                 max-height: 24px;
+            }
+            svg:not(.weapon) {
+                max-height: 24px;
+                max-width: 28px;
             }
         }
         &.hide {

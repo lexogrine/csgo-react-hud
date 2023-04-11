@@ -4,11 +4,22 @@ import api, { port, isDev } from './api/api';
 import { loadAvatarURL } from './api/avatars';
 import ActionManager, { ConfigManager } from './api/actionManager';
 
-import { CSGO, PlayerExtension, GSISocket } from "csgogsi-socket";
+import { CSGO, PlayerExtension, GSISocket, CSGORaw } from "csgogsi-socket";
 import { Match } from './api/interfaces';
 import { initiateConnection } from './HUD/Camera/mediaStream';
 
+let isInWindow = !!window.parent.ipcApi;
+
 export const { GSI, socket } = GSISocket(isDev ? `localhost:${port}` : '/', "update");
+
+if(isInWindow){
+	window.parent.ipcApi.receive('raw', (data: CSGORaw, damage?: RoundDamage[]) => {
+		if(damage){
+			GSI.damage = damage;
+		}
+		GSI.digest(data);
+	});
+}
 
 type RoundPlayerDamage = {
 	steamid: string;
@@ -108,7 +119,7 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 		}
 
 		socket.on("readyToRegister", () => {
-			socket.emit("register", name, isDev);
+			socket.emit("register", name, isDev, "csgo", isInWindow ? "IPC" : "DEFAULT");
 			initiateConnection();
 		});
 		socket.on(`hud_config`, (data: any) => {
@@ -122,7 +133,7 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 		});
 
 		socket.on("refreshHUD", () => {
-			window.top.location.reload();
+			window.top?.location.reload();
 		});
 
 		socket.on("update_mirv", (data: any) => {
@@ -130,8 +141,11 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 		})
 		GSI.on('data', game => {
 			if (!this.state.game || this.state.steamids.length) this.verifyPlayers(game);
+			
+			const wasLoaded = !!this.state.game;
+
 			this.setState({ game }, () => {
-				if (!this.state.checked) this.loadMatch();
+				if(!wasLoaded) this.loadMatch(true);
 			});
 		});
 		socket.on('match', () => {
@@ -146,7 +160,8 @@ class App extends React.Component<any, { match: Match | null, game: CSGO | null,
 			dataLoader.match = new Promise((resolve) => {
 				api.match.getCurrent().then(match => {
 					if (!match) {
-						//dataLoader.match = null;
+						GSI.teams.left = null;
+						GSI.teams.right = null;
 						return;
 					}
 					this.setState({ match });

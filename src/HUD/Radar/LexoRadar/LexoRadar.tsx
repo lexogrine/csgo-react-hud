@@ -45,7 +45,7 @@ class App extends React.Component<IProps> {
     const { reverseZoom } = this.props;
     return (
       <div key={player.id}
-        className={`player ${player.shooting? 'shooting':''} ${player.side} ${player.hasBomb ? 'hasBomb':''} ${player.isActive ? 'active' : ''} ${!player.isAlive ? 'dead' : ''} ${player.visible ? 'visible':'hidden'}`}
+        className={`player ${player.shooting? 'shooting':''} ${player.flashed ? 'flashed':''} ${player.side} ${player.hasBomb ? 'hasBomb':''} ${player.isActive ? 'active' : ''} ${!player.isAlive ? 'dead' : ''} ${player.visible ? 'visible':'hidden'}`}
         style={{
           transform: `translateX(${player.position[0].toFixed(2)}px) translateY(${player.position[1].toFixed(2)}px) translateZ(10px) scale(${reverseZoom})`,
           width: config.playerSize * player.scale,
@@ -62,7 +62,7 @@ class App extends React.Component<IProps> {
     if(!bomb) return null;
     if(bomb.state === "carried" || bomb.state === "planting") return null;
     if("config" in mapConfig){
-      const position = this.props.parsePosition(bomb.position.split(", ").map(pos => Number(pos)), 30, mapConfig.config);
+      const position = this.props.parsePosition(bomb.position, 30, mapConfig.config);
       if(!position) return null;
       
       return (
@@ -76,10 +76,10 @@ class App extends React.Component<IProps> {
       )
     }
     return mapConfig.configs.map(config => {
-      const position = this.props.parsePosition(bomb.position.split(", ").map(pos => Number(pos)), 30, config.config);
+      const position = this.props.parsePosition(bomb.position, 30, config.config);
       if(!position) return null;
       return (
-        <div className={`bomb ${bomb.state} ${config.isVisible(bomb.position.split(", ").map(Number)[2]) ? 'visible':'hidden'}`}
+        <div className={`bomb ${bomb.state} ${config.isVisible(bomb.position[2]) ? 'visible':'hidden'}`}
           style={{
             transform: `translateX(${position[0].toFixed(2)}px) translateY(${position[1].toFixed(2)}px) translateZ(10px)`
           }}>
