@@ -74,7 +74,7 @@ export interface Veto {
   side: "CT" | "T" | "NO";
   type: "ban" | "pick" | "decider";
   reverseSide?: boolean;
-  rounds?: RoundData[],
+  rounds?: (RoundData | null)[],
   score?: {
     [key: string]: number;
   };

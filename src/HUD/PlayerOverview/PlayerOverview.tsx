@@ -20,7 +20,11 @@ export default class PlayerOverview extends React.Component<IProps> {
     getData = () => {
         const { veto, player, round } = this.props;
         if(!player || !veto || !veto.rounds) return null;
-        const stats = veto.rounds.map(round => round.players[player.steamid]).filter(data => !!data);
+        const stats = veto.rounds.map(round => round ? round.players[player.steamid] : {
+			kills: 0,
+			killshs: 0,
+			damage: 0
+		}).filter(data => !!data);
         const overall = {
             damage: this.sum(stats.map(round => round.damage)),
             kills: this.sum(stats.map(round => round.kills)),

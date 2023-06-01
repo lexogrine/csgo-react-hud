@@ -37,7 +37,12 @@ export default class Observed extends React.Component<{ player: Player | null, v
 	getAdr = () => {
 		const { veto, player } = this.props;
 		if (!player || !veto || !veto.rounds) return null;
-		const damageInRounds = veto.rounds.map(round => round.players[player.steamid]).filter(data => !!data).map(roundData => roundData.damage);
+		const damageInRounds = veto.rounds.map(round => round ? round.players[player.steamid] : {
+			kills: 0,
+			killshs: 0,
+			damage: 0
+		}).filter(data => !!data).map(roundData => roundData.damage);
+		 
 		return damageInRounds.reduce((a, b) => a + b, 0) / (this.props.round - 1);
 	}
 	render() {
