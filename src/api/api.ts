@@ -4,6 +4,8 @@ import { MapConfig } from '../HUD/Radar/LexoRadar/maps';
 
 
 const query = queryString.parseUrl(window.location.href).query;
+export const variant = query?.variant || "default";
+
 export const port = (query && Number(query.port)) || 1349;
 
 export const isDev = !query.isProd;
