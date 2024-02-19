@@ -34,6 +34,11 @@
         "name":"display_settings",
         "inputs": [
             {
+                "type": "checkbox",
+                "name": "round_thingy_toggle",
+                "label": "Disable Round Thingy"
+            },
+            {
                 "type": "text",
                 "name": "left_title",
                 "label": "Left box's title"

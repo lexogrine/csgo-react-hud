@@ -178,6 +178,9 @@
 		align-items: center;
 		justify-content: center;
 		border-radius: 50%;
+		&.PepeHands{
+			opacity: 0;
+		}
 		.inner {
 			width: 35px;
 			height: 35px;
