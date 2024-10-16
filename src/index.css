@@ -1,5 +1,4 @@
 @import "fonts/montserrat.css";
-@import "fonts/stratum2.css";
 html,
 body,
 #root {
@@ -9,7 +8,7 @@ body,
 
 body {
   margin: 0;
-  font-family: 'Stratum2', 'Montserrat', 'Roboto', sans-serif;
+  font-family: 'Rajdhani', 'Montserrat', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /*background-image: url('./assets/bg.png');/**/
